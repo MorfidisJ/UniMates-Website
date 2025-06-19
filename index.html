@@ -360,24 +360,90 @@
     }
 
     .hero-cta {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-top: 1rem;
+      max-width: 700px;
+      margin-left: 0;
+      margin-right: auto;
+      padding-left: 0.5rem;
     }
 
     .waitlist-form {
-      display: flex;
-      gap: 0.75rem;
-      padding: 0.5rem;
-      background: rgba(255,255,255,0.92) !important;
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid rgba(228,214,167,0.18);
-      box-shadow: 0 8px 32px rgba(228,214,167,0.10), 0 2px 8px rgba(0,0,0,0.04);
+      max-width: 100%;
+      box-shadow: none !important;
+    }
+
+    .waitlist-input, .waitlist-btn {
+      border-radius: 14px !important;
+      transition: box-shadow 0.22s cubic-bezier(.4,2,.6,1), border 0.18s, transform 0.18s cubic-bezier(.4,2,.6,1);
+    }
+    .waitlist-input:focus, .waitlist-input:active {
+      outline: none !important;
+      border: 1.5px solid #df4f00;
+      box-shadow: 0 0 0 6px rgba(223,79,0,0.22), 0 2px 12px rgba(139,92,246,0.10);
+      background: #fff;
+      transform: scale(1.03);
+    }
+    .waitlist-btn {
+      grid-area: button;
+      font-size: 1rem;
+      padding: 1rem 2rem;
+      border-radius: 14px !important;
+      border: none !important;
+      background: linear-gradient(90deg, #df4f00 60%, #e4d6a7 100%) !important;
+      color: #fff !important;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: none;
+      transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
-      border-radius: var(--radius-lg);
+      white-space: nowrap;
+      text-align: center;
+      line-height: 1.2;
+    }
+    .waitlist-btn:hover, .waitlist-btn:focus {
+      background: linear-gradient(90deg, #e45b25 60%, #e4d6a7 100%) !important;
+      box-shadow: 0 8px 32px rgba(223,79,0,0.18), 0 0 32px #8b5cf6;
+      outline: none !important;
+      transform: translateY(-2px);
+    }
+    .waitlist-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+      pointer-events: none;
+    }
+    .waitlist-btn:hover::before {
+      left: 100%;
+    }
+    .waitlist-checkbox-row {
+      grid-area: checkbox;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-top: 0.2rem;
+      padding-left: 0;
+    }
+    .waitlist-checkbox-label {
+      font-size: 0.98rem !important;
+      font-weight: 400;
+      color: #3a425c !important;
+      line-height: 1.5;
+      margin: 0;
+    }
+    .waitlist-checkbox {
+      accent-color: #df4f00;
+      width: 1rem;
+      height: 1rem;
+      margin-top: 0.2rem;
+    }
+    /* Remove any huge font-size overrides */
+    .waitlist-form label, .waitlist-form .waitlist-checkbox-label {
+      font-size: 0.98rem !important;
     }
 
     .waitlist-form::before {
@@ -1111,7 +1177,7 @@
       position: relative;
       transform-style: preserve-3d;
       transform: rotateX(-20deg) rotateY(30deg);
-      transition: transform 0.7s cubic-bezier(.4,2,.6,1);
+      transition: transform 0.3s cubic-bezier(.4,2,.6,1);
       cursor: pointer;
     }
     .cube:focus,
@@ -1339,7 +1405,7 @@
         </div>
         
         <h1 class="hero-title">
-          Meet your next <span class="highlight">flatmate</span>, creatively.
+          Swipe <span class="highlight">Right</span> For The <span class="highlight">Right</span> Roommate 🎓
         </h1>
         
         <p class="hero-description">
@@ -1347,19 +1413,19 @@
         </p>
         
         <div class="hero-cta">
-          <form id="email-form" class="waitlist-form">
-            <input type="email" id="email" placeholder="Enter your email address" required />
-            <label class="waitlist-checkbox-label" style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.88rem; color: var(--text-dim); margin-top: 0.2rem; font-weight: 400;">
-              <input type="checkbox" id="waitlist-accept" required style="accent-color: var(--accent); width: 1rem; height: 1rem; border-radius: 5px; margin-right: 0.4rem;" />
-              I agree to receive updates and occasional emails from UniMates. I can unsubscribe anytime.
-            </label>
-            <button type="submit" class="cta-button">Join Waitlist</button>
-    </form>
+          <div class="waitlist-form">
+            <input type="email" placeholder="Enter your email address" class="waitlist-input">
+            <button class="waitlist-btn">Join Waitlist</button>
+            <div class="waitlist-checkbox-row">
+              <input type="checkbox" id="waitlist-consent" class="waitlist-checkbox">
+              <label for="waitlist-consent" class="waitlist-checkbox-label">I agree to receive updates and occasional emails from UniMates. I can unsubscribe anytime.</label>
+            </div>
+          </div>
           
           <div id="success-message" class="success">
             🎉 You're on the list! We'll be in touch soon.
-    </div>
-  </div>
+          </div>
+        </div>
         
         <div class="hero-stats">
           <div class="stat">
@@ -1417,7 +1483,7 @@
   </section>
 
   <section class="features" id="features">
-    <h2 class="section-title">Why UniMates?</h2>
+    <h1 class="section-title">Why UniMates?</h1>
     <p class="section-subtitle">
       We're building more than just a flatmate finder. We're creating a community where students connect, create, and thrive together.
     </p>
@@ -1592,7 +1658,7 @@
     </div>
   </section>
 
-  <!-- Footer with spinning cube and social links -->
+  <!-- Footer with spinning cube and social links (restored from about.html/quiz.html) -->
   <footer class="site-footer">
     <div class="footer-content">
       <div class="footer-cube-container">
@@ -1606,15 +1672,39 @@
         </div>
       </div>
       <div class="footer-social">
-        <a href="https://instagram.com/" target="_blank" aria-label="Instagram" class="footer-social-link"><i class="fab fa-instagram"></i></a>
-        <a href="https://tiktok.com/" target="_blank" aria-label="TikTok" class="footer-social-link"><i class="fab fa-tiktok"></i></a>
-        <a href="https://youtube.com/" target="_blank" aria-label="YouTube" class="footer-social-link"><i class="fab fa-youtube"></i></a>
-        <a href="https://linkedin.com/" target="_blank" aria-label="LinkedIn" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
-        <a href="mailto:hello@unimates.com" aria-label="Email" class="footer-social-link"><i class="fas fa-envelope"></i></a>
-      </div>
+        <a href="https://instagram.com/unimates.info" target="_blank" aria-label="Instagram" class="footer-social-link"><i class="fab fa-instagram"></i></a>
+        <a href="https://tiktok.com/@unimatesapp" target="_blank" aria-label="TikTok" class="footer-social-link"><i class="fab fa-tiktok"></i></a>
+        <a href="https://www.youtube.com/channel/UCMKHVISj443ioGYAZYRUrTQ" target="_blank" aria-label="YouTube" class="footer-social-link"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.linkedin.com/company/unimatesapp" target="_blank" aria-label="LinkedIn" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@unimates.net&su=Regarding Your Inquiry&body=Dear Unimates Team,"aria-label="Email" class="footer-social-link"><i class="fas fa-envelope"></i></a></div>
     </div>
-    <div class="footer-copy">&copy; 2024 UniMates. All rights reserved.</div>
+    <div class="footer-copy">&copy; 2025 UniMates. All rights reserved.</div>
   </footer>
+  <script>
+    (function() {
+      const cube = document.querySelector('.footer-cube-container .cube');
+      let angleY = 30;
+      let angleX = -20;
+      let animationFrame;
+      let running = true;
+
+      function animate() {
+        if (running) {
+          angleY += 0.6; // speed of rotation
+          if (angleY > 360) angleY -= 360;
+          cube.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+        }
+        animationFrame = requestAnimationFrame(animate);
+      }
+
+      cube.addEventListener('mouseenter', () => { running = false; });
+      cube.addEventListener('mouseleave', () => { running = true; });
+      cube.addEventListener('focus', () => { running = false; });
+      cube.addEventListener('blur', () => { running = true; });
+
+      animate();
+    })();
+  </script>
 
   <script>
     // Email form handling
@@ -1652,8 +1742,6 @@
       }
       lastScrollY = window.scrollY;
     });
-
-    // Footer cube continuous animation
     (function() {
       const cube = document.querySelector('.footer-cube-container .cube');
       let angleY = 30;
