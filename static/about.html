@@ -622,185 +622,92 @@
     .gallery-modal {
       display: none;
       position: fixed;
-      z-index: 2000;
+      z-index: 9999;
       left: 0;
       top: 0;
       width: 100vw;
       height: 100vh;
-      background: linear-gradient(120deg, #0a0a0f 0%, #1a1a3a 100%);
-      background-size: 200% 200%;
-      animation: modalBgShift 12s ease-in-out infinite alternate;
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(4px) brightness(1.04) saturate(1.04);
+      -webkit-backdrop-filter: blur(4px) brightness(1.04) saturate(1.04);
       align-items: center;
       justify-content: center;
       transition: background 0.3s;
       overflow: hidden;
-      backdrop-filter: blur(18px) brightness(1.12) saturate(1.15);
-      -webkit-backdrop-filter: blur(18px) brightness(1.12) saturate(1.15);
-    }
-    @keyframes modalBgShift {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
     }
     .gallery-modal.open {
       display: flex;
     }
     .gallery-modal-inner {
-      background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(26,26,46,0.35) 100%);
-      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, rgba(255,255,255,0.10) 0%, rgba(26,26,46,0.35) 100%);
+      border-radius: 24px;
       box-shadow: 0 8px 40px 0 rgba(0,0,0,0.18), 0 0 32px 0 var(--accent-glow), 0 1.5px 0 0 rgba(255,255,255,0.08) inset;
       padding: 2.5rem 2.5rem 2rem 2.5rem;
       display: flex;
       align-items: center;
       gap: 2rem;
-      animation: modalPop 0.5s cubic-bezier(.4,2,.6,1);
       min-width: 320px;
-      max-width: 96vw;
+      max-width: 90vw;
       max-height: 90vh;
       overflow: visible;
-      backdrop-filter: blur(7px) brightness(1.08) saturate(1.08);
-      -webkit-backdrop-filter: blur(7px) brightness(1.08) saturate(1.08);
-      border: 2.5px solid rgba(255,255,255,0.22);
-    }
-    .gallery-modal-inner::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      background: linear-gradient(120deg, rgba(255,255,255,0.13) 0%, rgba(255,255,255,0.04) 100%);
-      opacity: 0.22;
-      pointer-events: none;
-      z-index: 1;
-    }
-    .gallery-modal-inner::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      box-shadow: 0 2px 24px 0 rgba(255,255,255,0.06) inset, 0 1.5px 0 0 rgba(255,255,255,0.18);
-      pointer-events: none;
-      z-index: 2;
-    }
-    .gallery-modal-orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.35;
-      pointer-events: none;
-      z-index: 0;
-      animation: orbModalFloat 10s ease-in-out infinite alternate;
-    }
-    .gallery-modal-orb1 {
-      width: 320px; height: 320px;
-      background: #ff6b35;
-      top: -120px; left: -120px;
-      animation-delay: 0s;
-    }
-    .gallery-modal-orb2 {
-      width: 220px; height: 220px;
-      background: #8b5cf6;
-      bottom: -80px; right: -80px;
-      animation-delay: 2s;
-    }
-    .gallery-modal-orb3 {
-      width: 260px; height: 260px;
-      background: #06b6d4;
-      top: 40%; left: 60%;
-      animation-delay: 4s;
-    }
-    @keyframes orbModalFloat {
-      0% { transform: scale(1) translateY(0) translateX(0); }
-      50% { transform: scale(1.08) translateY(-30px) translateX(20px); }
-      100% { transform: scale(1) translateY(0) translateX(0); }
+      position: relative;
+      flex-direction: column;
+      justify-content: center;
     }
     .gallery-modal-imgbox {
       background: linear-gradient(120deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.04) 100%);
-      border-radius: var(--radius-lg);
+      border-radius: 18px;
       box-shadow: 0 2px 16px 0 rgba(255,255,255,0.06) inset, 0 1.5px 0 0 rgba(255,255,255,0.13);
       padding: 1.2rem 1.2rem 0.7rem 1.2rem;
       backdrop-filter: blur(4px) brightness(1.03) saturate(1.03);
       -webkit-backdrop-filter: blur(4px) brightness(1.03) saturate(1.03);
       border: 1.5px solid rgba(255,255,255,0.13);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      max-width: 80vw;
+      max-height: 70vh;
     }
     .gallery-modal-content {
       border: none !important;
-      border-radius: var(--radius-lg);
+      border-radius: 18px;
       box-shadow: 0 8px 40px 0 rgba(0,0,0,0.22), 0 0 32px 0 var(--accent-glow), 0 0 80px 10px #8b5cf6;
       object-fit: contain;
       margin-bottom: 1.2rem;
       max-width: 60vw;
       max-height: 60vh;
-      background: none;
+      background: linear-gradient(135deg, rgba(255,255,255,0.92) 0%, rgba(228,214,167,0.18) 100%);
+      backdrop-filter: blur(2px) saturate(1.02);
+      -webkit-backdrop-filter: blur(2px) saturate(1.02);
       animation: none !important;
       transform: none !important;
       filter: none !important;
+      display: block;
     }
-    .gallery-close {
-      position: absolute;
-      top: 1.2rem;
-      right: 1.2rem;
+    #galleryModalCaption {
       color: #fff;
-      font-size: 2.5rem;
-      font-weight: 700;
-      cursor: pointer;
-      z-index: 10;
-      text-shadow: 0 2px 12px var(--accent-glow);
-      transition: color 0.2s;
-      background: none;
-      border: none;
-      outline: none;
-    }
-    .gallery-close:hover {
-      color: var(--accent);
-    }
-    .gallery-arrow {
-      background: linear-gradient(135deg, var(--purple), var(--cyan));
-      color: #fff;
-      border: none;
-      border-radius: 50%;
-      width: 48px;
-      height: 48px;
-      font-size: 1.6rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-      transition: background 0.3s, color 0.2s, transform 0.2s;
-      margin: 0 1rem;
-      outline: none;
-    }
-    .gallery-arrow:hover {
-      background: linear-gradient(135deg, var(--cyan), var(--purple));
-      color: var(--accent);
-      transform: scale(1.12);
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      background: rgba(18,18,34,0.45);
+      border-radius: 12px;
+      padding: 0.5rem 1.2rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+      max-width: 90vw;
+      margin-left: auto;
+      margin-right: auto;
     }
     @media (max-width: 900px) {
-      .gallery-modal-inner { flex-direction: column; gap: 1rem; padding: 1.2rem; }
-      .gallery-modal-imgbox { max-width: 90vw; max-height: 60vh; }
-      .gallery-modal-content { max-width: 90vw; max-height: 40vh; }
-      .creative-gallery {
-        gap: 1.2rem;
-        padding-bottom: 1rem;
-        flex-wrap: nowrap;
-      }
-      .gallery-img-wrapper.wild1 .gallery-img { width: 180px; height: 120px; }
-      .gallery-img-wrapper.wild2 .gallery-img { width: 120px; height: 120px; }
-      .gallery-img-wrapper.wild3 .gallery-img { width: 110px; height: 160px; }
-      .gallery-img-wrapper.wild4 .gallery-img { width: 140px; height: 80px; }
+      .gallery-modal-inner { padding: 1.2rem; }
+      .gallery-modal-imgbox { max-width: 95vw; max-height: 60vh; }
+      .gallery-modal-content { max-width: 95vw; max-height: 40vh; }
     }
     @media (max-width: 600px) {
-      .about-gallery-section { padding: 1.2rem 0.5rem; }
-      .about-gallery-title { font-size: 1.1rem; }
-      .creative-gallery {
-        gap: 0.7rem;
-        padding-bottom: 0.5rem;
-        flex-wrap: nowrap;
-      }
-      .gallery-img-wrapper.wild1 .gallery-img { width: 110px; height: 70px; }
-      .gallery-img-wrapper.wild2 .gallery-img { width: 70px; height: 70px; }
-      .gallery-img-wrapper.wild3 .gallery-img { width: 60px; height: 90px; }
-      .gallery-img-wrapper.wild4 .gallery-img { width: 90px; height: 50px; }
-      .gallery-img-wrapper { margin-left: 0 !important; }
+      .gallery-modal-inner { padding: 0.5rem; }
+      .gallery-modal-imgbox { max-width: 98vw; max-height: 40vh; }
+      .gallery-modal-content { max-width: 98vw; max-height: 30vh; }
+      #galleryModalCaption { font-size: 0.95rem; padding: 0.4rem 0.7rem; }
     }
     /* Modal background animation and orbs (reuse from main page) */
     .bg-animation.modal-bg-animation {
@@ -901,6 +808,129 @@
       width: 100%;
       box-sizing: border-box;
     }
+    .lightbox-modal {
+      position: fixed;
+      z-index: 9999;
+      left: 0; top: 0;
+      width: 100vw; height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.38);
+      backdrop-filter: blur(10px) brightness(1.08) saturate(1.08);
+      -webkit-backdrop-filter: blur(10px) brightness(1.08) saturate(1.08);
+      transition: opacity 0.3s;
+    }
+    .lightbox-modal[style*="display:none"] { opacity: 0; pointer-events: none; }
+    .lightbox-overlay {
+      position: absolute;
+      left: 0; top: 0; width: 100vw; height: 100vh;
+      background: transparent;
+      z-index: 0;
+    }
+    .lightbox-content {
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(135deg, rgba(255,255,255,0.82) 0%, rgba(228,214,167,0.38) 100%);
+      border-radius: 24px;
+      box-shadow: 0 8px 40px 0 rgba(228,214,167,0.13), 0 0 32px 0 var(--accent-glow);
+      padding: 2.5rem 2.5rem 2rem 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      min-width: 320px;
+      max-width: 90vw;
+      max-height: 90vh;
+      overflow: visible;
+      flex-direction: row;
+      justify-content: center;
+      backdrop-filter: blur(6px) saturate(1.08);
+      -webkit-backdrop-filter: blur(6px) saturate(1.08);
+      border: 1.5px solid rgba(255,255,255,0.18);
+    }
+    @media (max-width: 900px) {
+      .lightbox-content { flex-direction: column; gap: 1rem; padding: 1.2rem; }
+    }
+    @media (max-width: 600px) {
+      .lightbox-content { padding: 0.5rem; }
+    }
+    .lightbox-imgbox {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      max-width: 80vw;
+      max-height: 70vh;
+    }
+    .lightbox-img {
+      border-radius: 18px;
+      box-shadow: 0 8px 40px 0 rgba(0,0,0,0.10), 0 0 32px 0 var(--accent-glow);
+      object-fit: contain;
+      margin-bottom: 1.2rem;
+      max-width: 60vw;
+      max-height: 60vh;
+      background: none;
+      display: block;
+    }
+    .lightbox-caption {
+      color: #0a1045;
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      background: rgba(255,255,255,0.72);
+      border-radius: 12px;
+      padding: 0.5rem 1.2rem;
+      box-shadow: 0 2px 12px rgba(228,214,167,0.12);
+      max-width: 90vw;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 500;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 1.2rem; right: 1.2rem;
+      color: #0a1045;
+      font-size: 2.5rem;
+      font-weight: 700;
+      cursor: pointer;
+      z-index: 10;
+      background: none;
+      border: none;
+      outline: none;
+      transition: color 0.2s;
+    }
+    .lightbox-close:hover { color: var(--accent); }
+    .lightbox-arrow {
+      background: none;
+      border: none;
+      border-radius: 50%;
+      width: 64px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 24px 0 rgba(223,79,0,0.12), 0 0 32px 0 var(--accent-glow);
+      transition: transform 0.18s cubic-bezier(.4,2,.6,1), box-shadow 0.18s, filter 0.18s;
+      outline: none;
+      z-index: 2;
+      position: relative;
+      overflow: visible;
+    }
+    .lightbox-arrow svg {
+      width: 48px;
+      height: 48px;
+      display: block;
+      filter: drop-shadow(0 2px 12px rgba(139,92,246,0.18));
+    }
+    .lightbox-arrow:hover {
+      transform: scale(1.12) rotate(-4deg);
+      box-shadow: 0 8px 32px 0 rgba(223,79,0,0.18), 0 0 48px 0 var(--accent-glow);
+      filter: brightness(1.12) drop-shadow(0 0 16px #df4f00);
+    }
+    .lightbox-arrow:active {
+      transform: scale(0.98) rotate(2deg);
+    }
   </style>
 </head>
 <body>
@@ -947,7 +977,7 @@
             <span class="card-tag">Tech</span>
             <span class="card-tag">Problem Solver</span>
           </div>
-          <a href="https://linkedin.com/in/alex-chen" class="team-linkedin" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="https://www.linkedin.com/in/thanasis-giannopoulos-634214336/" class="team-linkedin" target="_blank"><i class="fab fa-linkedin"></i></a>
         </div>
         <div class="profile-card">
           <div class="card-avatar"><img src="vogg.jpg" alt="Ioannis Voggelis"></div>
@@ -958,7 +988,7 @@
             <span class="card-tag">Frontend</span>
             <span class="card-tag">Visionary</span>
           </div>
-          <a href="https://linkedin.com/in/maya-singh" class="team-linkedin" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="https://www.linkedin.com/in/ioannis-voggelis-14095b325/" class="team-linkedin" target="_blank"><i class="fab fa-linkedin"></i></a>
         </div>
         <div class="profile-card">
           <div class="card-avatar"><img src="gkou.jpg" alt="Thomas Gkountas"></div>
@@ -980,33 +1010,52 @@
             <span class="card-tag">Frontend</span>
             <span class="card-tag">Overhowler</span>
           </div>
-          <a href="https://linkedin.com/in/taylor-brooks" class="team-linkedin" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="https://www.linkedin.com/in/ioannis-morfidis-175062342/" class="team-linkedin" target="_blank"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
     </section>
     <section class="about-gallery-section">
       <h2 class="about-gallery-title">Team Gallery</h2>
       <div class="creative-gallery">
-        <div class="gallery-img-wrapper wild wild1"><img src="1.jpg" alt="Team at work" class="gallery-img" data-caption="Team at work" onclick="openModal(0)"></div>
-        <div class="gallery-img-wrapper wild wild2"><img src="2.jpg" alt="Team brainstorming" class="gallery-img" data-caption="Team brainstorming" onclick="openModal(1)"></div>
-        <div class="gallery-img-wrapper wild wild3"><img src="3.jpg" alt="Team meeting" class="gallery-img" data-caption="Team meeting" onclick="openModal(2)"></div>
-        <div class="gallery-img-wrapper wild wild4"><img src="4.jpg" alt="Team celebration" class="gallery-img" data-caption="Team celebration" onclick="openModal(3)"></div>
-      </div>
-      <div id="galleryModal" class="gallery-modal" onclick="modalBgClick(event)">
-        <div class="bg-animation modal-bg-animation"></div>
-        <div class="gallery-modal-orb gallery-modal-orb1"></div>
-        <div class="gallery-modal-orb gallery-modal-orb2"></div>
-        <div class="gallery-modal-orb gallery-modal-orb3"></div>
-        <div class="gallery-modal-inner">
-          <button class="gallery-arrow gallery-arrow-left" onclick="prevModal(event)"><i class="fas fa-chevron-left"></i></button>
-          <div class="gallery-modal-imgbox">
-            <img class="gallery-modal-content" id="galleryModalImg" alt="Team photo">
-          </div>
-          <button class="gallery-arrow gallery-arrow-right" onclick="nextModal(event)"><i class="fas fa-chevron-right"></i></button>
-          <button class="gallery-close" onclick="closeModal(event)">&times;</button>
-        </div>
+        <div class="gallery-img-wrapper wild wild1"><img src="1.jpg" alt="Team at work" class="gallery-img" data-caption="Team at work" data-index="0"></div>
+        <div class="gallery-img-wrapper wild wild2"><img src="2.jpg" alt="Team brainstorming" class="gallery-img" data-caption="Team brainstorming" data-index="1"></div>
+        <div class="gallery-img-wrapper wild wild3"><img src="3.jpg" alt="Team meeting" class="gallery-img" data-caption="Team meeting" data-index="2"></div>
+        <div class="gallery-img-wrapper wild wild4"><img src="4.jpg" alt="Team celebration" class="gallery-img" data-caption="Team celebration" data-index="3"></div>
       </div>
     </section>
+    <div id="lightboxModal" class="lightbox-modal" aria-modal="true" role="dialog" tabindex="-1" style="display:none;">
+      <div class="lightbox-overlay" tabindex="-1"></div>
+      <div class="lightbox-content" role="document">
+        <button class="lightbox-close" aria-label="Close" tabindex="0">&times;</button>
+        <button class="lightbox-arrow lightbox-arrow-left" aria-label="Previous image" tabindex="0">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="arrowLeftGradient" x1="0" y1="16" x2="32" y2="16" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#df4f00"/>
+                <stop offset="1" stop-color="#8b5cf6"/>
+              </linearGradient>
+            </defs>
+            <circle cx="16" cy="16" r="15" fill="url(#arrowLeftGradient)" filter="url(#glow)"/>
+            <path d="M20 8L12 16L20 24" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="lightbox-imgbox">
+          <img id="lightboxImg" class="lightbox-img" src="" alt="" />
+        </div>
+        <button class="lightbox-arrow lightbox-arrow-right" aria-label="Next image" tabindex="0">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="arrowRightGradient" x1="0" y1="16" x2="32" y2="16" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#df4f00"/>
+                <stop offset="1" stop-color="#8b5cf6"/>
+              </linearGradient>
+            </defs>
+            <circle cx="16" cy="16" r="15" fill="url(#arrowRightGradient)" filter="url(#glow)"/>
+            <path d="M12 8L20 16L12 24" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
   </main>
   <!-- Footer with spinning cube and social links (EXACT from index.html) -->
   <footer class="site-footer">
@@ -1022,74 +1071,94 @@
         </div>
       </div>
       <div class="footer-social">
-        <a href="https://instagram.com/" target="_blank" aria-label="Instagram" class="footer-social-link"><i class="fab fa-instagram"></i></a>
-        <a href="https://tiktok.com/" target="_blank" aria-label="TikTok" class="footer-social-link"><i class="fab fa-tiktok"></i></a>
-        <a href="https://youtube.com/" target="_blank" aria-label="YouTube" class="footer-social-link"><i class="fab fa-youtube"></i></a>
-        <a href="https://linkedin.com/" target="_blank" aria-label="LinkedIn" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
-        <a href="mailto:hello@unimates.com" aria-label="Email" class="footer-social-link"><i class="fas fa-envelope"></i></a>
+        <a href="https://instagram.com/unimates.info" target="_blank" aria-label="Instagram" class="footer-social-link"><i class="fab fa-instagram"></i></a>
+        <a href="https://tiktok.com/@unimatesapp" target="_blank" aria-label="TikTok" class="footer-social-link"><i class="fab fa-tiktok"></i></a>
+        <a href="https://www.youtube.com/channel/UCMKHVISj443ioGYAZYRUrTQ" target="_blank" aria-label="YouTube" class="footer-social-link"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.linkedin.com/company/unimatesapp" target="_blank" aria-label="LinkedIn" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@unimates.net&su=Regarding Your Inquiry&body=Dear Unimates Team,"aria-label="Email" class="footer-social-link"><i class="fas fa-envelope"></i></a></div>
       </div>
     </div>
-    <div class="footer-copy">&copy; 2024 UniMates. All rights reserved.</div>
+    <div class="footer-copy">&copy; 2025 UniMates. All rights reserved.</div>
   </footer>
   <script>
     const galleryImages = [
-      {
-        src: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80',
-        alt: 'Team at work'
-      },
-      {
-        src: 'https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=400&q=80',
-        alt: 'Team brainstorming'
-      },
-      {
-        src: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80',
-        alt: 'Team meeting'
-      },
-      {
-        src: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80',
-        alt: 'Team celebration'
-      }
+      { src: '1.jpg', alt: 'Team at work' },
+      { src: '2.jpg', alt: 'Team brainstorming' },
+      { src: '3.jpg', alt: 'Team meeting' },
+      { src: '4.jpg', alt: 'Team celebration' }
     ];
-    let currentGalleryIndex = 0;
-    function openModal(idx) {
-      currentGalleryIndex = idx;
-      var modal = document.getElementById('galleryModal');
-      var modalImg = document.getElementById('galleryModalImg');
-      modal.classList.add('open');
-      modalImg.src = galleryImages[idx].src;
-      modalImg.alt = galleryImages[idx].alt;
+    let currentIndex = 0;
+    const modal = document.getElementById('lightboxModal');
+    const modalImg = document.getElementById('lightboxImg');
+    const closeBtn = document.querySelector('.lightbox-close');
+    const leftBtn = document.querySelector('.lightbox-arrow-left');
+    const rightBtn = document.querySelector('.lightbox-arrow-right');
+    const overlay = document.querySelector('.lightbox-overlay');
+    const focusableSelectors = 'button, [tabindex]:not([tabindex="-1"])';
+    let lastFocused = null;
+
+    function openLightbox(idx) {
+      currentIndex = idx;
+      updateLightbox();
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      lastFocused = document.activeElement;
+      setTimeout(() => {
+        closeBtn.focus();
+      }, 10);
     }
-    function closeModal(e) {
-      if (e) e.stopPropagation();
-      var modal = document.getElementById('galleryModal');
-      modal.classList.remove('open');
+    function closeLightbox() {
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+      if (lastFocused) lastFocused.focus();
     }
-    function modalBgClick(e) {
-      if (e.target.classList.contains('gallery-modal')) {
-        closeModal();
+    function updateLightbox() {
+      const img = galleryImages[currentIndex];
+      modalImg.src = img.src;
+      modalImg.alt = img.alt;
+    }
+    function prevLightbox() {
+      currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+      updateLightbox();
+    }
+    function nextLightbox() {
+      currentIndex = (currentIndex + 1) % galleryImages.length;
+      updateLightbox();
+    }
+    // Open on image click
+    Array.from(document.querySelectorAll('.gallery-img')).forEach(img => {
+      img.addEventListener('click', e => {
+        openLightbox(Number(img.dataset.index));
+      });
+    });
+    // Close on overlay or close button
+    closeBtn.addEventListener('click', closeLightbox);
+    overlay.addEventListener('click', closeLightbox);
+    // Navigation
+    leftBtn.addEventListener('click', prevLightbox);
+    rightBtn.addEventListener('click', nextLightbox);
+    // Keyboard navigation and focus trap
+    modal.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') prevLightbox();
+      if (e.key === 'ArrowRight') nextLightbox();
+      // Focus trap
+      const focusable = modal.querySelectorAll(focusableSelectors);
+      if (e.key === 'Tab') {
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else {
+          if (document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
       }
-    }
-    function prevModal(e) {
-      e.stopPropagation();
-      currentGalleryIndex = (currentGalleryIndex - 1 + galleryImages.length) % galleryImages.length;
-      updateModalImg();
-    }
-    function nextModal(e) {
-      e.stopPropagation();
-      currentGalleryIndex = (currentGalleryIndex + 1) % galleryImages.length;
-      updateModalImg();
-    }
-    function updateModalImg() {
-      var modalImg = document.getElementById('galleryModalImg');
-      modalImg.src = galleryImages[currentGalleryIndex].src;
-      modalImg.alt = galleryImages[currentGalleryIndex].alt;
-    }
-    document.addEventListener('keydown', function(e) {
-      var modal = document.getElementById('galleryModal');
-      if (!modal.classList.contains('open')) return;
-      if (e.key === 'ArrowLeft') prevModal(e);
-      if (e.key === 'ArrowRight') nextModal(e);
-      if (e.key === 'Escape') closeModal(e);
     });
     // Footer cube continuous animation (EXACT from index.html)
     (function() {
