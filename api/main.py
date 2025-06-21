@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from mangum import Mangum
 from pydantic import BaseModel
 from typing import Optional
+from fastapi.responses import JSONResponse
 
 import requests
 import os
