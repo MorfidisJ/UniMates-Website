@@ -855,6 +855,7 @@ body, h1, h2, h3, h4, h5, h6, p, span, label, li, .section-title, .section-subti
   padding: 12rem 2rem;
   position: relative;
   overflow: hidden;
+  background: transparent;
 }
 
 .quiz-container {
@@ -1025,10 +1026,6 @@ body, h1, h2, h3, h4, h5, h6, p, span, label, li, .section-title, .section-subti
   .quiz-visual {
     height: 400px;
   }
-
-  .personality-card.card-2 {
-    display: none;
-  }
 }
 
 @media (max-width: 480px) {
@@ -1050,21 +1047,18 @@ body, h1, h2, h3, h4, h5, h6, p, span, label, li, .section-title, .section-subti
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 107, 53, 0.2) 0%,
-    rgba(139, 92, 246, 0.2) 100%
-  );
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
   border: 1px solid rgba(255, 107, 53, 0.3);
   border-radius: var(--radius-xl);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: var(--accent);
-  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(255,107,53,0.08);
+  margin-bottom: 1.2rem;
 }
 
 .quiz-badge-icon {
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .quiz-feature {

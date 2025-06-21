@@ -23,12 +23,17 @@
     <div class="nav-container">
       <a href="#" class="logo">
         <img src="logo.png" alt="UniMates Logo">
-        UniMates
+        <span class="logo-text">UniMates</span>
       </a>
       <a href="quiz.html" class="quiz-header-ad">
         <span class="quiz-header-ad-icon">✨</span>
-        Take the Personality Quiz!
+        <span class="quiz-header-ad-text">Take the Personality Quiz!</span>
       </a>
+      <button class="hamburger" onclick="toggleMenu(this)" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <ul class="nav-links">
         <li><a href="#features">Features</a></li>
         <li><a href="how-it-works.html">How it works</a></li>
@@ -36,14 +41,6 @@
       </ul>
     </div>
     <div class="mobile-overlay" onclick="closeMenu()"></div>
-    <button class="hamburger" onclick="toggleMenu(this)" aria-label="Toggle navigation menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-    
-
-    
   </nav>
 
   <section class="hero">
@@ -245,17 +242,17 @@
           </div>
         </div>
         <div class="quiz-stats">
-          <div class="quiz-stat">
-            <span class="quiz-stat-number">2,500+</span>
-            <span class="quiz-stat-label">Students Matched</span>
+          <div class="stat">
+            <span class="stat-number">2,500+</span>
+            <span class="stat-label">Students Matched</span>
           </div>
-          <div class="quiz-stat">
-            <span class="quiz-stat-number">95%</span>
-            <span class="quiz-stat-label">Match Success</span>
+          <div class="stat">
+            <span class="stat-number">95%</span>
+            <span class="stat-label">Match Success</span>
           </div>
-          <div class="quiz-stat">
-            <span class="quiz-stat-number">5</span>
-            <span class="quiz-stat-label">Personality Types</span>
+          <div class="stat">
+            <span class="stat-number">5</span>
+            <span class="stat-label">Personality Types</span>
           </div>
         </div>
         <a href="quiz.html" class="cta-button quiz-cta">Take the Quiz Now</a>
@@ -331,9 +328,13 @@
     </div>
     <div class="footer-copy">&copy; 2025 UniMates. All rights reserved.</div>
   </footer>
+  <script src="email-handler.js"></script>
+  <script src="view-switcher.js"></script>
   <script>
+    // Cube animation
     (function() {
       const cube = document.querySelector('.footer-cube-container .cube');
+      if (!cube) return;
       let angleY = 30;
       let angleX = -20;
       let animationFrame;
@@ -341,7 +342,7 @@
 
       function animate() {
         if (running) {
-          angleY += 0.6; // speed of rotation
+          angleY += 0.6; 
           if (angleY > 360) angleY -= 360;
           cube.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
         }
@@ -355,116 +356,8 @@
 
       animate();
     })();
-  </script>
 
-  <script>
-    // Email form handling
-    document.getElementById('waitlistForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const email = document.getElementById('email').value;
-      const consent = document.getElementById('consent').checked;
-      
-      if (email && consent) {
-        // Here you would typically send the email to your backend
-        console.log('Email:', email);
-        
-        // Hide the form and show success message with animation
-        document.getElementById('waitlistForm').style.display = 'none';
-        const successMessage = document.getElementById('successMessage');
-        successMessage.style.display = 'block';
-        // Trigger reflow
-        successMessage.offsetHeight;
-        successMessage.classList.add('visible');
-      }
-    });
-
-    (function() {
-      const cube = document.querySelector('.footer-cube-container .cube');
-      let angleY = 30;
-      let angleX = -20;
-      let animationFrame;
-      let running = true;
-
-      function animate() {
-        if (running) {
-          angleY += 0.6; // speed of rotation
-          if (angleY > 360) angleY -= 360;
-          cube.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
-        }
-        animationFrame = requestAnimationFrame(animate);
-      }
-
-      cube.addEventListener('mouseenter', () => { running = false; });
-      cube.addEventListener('mouseleave', () => { running = true; });
-      cube.addEventListener('focus', () => { running = false; });
-      cube.addEventListener('blur', () => { running = true; });
-
-      animate();
-    })();
-  </script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const form = document.getElementById('waitlistForm');
-      const emailInput = document.getElementById('email');
-      const consentCheckbox = document.getElementById('consent');
-      const submitButton = form.querySelector('button[type="submit"]');
-
-      // Helper function to validate email
-      function isValidEmail(email) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-      }
-
-      // Update button state based on form validity
-      function updateSubmitButton() {
-        const isEmailValid = isValidEmail(emailInput.value);
-        const isConsentChecked = consentCheckbox.checked;
-        submitButton.disabled = !(isEmailValid && isConsentChecked);
-      }
-
-      // Add input event listeners
-      emailInput.addEventListener('input', updateSubmitButton);
-      consentCheckbox.addEventListener('change', updateSubmitButton);
-
-      // Initial button state
-      updateSubmitButton();
-
-      // Form submission
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const email = emailInput.value;
-        const consent = consentCheckbox.checked;
-        
-        if (isValidEmail(email) && consent) {
-          // Here you would typically send the email to your backend
-          console.log('Email:', email);
-          
-          // Disable form while processing
-          submitButton.disabled = true;
-          
-          // Launch confetti
-          launchConfetti();
-          
-          // Animate form out
-          form.style.opacity = '0';
-          form.style.transform = 'translateY(-20px)';
-          
-          setTimeout(() => {
-            // Hide form and show success message
-            form.style.display = 'none';
-            const successMessage = document.getElementById('successMessage');
-            successMessage.style.display = 'block';
-            // Trigger reflow
-            successMessage.offsetHeight;
-            successMessage.classList.add('visible');
-          }, 300);
-        }
-      });
-    });
-  </script>
-
-  <script>
-    // Confetti animation function
+    // Confetti animation
     function launchConfetti() {
       const canvas = document.getElementById('confetti-canvas');
       const ctx = canvas.getContext('2d');
@@ -472,7 +365,6 @@
       canvas.height = window.innerHeight;
       let confetti = [];
 
-      // Create confetti particles
       for (let i = 0; i < 120; i++) {
         confetti.push({
           x: Math.random() * canvas.width,
@@ -510,83 +402,20 @@
       draw();
     }
 
-    // Update form submission handler to include confetti
-    document.addEventListener('DOMContentLoaded', () => {
-      const form = document.getElementById('waitlistForm');
-      const emailInput = document.getElementById('email');
-      const consentCheckbox = document.getElementById('consent');
-      const submitButton = form.querySelector('button[type="submit"]');
-
-      // Helper function to validate email
-      function isValidEmail(email) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-      }
-
-      // Update button state based on form validity
-      function updateSubmitButton() {
-        const isEmailValid = isValidEmail(emailInput.value);
-        const isConsentChecked = consentCheckbox.checked;
-        submitButton.disabled = !(isEmailValid && isConsentChecked);
-      }
-
-      // Add input event listeners
-      emailInput.addEventListener('input', updateSubmitButton);
-      consentCheckbox.addEventListener('change', updateSubmitButton);
-
-      // Initial button state
-      updateSubmitButton();
-
-      // Form submission
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const email = emailInput.value;
-        const consent = consentCheckbox.checked;
-        
-        if (isValidEmail(email) && consent) {
-          // Here you would typically send the email to your backend
-          console.log('Email:', email);
-          
-          // Disable form while processing
-          submitButton.disabled = true;
-          
-          // Launch confetti
-          launchConfetti();
-          
-          // Animate form out
-          form.style.opacity = '0';
-          form.style.transform = 'translateY(-20px)';
-          
-          setTimeout(() => {
-            // Hide form and show success message
-            form.style.display = 'none';
-            const successMessage = document.getElementById('successMessage');
-            successMessage.style.display = 'block';
-            // Trigger reflow
-            successMessage.offsetHeight;
-            successMessage.classList.add('visible');
-          }, 300);
-        }
-      });
-
-      // Handle window resize for confetti canvas
-      window.addEventListener('resize', () => {
-        const canvas = document.getElementById('confetti-canvas');
-        if (canvas) {
-          canvas.width = window.innerWidth;
-          canvas.height = window.innerHeight;
-        }
-      });
-    });
+    // Mobile menu
     function toggleMenu(button) {
   const navLinks = document.querySelector('.nav-links');
   const overlay = document.querySelector('.mobile-overlay');
   const body = document.body;
+      const quizButton = document.querySelector('.quiz-header-ad');
   
   navLinks.classList.toggle('show');
   overlay.classList.toggle('show');
   button.classList.toggle('active');
+      if (quizButton) {
+        quizButton.classList.toggle('hidden');
+      }
   
-  // Prevent body scrolling when menu is open
   if (navLinks.classList.contains('show')) {
     body.style.overflow = 'hidden';
   } else {
@@ -599,36 +428,43 @@
     const overlay = document.querySelector('.mobile-overlay');
     const hamburger = document.querySelector('.hamburger');
     const body = document.body;
+      const quizButton = document.querySelector('.quiz-header-ad');
     
     navLinks.classList.remove('show');
     overlay.classList.remove('show');
     hamburger.classList.remove('active');
+      if (quizButton) {
+        quizButton.classList.remove('hidden');
+      }
     body.style.overflow = '';
   }
 
-  // Close menu on window resize
-  window.addEventListener('resize', function() {
+    // General event listeners
+    document.addEventListener('DOMContentLoaded', () => {
+      window.addEventListener('resize', () => {
+        const canvas = document.getElementById('confetti-canvas');
+        if (canvas) {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        }
     if (window.innerWidth > 768) {
       closeMenu();
     }
   });
 
-  // Close menu when clicking on nav links
   document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', closeMenu);
   });
 
-  // Enhanced card interactions
   document.querySelectorAll('.profile-card, .personality-card').forEach(card => {
     card.addEventListener('touchstart', function() {
       this.style.transform = 'translateY(-2px) scale(0.98)';
     });
-    
     card.addEventListener('touchend', function() {
       this.style.transform = '';
+        });
     });
   });
   </script>
-  <script src="email_handler.js"></script>
 </body>
 </html>

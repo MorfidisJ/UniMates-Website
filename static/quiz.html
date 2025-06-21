@@ -6,860 +6,11 @@
   <title>Flatmate Style Quiz - UniMates</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    /* Import base styles */
-    @import url('index.html');
-
-    :root {
-      --base: #e4d6a7;
-      --main: #0a1045;
-      --accent: #df4f00;
-      --accent-light: #ff7a36;
-      --accent-dark: #a33600;
-      --main-light: #232a5c;
-      --main-dark: #070b2e;
-      --secondary: #7b8fa1;
-      --secondary-light: #b3c2d6;
-      --secondary-dark: #3a425c;
-      --teal: #1ec6b6;
-      --teal-light: #6fffe9;
-      --text: #222;
-      --text-dim: #555;
-      --text-muted: #888;
-      --radius-md: 14px;
-      --radius-lg: 24px;
-      --shadow-glow: 0 0 16px 0 var(--accent-light), 0 2px 8px 0 var(--main-dark);
-      --accent-glow: #ff7a36cc;
-      --primary: #0f0f23;
-      --primary-light: #1a1a3a;
-      --purple: #8b5cf6;
-      --purple-light: #a78bfa;
-      --cyan: #06b6d4;
-      --cyan-light: #67e8f9;
-      --bg: #0a0a0f;
-      --bg-light: #1a1a2e;
-      --surface: rgba(26, 26, 46, 0.8);
-      --surface-light: rgba(26, 26, 46, 0.95);
-      --border: rgba(255, 255, 255, 0.1);
-      --border-bright: rgba(255, 255, 255, 0.2);
-      --glass: rgba(26, 26, 46, 0.7);
-      --glass-light: rgba(26, 26, 46, 0.9);
-      --radius-xl: 32px;
-      --radius-sm: 12px;
-      --radius-xs: 8px;
-      --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    }
-    
-    * { 
-      box-sizing: border-box; 
-      margin: 0;
-      padding: 0;
-    }
-    
-    html { 
-      scroll-behavior: smooth; 
-      font-size: 16px;
-    }
-    
-    body {
-      background: linear-gradient(135deg, #fff 0%, #e4d6a7 100%) !important;
-      color: #222 !important;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
-
-    /* Background animation */
-    .bg-animation {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 40% 70%, rgba(255, 107, 53, 0.15) 0%, transparent 50%);
-      opacity: 0.45;
-      animation: bgBreathing 16s ease-in-out infinite alternate;
-    }
-
-    @keyframes bgBreathing {
-      0% {
-        filter: brightness(1) blur(0px) hue-rotate(0deg);
-        opacity: 0.45;
-        transform: scale(1);
-      }
-      50% {
-        filter: brightness(1.08) blur(2.5px) hue-rotate(18deg);
-        opacity: 0.60;
-        transform: scale(1.04);
-      }
-      100% {
-        filter: brightness(1) blur(0px) hue-rotate(0deg);
-        opacity: 0.45;
-        transform: scale(1);
-      }
-    }
-
-    /* Floating orbs */
-    .orb {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(100px);
-      opacity: 0.4;
-      pointer-events: none;
-      z-index: 0;
-      transition: filter 0.8s, opacity 0.8s, transform 0.8s;
-      animation: orbBreathing 10s ease-in-out infinite alternate;
-    }
-    
-    .orb1 {
-      width: 400px;
-      height: 400px;
-      background: var(--accent);
-      top: -200px;
-      left: -200px;
-      animation: float1 25s infinite ease-in-out;
-    }
-    
-    .orb2 {
-      width: 300px;
-      height: 300px;
-      background: var(--purple);
-      top: 60%;
-      right: -150px;
-      animation: float2 30s infinite ease-in-out;
-    }
-    
-    .orb3 {
-      width: 350px;
-      height: 350px;
-      background: var(--cyan);
-      bottom: -175px;
-      left: 30%;
-      animation: float3 35s infinite ease-in-out;
-    }
-
-    @keyframes float1 {
-      0%, 100% { transform: translateY(0) translateX(0) scale(1); }
-      33% { transform: translateY(100px) translateX(50px) scale(1.1); }
-      66% { transform: translateY(-50px) translateX(100px) scale(0.9); }
-    }
-
-    @keyframes float2 {
-      0%, 100% { transform: translateY(0) translateX(0) scale(1); }
-      50% { transform: translateY(-100px) translateX(-100px) scale(1.2); }
-    }
-
-    @keyframes float3 {
-      0%, 100% { transform: translateY(0) translateX(0) scale(1); }
-      25% { transform: translateY(-80px) translateX(-80px) scale(1.1); }
-      75% { transform: translateY(50px) translateX(80px) scale(0.9); }
-    }
-
-    @keyframes orbBreathing {
-      0% { filter: blur(100px) brightness(1); opacity: 0.4; transform: scale(1); }
-      50% { filter: blur(110px) brightness(1.12); opacity: 0.55; transform: scale(1.07); }
-      100% { filter: blur(100px) brightness(1); opacity: 0.4; transform: scale(1); }
-    }
-
-    /* Navbar Styles */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      padding: 1rem 2rem;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      background: rgba(255,255,255,0.38) !important;
-      border-bottom: 1px solid rgba(228,214,167,0.18) !important;
-      box-shadow: 0 4px 24px rgba(228,214,167,0.08);
-      color: #222 !important;
-      transition: all 0.3s ease;
-    }
-    .navbar * {
-      color: #222 !important;
-    }
-
-    .nav-container {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--text);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .logo img {
-      width: 64px;
-      height: 64px;
-      object-fit: contain;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.95rem;
-      transition: color 0.3s ease;
-      position: relative;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--purple));
-      transition: width 0.3s ease;
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-      
-      .navbar {
-        padding: 1rem;
-      }
-    }
-
-    /* Quiz Styles */
-    .quiz-header {
-      padding: 12rem 2rem 6rem;
-      text-align: center;
-      position: relative;
-    }
-
-    .quiz-progress {
-      max-width: 600px;
-      margin: 2rem auto;
-      background: rgba(26, 26, 46, 0.5);
-      border-radius: var(--radius-xl);
-      height: 8px;
-      overflow: hidden;
-    }
-
-    .progress-bar {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent), var(--purple));
-      width: 0%;
-      transition: width 0.3s ease;
-    }
-
-    .quiz-container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem;
-      background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(228,214,167,0.08) 100%) !important;
-      backdrop-filter: blur(28px);
-      -webkit-backdrop-filter: blur(28px);
-      border: 1px solid rgba(228,214,167,0.10);
-      box-shadow: 0 8px 32px rgba(228,214,167,0.06), 0 2px 8px rgba(0,0,0,0.02);
-    }
-
-    .question-card {
-      background: rgba(255,255,255,0.72) !important;
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid rgba(228,214,167,0.18);
-      box-shadow: 0 8px 32px rgba(228,214,167,0.10), 0 2px 8px rgba(0,0,0,0.04);
-      color: #222 !important;
-      border-radius: var(--radius-lg);
-      padding: 3rem;
-      margin-bottom: 2rem;
-      text-align: center;
-      transition: all 0.3s ease;
-    }
-
-    .question-number {
-      font-size: 1.1rem;
-      color: var(--accent);
-      margin-bottom: 1rem;
-      font-weight: 600;
-    }
-
-    .question-text {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 2rem;
-      font-family: 'Space Grotesk', sans-serif;
-    }
-
-    .options-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .option-card {
-      background: rgba(26, 26, 46, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: var(--radius-md);
-      padding: 1.5rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-align: left;
-    }
-
-    .option-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(255, 255, 255, 0.2);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    }
-
-    .option-card.selected {
-      background: var(--accent);
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    .option-icon {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .option-text {
-      font-weight: 500;
-    }
-
-    .quiz-navigation {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 2rem;
-    }
-
-    .nav-button {
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: var(--text);
-      padding: 1rem 2rem;
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      font-weight: 500;
-      transition: all 0.3s ease;
-    }
-
-    .nav-button:hover {
-      border-color: rgba(255, 255, 255, 0.2);
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    .nav-button.next {
-      background: var(--accent);
-      border-color: var(--accent);
-    }
-
-    .nav-button.next:hover {
-      background: var(--accent-light);
-      transform: translateX(5px);
-    }
-
-    .nav-button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    @media (max-width: 768px) {
-      .quiz-header {
-        padding: 8rem 1rem 4rem;
-      }
-
-      .question-card {
-        padding: 2rem;
-      }
-
-      .question-text {
-        font-size: 1.25rem;
-      }
-
-      .options-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* Results Section */
-    .results-section {
-      display: none;
-      text-align: center;
-      padding: 2rem;
-    }
-
-    .results-preview {
-      background: linear-gradient(135deg, rgba(26, 26, 46, 0.6) 0%, rgba(26, 26, 46, 0.8) 100%) !important;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      margin: 2rem 0;
-      text-align: center;
-    }
-
-    .results-teaser {
-      position: relative;
-      padding: 2rem;
-      margin: 2rem 0;
-      text-align: center;
-      filter: blur(5px);
-      pointer-events: none;
-      user-select: none;
-    }
-
-    .results-overlay {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 320px;
-      max-width: 95vw;
-      width: 100%;
-      box-sizing: border-box;
-      padding: 2rem 1rem;
-      overflow-y: auto;
-    }
-    @media (max-width: 600px) {
-      .results-overlay {
-        padding: 1rem 0.2rem;
-        min-height: 220px;
-      }
-      .results-overlay .waitlist-form {
-        padding: 0.3rem;
-      }
-    }
-    .results-overlay .waitlist-form {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      padding: 0.5rem 0.75rem 0.75rem 0.75rem;
-      background: linear-gradient(135deg, rgba(26,26,46,0.6) 0%, rgba(26,26,46,0.8) 100%);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255,255,255,0.10);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.20);
-      border-radius: var(--radius-lg);
-      width: 100%;
-      max-width: 400px;
-      margin: 0 auto;
-      box-sizing: border-box;
-    }
-    .results-overlay .waitlist-form input[type="email"] {
-      width: 100%;
-      background: rgba(255,255,255,0.10);
-      border: 1px solid rgba(255,255,255,0.18);
-      padding: 1rem;
-      color: var(--text);
-      font-size: 1rem;
-      outline: none;
-      border-radius: var(--radius-md);
-      margin-bottom: 0.2rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      transition: border 0.2s;
-    }
-    .results-overlay .waitlist-form input[type="email"]::placeholder {
-      color: var(--text-dim);
-      opacity: 1;
-    }
-    .results-overlay .waitlist-checkbox-label {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.88rem;
-      color: var(--text-dim);
-      margin-top: 0.2rem;
-      font-weight: 400;
-      margin-bottom: 0.2rem;
-    }
-    .results-overlay .waitlist-checkbox-label input[type="checkbox"] {
-      accent-color: var(--accent);
-      width: 1rem;
-      height: 1rem;
-      border-radius: 5px;
-      margin-right: 0.4rem;
-    }
-    .results-overlay .waitlist-form .cta-button {
-      font-size: 1rem;
-      padding: 1rem 2rem;
-      border-radius: var(--radius-md);
-      font-weight: 600;
-      margin-top: 0.5rem;
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-      color: white;
-      border: none;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      white-space: nowrap;
-      width: 100%;
-    }
-    .results-overlay .waitlist-form .cta-button:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-glow);
-    }
-
-    .results-lock-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: var(--accent);
-    }
-
-    .results-lock-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 1rem;
-    }
-
-    .results-lock-description {
-      color: var(--text-muted);
-      margin-bottom: 2rem;
-      max-width: 400px;
-      text-align: center;
-    }
-
-    .full-results {
-      display: none;
-      max-width: 520px;
-      margin: 3rem auto 2rem auto;
-      background: linear-gradient(135deg, rgba(255,255,255,0.10) 0%, rgba(26,26,46,0.92) 100%);
-      border-radius: 32px;
-      box-shadow: 0 8px 40px 0 rgba(0,0,0,0.22), 0 0 32px 0 var(--accent-glow), 0 1.5px 0 0 rgba(255,255,255,0.06) inset;
-      padding: 2.5rem 2.5rem 2rem 2.5rem;
-      position: relative;
-      z-index: 2;
-      animation: fadeIn 0.7s cubic-bezier(.4,2,.6,1);
-      overflow: visible;
-    }
-    .full-results.visible { display: block; }
-    .full-results::before {
-      content: '';
-      position: absolute;
-      top: -32px; left: 50%;
-      transform: translateX(-50%);
-      width: 320px; height: 120px;
-      background: radial-gradient(circle at 50% 0%, var(--accent-glow) 0%, transparent 80%);
-      z-index: 0;
-      pointer-events: none;
-      filter: blur(12px);
-    }
-    .result-hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 2rem;
-      position: relative;
-      z-index: 2;
-    }
-    .result-icon-anim {
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
-      animation: bounceGlow 2.2s infinite alternate;
-      filter: drop-shadow(0 0 16px var(--accent-glow));
-    }
-    @keyframes bounceGlow {
-      0% { transform: scale(1) translateY(0); filter: drop-shadow(0 0 8px var(--accent-glow)); }
-      50% { transform: scale(1.12) translateY(-8px); filter: drop-shadow(0 0 24px var(--accent-glow)); }
-      100% { transform: scale(1) translateY(0); filter: drop-shadow(0 0 8px var(--accent-glow)); }
-    }
-    .result-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 2rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 60%, var(--cyan) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 0.5rem;
-    }
-    .result-description {
-      color: var(--text-muted);
-      font-size: 1.15rem;
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-    .result-trait-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-      margin: 2rem 0 1.5rem 0;
-    }
-    @media (max-width: 600px) {
-      .full-results { padding: 1.2rem 0.5rem; }
-      .result-trait-grid { grid-template-columns: 1fr; }
-    }
-    .result-trait-card {
-      background: rgba(255,255,255,0.07);
-      border-radius: 16px;
-      padding: 1.1rem 1rem 0.8rem 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.10);
-      border: 1.5px solid rgba(255,255,255,0.10);
-      position: relative;
-    }
-    .result-trait-icon {
-      font-size: 1.7rem;
-      margin-bottom: 0.5rem;
-    }
-    .result-trait-label {
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 0.2rem;
-    }
-    .result-trait-bar {
-      width: 100%;
-      height: 8px;
-      border-radius: 6px;
-      background: linear-gradient(90deg, var(--accent), var(--purple), var(--cyan));
-      margin: 0.5rem 0 0.2rem 0;
-      opacity: 0.7;
-    }
-    .result-trait-value {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-    }
-    .result-compat-title {
-      color: var(--text-muted);
-      margin-top: 2rem;
-      margin-bottom: 0.7rem;
-      font-size: 1.1rem;
-      font-weight: 600;
-      letter-spacing: 0.01em;
-    }
-    .result-compat-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-    }
-    .result-compat-tag {
-      background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 100%);
-      color: #fff;
-      border-radius: 18px;
-      padding: 0.5rem 1.2rem;
-      font-size: 0.98rem;
-      font-weight: 600;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.10);
-      opacity: 0;
-      transform: translateY(20px) scale(0.95);
-      animation: compatPop 0.7s cubic-bezier(.4,2,.6,1) forwards;
-    }
-    @keyframes compatPop {
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    .result-share-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      background: linear-gradient(135deg, var(--cyan) 0%, var(--purple) 100%);
-      color: #fff;
-      font-weight: 700;
-      font-size: 1.08rem;
-      padding: 0.9rem 2.2rem;
-      border-radius: 24px;
-      text-decoration: none;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.10);
-      transition: background 0.3s, transform 0.2s;
-      border: none;
-      margin: 1.2rem auto 0 auto;
-      cursor: pointer;
-    }
-    .result-share-btn:hover {
-      background: linear-gradient(135deg, var(--purple-light) 0%, var(--cyan-light) 100%);
-      transform: translateY(-2px) scale(1.04);
-    }
-    /* Confetti canvas */
-    #confetti-canvas {
-      position: fixed;
-      left: 0; top: 0;
-      width: 100vw; height: 100vh;
-      pointer-events: none;
-      z-index: 9999;
-    }
-    /* Footer with spinning cube and social links */
-    .site-footer {
-      background: transparent !important;
-      border: none !important;
-      box-shadow: none !important;
-      backdrop-filter: none !important;
-      -webkit-backdrop-filter: none !important;
-    }
-    .footer-content {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 2.5rem;
-      flex-wrap: wrap;
-      margin-bottom: 1.2rem;
-    }
-    .footer-cube-container {
-      width: 112px;
-      height: 112px;
-      perspective: 600px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .cube {
-      width: 96px;
-      height: 96px;
-      position: relative;
-      transform-style: preserve-3d;
-      transform: rotateX(-20deg) rotateY(30deg);
-      transition: transform 0.7s cubic-bezier(.4,2,.6,1);
-      cursor: pointer;
-    }
-    .cube:focus,
-    .cube:hover {
-      transform: rotateX(-20deg) rotateY(390deg) scale(1.08);
-    }
-    .cube-face {
-      position: absolute;
-      width: 96px;
-      height: 96px;
-      background: rgba(255,255,255,0.07);
-      border: 2.5px solid rgba(255,255,255,0.13);
-      border-radius: 16px;
-      box-shadow: 0 2px 18px rgba(0,0,0,0.13);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-    .cube-face img {
-      width: 60px;
-      height: 60px;
-      display: block;
-      margin: auto;
-      filter: drop-shadow(0 2px 8px var(--accent-glow));
-      fill: #fff !important;
-      stroke: #fff !important;
-    }
-    .cube-face-front  { transform: rotateY(0deg) translateZ(48px); }
-    .cube-face-back   { transform: rotateY(180deg) translateZ(48px); }
-    .cube-face-right  { transform: rotateY(90deg) translateZ(48px); }
-    .cube-face-left   { transform: rotateY(-90deg) translateZ(48px); }
-    .cube-face-top    { transform: rotateX(90deg) translateZ(48px); }
-    .cube-face-bottom { transform: rotateX(-90deg) translateZ(48px); }
-    .footer-social {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-    }
-    .footer-social-link {
-      font-size: 2rem;
-      color: #fff;
-      opacity: 0.85;
-      transition: color 0.2s, transform 0.2s, opacity 0.2s;
-    }
-    .footer-social-link:hover {
-      color: var(--accent);
-      transform: scale(1.18) rotate(-8deg);
-      opacity: 1;
-    }
-    .footer-copy {
-      text-align: center;
-      font-size: 0.95rem;
-      color: var(--text-dim);
-      margin-top: 0.5rem;
-      letter-spacing: 0.01em;
-    }
-    @media (max-width: 600px) {
-      .footer-content { flex-direction: column; gap: 1.2rem; }
-      .footer-cube-container { margin-bottom: 0.5rem; }
-    }
-
-    /* Remove glassmorphism from outer containers */
-    .quiz-container, .full-results, .results-overlay, .waitlist-form, .results-teaser, .results-preview {
-      background: transparent !important;
-      box-shadow: none !important;
-      border: none !important;
-      backdrop-filter: none !important;
-      -webkit-backdrop-filter: none !important;
-    }
-
-    /* Light mode header */
-    .site-header {
-      background: #fff !important;
-      color: #222 !important;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-      border-bottom: 1px solid rgba(228,214,167,0.18);
-    }
-
-    /* Light mode for question cards and quiz cards */
-    .quiz-card, .question-card, .full-results, .results-teaser, .results-preview {
-      background: rgba(255,255,255,0.85) !important;
-      color: #222 !important;
-      box-shadow: 0 8px 32px rgba(228,214,167,0.10), 0 2px 8px rgba(0,0,0,0.04);
-      border: 1px solid rgba(228,214,167,0.18);
-    }
-
-    /* Ensure all question text is dark */
-    .question-card h2, .question-card h3, .question-card p, .quiz-card h2, .quiz-card h3, .quiz-card p {
-      color: #222 !important;
-    }
-
-    .answer-option {
-      background: rgba(255,255,255,0.55) !important;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(228,214,167,0.13);
-      box-shadow: 0 2px 8px rgba(228,214,167,0.06);
-      color: #222 !important;
-      transition: background 0.2s, box-shadow 0.2s;
-    }
-    .answer-option.selected {
-      background: var(--accent) !important;
-      color: #fff !important;
-    }
-
-    .main-bg {
-      background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(228,214,167,0.05) 100%) !important;
-      backdrop-filter: blur(36px);
-      -webkit-backdrop-filter: blur(36px);
-      border: 1px solid rgba(228,214,167,0.06);
-      box-shadow: 0 8px 32px rgba(228,214,167,0.03), 0 2px 8px rgba(0,0,0,0.01);
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="mobile.css">
+  <link rel="stylesheet" href="quiz-desktop.css">
 </head>
-<body>
+<body class="quiz-page-body">
   <div class="bg-animation"></div>
   
   <div class="orb orb1"></div>
@@ -870,14 +21,24 @@
     <div class="nav-container">
       <a href="index.html" class="logo">
         <img src="logo.png" alt="UniMates Logo">
-        UniMates
+        <span class="logo-text">UniMates</span>
       </a>
+      <a href="quiz.html" class="quiz-header-ad">
+        <span class="quiz-header-ad-icon">✨</span>
+        <span class="quiz-header-ad-text">Take the Personality Quiz!</span>
+      </a>
+      <button class="hamburger" onclick="toggleMenu(this)" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="index.html#features">Features</a></li>
-        <li><a href="how-it-works.html">How it Works</a></li>
+        <li><a href="how-it-works.html">How it works</a></li>
+        <li><a href="about.html">About us</a></li>
       </ul>
     </div>
+    <div class="mobile-overlay" onclick="closeMenu()"></div>
   </nav>
 
   <header class="quiz-header">
@@ -916,7 +77,7 @@
             <input type="email" id="email" placeholder="Enter your email address" required />
             <label class="waitlist-checkbox-label" style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.88rem; color: var(--text-dim); margin-top: 0.2rem; font-weight: 400;">
               <input type="checkbox" id="waitlist-accept" required style="accent-color: var(--accent); width: 1rem; height: 1rem; border-radius: 5px; margin-right: 0.4rem;" />
-              I accept that joining the waitlist is necessary.
+              I agree to receive updates, beta invitations, and occasional emails from UniMates. I understand I can unsubscribe at any time.
             </label>
             <button type="submit" class="cta-button">Join Waitlist</button>
           </form>
@@ -1088,216 +249,160 @@
       mindfulZen: {
         title: "The Mindful Zen",
         icon: "🧘",
-        description: "You cultivate peace and mindfulness in your living space. Your ideal home is a harmonious retreat that promotes well-being.",
+        description: "You prioritize a clean, tranquil, and harmonious environment. Your ideal home is a peaceful retreat from the hustle and bustle of daily life.",
         traits: [
-          { icon: "🧘", label: "Living Style", value: "Mindful & Peaceful" },
-          { icon: "🏠", label: "Home Vibe", value: "Serene & Balanced" },
-          { icon: "🌱", label: "Environment", value: "Clean & Minimal" },
-          { icon: "⭐", label: "Best Quality", value: "Thoughtful" }
+          { icon: "🌿", label: "Atmosphere", value: "Calm & Tidy" },
+          { icon: "🤝", label: "Conflict Style", value: "Diplomatic" },
+          { icon: "🏠", label: "Home Vibe", value: "Peaceful & Harmonious" },
+          { icon: "⭐", label: "Best Quality", value: "Considerate" }
         ],
-        compatibleWith: ["Focused Scholar", "Balanced Mediator", "Eco Conscious"]
+        compatibleWith: ["Focused Scholar", "Balanced Mediator", "Tech Enthusiast"]
+      },
+      techEnthusiast: {
+        title: "The Tech Enthusiast",
+        icon: "🚀",
+        description: "You're passionate about the latest gadgets and smart home technology. Your ideal home is an efficient, modern space optimized with technology.",
+        traits: [
+          { icon: "📱", label: "Gadgets", value: "Latest & Greatest" },
+          { icon: "💰", label: "Expenses", value: "Managed with Apps" },
+          { icon: "🏠", label: "Home Vibe", value: "Modern & Efficient" },
+          { icon: "⭐", label: "Best Quality", value: "Innovative" }
+        ],
+        compatibleWith: ["Focused Scholar", "Creative Spirit", "Free Spirit"]
+      },
+      freeSpirit: {
+        title: "The Free Spirit",
+        icon: "🕊️",
+        description: "You're adaptable, easygoing, and prefer to go with the flow. Your ideal living situation is relaxed and flexible, without rigid rules.",
+        traits: [
+          { icon: "✨", label: "Cleanliness", value: "Relaxed" },
+          { icon: "⌚", label: "Schedule", value: "Highly Flexible" },
+          { icon: "🏠", label: "Home Vibe", value: "Easygoing & Adaptable" },
+          { icon: "⭐", label: "Best Quality", value: "Spontaneous" }
+        ],
+        compatibleWith: ["Social Butterfly", "Creative Spirit", "Tech Enthusiast"]
       },
       balancedMediator: {
         title: "The Balanced Mediator",
         icon: "⚖️",
-        description: "You excel at finding harmony between different lifestyles. Your ideal home balances social time with personal space.",
+        description: "You're a master of compromise and value harmony above all. Your ideal home is a fair, cooperative space where everyone feels heard.",
         traits: [
-          { icon: "🤝", label: "Social Style", value: "Adaptable" },
-          { icon: "🏠", label: "Home Vibe", value: "Balanced & Flexible" },
-          { icon: "💭", label: "Communication", value: "Open & Direct" },
-          { icon: "⭐", label: "Best Quality", value: "Diplomatic" }
+          { icon: "🤝", label: "Approach", value: "Diplomatic & Fair" },
+          { icon: "🔄", label: "Sharing", value: "With Boundaries" },
+          { icon: "🏠", label: "Home Vibe", value: "Cooperative & Harmonious" },
+          { icon: "⭐", label: "Best Quality", value: "Fair-minded" }
         ],
         compatibleWith: ["Social Butterfly", "Focused Scholar", "Mindful Zen"]
       }
     };
-
-    let currentQuestionIndex = 0;
-    const answers = [];
-
-    const questionCard = document.getElementById('questionCard');
-    const resultsSection = document.getElementById('resultsSection');
+    
+    // Quiz state and elements
     const progressBar = document.getElementById('progress');
-    const currentQuestionSpan = document.getElementById('currentQuestion');
     const questionText = document.getElementById('questionText');
     const optionsGrid = document.getElementById('options');
-    const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
-    const waitlistForm = document.getElementById('waitlistForm');
+    const prevBtn = document.getElementById('prevBtn');
+    const questionCard = document.getElementById('questionCard');
+    const resultsSection = document.getElementById('resultsSection');
+    const fullResultsContainer = document.getElementById('fullResults');
+    const resultsTeaser = document.getElementById('resultsTeaser');
 
-    function calculatePersonalityType(answers) {
-      // Initialize scores for each personality type
-      const scores = {
-        socialButterfly: 0,
-        focusedScholar: 0,
-        creativeSpirit: 0,
-        mindfulZen: 0,
-        balancedMediator: 0
-      };
-
-      // Question weights for each personality type
-      answers.forEach((answer, index) => {
-        switch(index) {
-          case 0: // Evening activities
-            if(answer === 'social') scores.socialButterfly += 2;
-            if(answer === 'studious') scores.focusedScholar += 2;
-            if(answer === 'creative') scores.creativeSpirit += 2;
-            if(answer === 'entertainment') scores.balancedMediator += 1;
-            break;
-          case 1: // Noise level
-            if(answer === 'quiet') scores.focusedScholar += 2;
-            if(answer === 'moderate') scores.balancedMediator += 2;
-            if(answer === 'lively') scores.socialButterfly += 1;
-            if(answer === 'vibrant') scores.socialButterfly += 2;
-            break;
-          case 2: // Cleaning
-            if(answer === 'organized') scores.focusedScholar += 2;
-            if(answer === 'flexible') scores.balancedMediator += 2;
-            if(answer === 'relaxed') scores.creativeSpirit += 1;
-            if(answer === 'outsource') scores.socialButterfly += 1;
-            break;
-          case 3: // Sleep schedule
-            if(answer === 'early') scores.mindfulZen += 2;
-            if(answer === 'morning') scores.focusedScholar += 1;
-            if(answer === 'night') scores.creativeSpirit += 1;
-            if(answer === 'flexible') scores.balancedMediator += 2;
-            break;
-          case 4: // Cooking
-            if(answer === 'chef') scores.creativeSpirit += 2;
-            if(answer === 'casual') scores.balancedMediator += 1;
-            if(answer === 'prep') scores.focusedScholar += 2;
-            if(answer === 'takeout') scores.socialButterfly += 1;
-            break;
-          case 5: // Sharing
-            if(answer === 'communal') scores.socialButterfly += 2;
-            if(answer === 'selective') scores.balancedMediator += 2;
-            if(answer === 'private') scores.focusedScholar += 2;
-            if(answer === 'flexible') scores.mindfulZen += 1;
-            break;
-          case 6: // Guests
-            if(answer === 'social') scores.socialButterfly += 2;
-            if(answer === 'moderate') scores.balancedMediator += 2;
-            if(answer === 'selective') scores.mindfulZen += 1;
-            if(answer === 'private') scores.focusedScholar += 2;
-            break;
-          case 7: // Conflicts
-            if(answer === 'direct') scores.focusedScholar += 1;
-            if(answer === 'diplomatic') scores.balancedMediator += 2;
-            if(answer === 'thoughtful') scores.mindfulZen += 2;
-            if(answer === 'passive') scores.creativeSpirit += 1;
-            break;
-          case 8: // Weekend
-            if(answer === 'active') scores.socialButterfly += 1;
-            if(answer === 'homebody') scores.mindfulZen += 2;
-            if(answer === 'creative') scores.creativeSpirit += 2;
-            if(answer === 'social') scores.socialButterfly += 2;
-            break;
-          case 9: // Expenses
-            if(answer === 'organized') scores.focusedScholar += 2;
-            if(answer === 'tech') scores.balancedMediator += 1;
-            if(answer === 'casual') scores.creativeSpirit += 1;
-            if(answer === 'flexible') scores.socialButterfly += 1;
-            break;
-        }
-      });
-
-      // Find the personality type with the highest score
-      let maxScore = 0;
-      let dominantType = '';
-      
-      for (const [type, score] of Object.entries(scores)) {
-        if (score > maxScore) {
-          maxScore = score;
-          dominantType = type;
-        }
-      }
-
-      return dominantType;
-    }
-
-    function showResults() {
-      const personalityType = calculatePersonalityType(answers);
-      const result = personalityTypes[personalityType];
-      
-      questionCard.style.display = 'none';
-      resultsSection.style.display = 'block';
-
-      // Update results teaser content (keep this as a blurred preview)
-      const resultsTeaser = document.getElementById('resultsTeaser');
-      resultsTeaser.innerHTML = `
-        <div class="results-icon">${result.icon}</div>
-        <h3 class="results-title">${result.title}</h3>
-        <p class="results-description">${result.description}</p>
-      `;
-
-      // Prepare full results content (creative card, only shown after waitlist join)
-      const fullResults = document.getElementById('fullResults');
-      fullResults.innerHTML = `
-        <div class="result-hero">
-          <div class="result-icon-anim">${result.icon}</div>
-          <div class="result-title">${result.title}</div>
-          <div class="result-description">${result.description}</div>
-        </div>
-        <div class="result-trait-grid">
-          ${result.traits.map(trait => `
-            <div class="result-trait-card">
-              <div class="result-trait-icon">${trait.icon}</div>
-              <div class="result-trait-label">${trait.label}</div>
-              <div class="result-trait-bar"></div>
-              <div class="result-trait-value">${trait.value}</div>
-            </div>
-          `).join('')}
-        </div>
-        <div class="result-compat-title">Most Compatible With</div>
-        <div class="result-compat-tags">
-          ${result.compatibleWith.map((type, i) => `
-            <span class="result-compat-tag" style="animation-delay:${0.2 + i * 0.12}s">${type}</span>
-          `).join('')}
-        </div>
-        <button class="result-share-btn" onclick="navigator.clipboard.writeText(document.querySelector('.result-title').textContent + ': ' + document.querySelector('.result-description').textContent);alert('Result copied!')">
-          <i class="fas fa-share-alt"></i> Share your result
-        </button>
-      `;
-    }
+    let currentQuestionIndex = 0;
+    let userAnswers = {};
 
     function updateQuestion() {
+      optionsGrid.classList.remove('has-selection');
       const question = questions[currentQuestionIndex];
-      currentQuestionSpan.textContent = currentQuestionIndex + 1;
       questionText.textContent = question.text;
-      
-      // Update progress bar
-      progressBar.style.width = `${((currentQuestionIndex + 1) / questions.length) * 100}%`;
-      
-      // Update navigation buttons
-      prevBtn.style.display = currentQuestionIndex > 0 ? 'block' : 'none';
-      nextBtn.textContent = currentQuestionIndex === questions.length - 1 ? 'See Results' : 'Next';
-      
-      // Clear and update options
       optionsGrid.innerHTML = '';
-      question.options.forEach((option, index) => {
-        const optionCard = document.createElement('div');
-        optionCard.className = 'option-card';
-        if (answers[currentQuestionIndex] === option.value) {
-          optionCard.classList.add('selected');
-        }
-        
-        optionCard.innerHTML = `
+      
+      question.options.forEach(option => {
+        const optionElement = document.createElement('div');
+        optionElement.className = 'answer-option';
+        optionElement.dataset.value = option.value;
+        optionElement.innerHTML = `
           <div class="option-icon">${option.icon}</div>
           <div class="option-text">${option.text}</div>
         `;
-        
-        optionCard.addEventListener('click', () => selectOption(option.value));
-        optionsGrid.appendChild(optionCard);
+        optionsGrid.appendChild(optionElement);
       });
+
+      const selectedValue = userAnswers[currentQuestionIndex];
+      if (selectedValue) {
+        const selectedOption = optionsGrid.querySelector(`.answer-option[data-value="${selectedValue}"]`);
+        if (selectedOption) {
+          selectedOption.classList.add('selected');
+          optionsGrid.classList.add('has-selection');
+          const indicator = document.createElement('span');
+          indicator.className = 'selection-indicator';
+          indicator.innerHTML = `<i class="fas fa-check"></i>`;
+          selectedOption.appendChild(indicator);
+        }
+      }
+
+      updateProgress();
+      document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
+      
+      prevBtn.style.display = currentQuestionIndex > 0 ? 'inline-block' : 'none';
+      if(currentQuestionIndex === questions.length - 1) {
+        nextBtn.textContent = 'See Results';
+      } else {
+        nextBtn.textContent = 'Next';
+      }
+      
+      const isAnswered = userAnswers[currentQuestionIndex] !== undefined;
+      nextBtn.disabled = !isAnswered;
+      if(isAnswered) {
+          nextBtn.classList.remove('disabled');
+      } else {
+          nextBtn.classList.add('disabled');
+      }
     }
 
-    function selectOption(value) {
-      answers[currentQuestionIndex] = value;
-      document.querySelectorAll('.option-card').forEach(card => {
-        card.classList.remove('selected');
-      });
-      event.currentTarget.classList.add('selected');
-      nextBtn.disabled = false;
+    function updateProgress() {
+      const progressPercentage = ((currentQuestionIndex + 1) / questions.length) * 100;
+      progressBar.style.width = `${progressPercentage}%`;
     }
+
+    optionsGrid.addEventListener('click', (e) => {
+      const option = e.target.closest('.answer-option');
+      if (!option) return;
+
+      const currentOptions = optionsGrid.querySelectorAll('.answer-option');
+      currentOptions.forEach(opt => {
+        opt.classList.remove('selected');
+        const indicator = opt.querySelector('.selection-indicator');
+        if (indicator) {
+          indicator.remove();
+        }
+      });
+      
+      option.classList.add('selected');
+      const indicator = document.createElement('span');
+      indicator.className = 'selection-indicator';
+      indicator.innerHTML = `<i class="fas fa-check"></i>`;
+      option.appendChild(indicator);
+
+      optionsGrid.classList.add('has-selection');
+      
+      const selectedValue = option.dataset.value;
+      userAnswers[currentQuestionIndex] = selectedValue;
+      nextBtn.disabled = false;
+      nextBtn.classList.remove('disabled');
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (userAnswers[currentQuestionIndex] === undefined) {
+        // Optionally, show a message to select an answer
+        return;
+      }
+      if (currentQuestionIndex < questions.length - 1) {
+        currentQuestionIndex++;
+        updateQuestion();
+      } else {
+        showResults();
+      }
+    });
 
     prevBtn.addEventListener('click', () => {
       if (currentQuestionIndex > 0) {
@@ -1306,40 +411,173 @@
       }
     });
 
-    nextBtn.addEventListener('click', () => {
-      if (answers[currentQuestionIndex]) {
-        if (currentQuestionIndex < questions.length - 1) {
-          currentQuestionIndex++;
-          updateQuestion();
+    function calculatePersonalityType(answers) {
+      const counts = answers.reduce((acc, value) => {
+        acc[value] = (acc[value] || 0) + 1;
+        return acc;
+      }, {});
+
+      let primaryTrait = 'balancedMediator';
+      let maxCount = 0;
+
+      const traitMapping = {
+        social: 'socialButterfly',
+        studious: 'focusedScholar', quiet: 'focusedScholar', organized: 'focusedScholar',
+        creative: 'creativeSpirit',
+        relaxed: 'freeSpirit', flexible: 'freeSpirit',
+        direct: 'balancedMediator', diplomatic: 'balancedMediator',
+        tech: 'techEnthusiast',
+        communal: 'socialButterfly',
+        private: 'mindfulZen',
+      };
+      
+      for(const answer in counts) {
+          const count = counts[answer];
+          const trait = traitMapping[answer];
+          if(trait && count > maxCount) {
+              maxCount = count;
+              primaryTrait = trait;
+          }
+      }
+
+      const socialCount = (counts['social'] || 0) + (counts['vibrant'] || 0);
+      if (socialCount >= 2) primaryTrait = 'socialButterfly';
+      
+      const quietCount = (counts['quiet'] || 0) + (counts['studious'] || 0);
+      if(quietCount >=2) primaryTrait = 'focusedScholar';
+
+      return primaryTrait;
+    }
+
+    function showResults() {
+      const personalityType = calculatePersonalityType(Object.values(userAnswers));
+      const result = personalityTypes[personalityType];
+      
+      questionCard.style.display = 'none';
+      resultsSection.style.display = 'block';
+
+      // Populate Teaser
+      resultsTeaser.innerHTML = `
+        <div class="teaser-icon">${result.icon}</div>
+        <h3 class="teaser-title">You're a ${result.title}!</h3>
+        <p class="teaser-description">${result.description}</p>
+      `;
+
+      // Populate Full Results (initially hidden)
+      fullResultsContainer.innerHTML = `
+        <h3 class="full-results-title">Your Complete ${result.title} Profile</h3>
+        <div class="full-results-grid">
+            ${result.traits.map(trait => `
+              <div class="result-trait-card">
+                  <div class="trait-icon">${trait.icon}</div>
+                  <div class="trait-label">${trait.label}</div>
+                  <div class="trait-value">${trait.value}</div>
+              </div>
+            `).join('')}
+        </div>
+        <div class="compatible-section">
+            <h4 class="compatible-title">You're most compatible with:</h4>
+            <div class="compatible-grid">
+                ${result.compatibleWith.map(compType => {
+                  const compatibleResult = personalityTypes[compType];
+                  return `
+                    <div class="compatible-card">
+                        <div class="compatible-icon">${compatibleResult.icon}</div>
+                        <div class="compatible-name">${compatibleResult.title}</div>
+                    </div>
+                  `
+                }).join('')}
+            </div>
+        </div>
+      `;
+    }
+
+    // Waitlist Form Handling
+    const waitlistForm = document.getElementById('waitlistForm');
+    const emailInput = document.getElementById('email');
+    const successMessage = document.getElementById('successMessage');
+    const resultsOverlay = document.querySelector('.results-overlay');
+    const checkbox = document.getElementById('waitlist-accept');
+    const submitButton = waitlistForm.querySelector('.cta-button');
+
+    function validateForm() {
+      const emailValid = emailInput.value.trim() !== '';
+      const checkboxValid = checkbox.checked;
+      const isValid = emailValid && checkboxValid;
+      
+      submitButton.disabled = !isValid;
+      if (isValid) {
+        submitButton.classList.remove('disabled');
+      } else {
+        submitButton.classList.add('disabled');
+      }
+    }
+
+    emailInput.addEventListener('input', validateForm);
+    checkbox.addEventListener('change', validateForm);
+
+    // Initial validation
+    validateForm();
+
+    waitlistForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = emailInput.value;
+      
+      // Basic validation
+      if(!email) return;
+
+      try {
+        const response = await fetch('http://127.0.0.1:8000/join-waitlist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, answers: userAnswers })
+        });
+        
+        if (response.ok) {
+          successMessage.style.display = 'block';
+          waitlistForm.style.display = 'none';
+          document.querySelector('.results-lock-icon').style.display = 'none';
+          document.querySelector('.results-lock-title').style.display = 'none';
+          document.querySelector('.results-lock-description').style.display = 'none';
+          
+          resultsOverlay.style.backdropFilter = 'none';
+          resultsOverlay.style.background = 'none';
+          
+          // Confetti
+          const canvas = document.getElementById('confetti-canvas');
+          const confetti = window.confetti;
+          canvas.style.display = 'block';
+          confetti({
+            particleCount: 150,
+            spread: 80,
+            origin: { y: 0.6 }
+          });
+
+          // Reveal full results
+          setTimeout(() => {
+              fullResultsContainer.style.maxHeight = fullResultsContainer.scrollHeight + 'px';
+              fullResultsContainer.style.opacity = '1';
+          }, 200);
+
+
         } else {
-          showResults();
+          const errorData = await response.json();
+          alert(`Error: ${errorData.detail || 'Could not join waitlist.'}`);
         }
+      } catch (error) {
+        console.error('Submission error:', error);
+        alert('Connection error. Please try again later.');
       }
     });
-
-    waitlistForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const email = document.getElementById('email').value;
-      // Here you would typically send the email and quiz answers to your backend
-      console.log('Email:', email);
-      console.log('Quiz answers:', answers);
-      // Hide the form and lock content, show the success message
-      waitlistForm.style.display = 'none';
-      document.querySelector('.results-lock-icon').style.display = 'none';
-      document.querySelector('.results-lock-title').style.display = 'none';
-      document.querySelector('.results-lock-description').style.display = 'none';
-      document.getElementById('successMessage').style.display = 'block';
-      // Show full results
-      document.getElementById('fullResults').classList.add('visible');
-      launchConfetti();
-    });
-
-    // Initialize the first question
+    
+    // Initial call
     updateQuestion();
 
     // Footer cube continuous animation
     (function() {
       const cube = document.querySelector('.footer-cube-container .cube');
+      if (!cube) return;
+      
       let angleY = 30;
       let angleX = -20;
       let animationFrame;
@@ -1362,47 +600,73 @@
       animate();
     })();
 
-    function launchConfetti() {
-      const canvas = document.getElementById('confetti-canvas');
-      const ctx = canvas.getContext('2d');
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      let confetti = [];
-      for (let i = 0; i < 120; i++) {
-        confetti.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * -canvas.height,
-          r: Math.random() * 8 + 4,
-          d: Math.random() * 80 + 40,
-          color: `hsl(${Math.random()*360},90%,60%)`,
-          tilt: Math.random() * 10 - 10,
-          tiltAngle: 0,
-          tiltAngleIncremental: (Math.random() * 0.07) + 0.05
-        });
+    // Menu functionality
+    function toggleMenu(btn) {
+      const nav = document.querySelector('.navbar');
+      const navLinks = document.querySelector('.nav-links');
+      const overlay = document.querySelector('.mobile-overlay');
+      const body = document.body;
+      const quizButton = document.querySelector('.quiz-header-ad');
+      
+      nav.classList.toggle('active');
+      navLinks.classList.toggle('show');
+      overlay.classList.toggle('show');
+      btn.classList.toggle('active');
+
+      if (quizButton) {
+        quizButton.classList.toggle('hidden');
       }
-      let angle = 0;
-      function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        angle += 0.01;
-        for (let i = 0; i < confetti.length; i++) {
-          let c = confetti[i];
-          c.y += (Math.cos(angle + c.d) + 3 + c.r / 2) * 0.7;
-          c.x += Math.sin(angle);
-          c.tiltAngle += c.tiltAngleIncremental;
-          c.tilt = Math.sin(c.tiltAngle) * 15;
-          ctx.beginPath();
-          ctx.lineWidth = c.r;
-          ctx.strokeStyle = c.color;
-          ctx.moveTo(c.x + c.tilt + c.r / 3, c.y);
-          ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r);
-          ctx.stroke();
-        }
-        confetti = confetti.filter(c => c.y < canvas.height + 20);
-        if (confetti.length > 0) requestAnimationFrame(draw);
-        else ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      if (navLinks.classList.contains('show')) {
+        body.style.overflow = 'hidden';
+      } else {
+        body.style.overflow = '';
       }
-      draw();
     }
+
+    function closeMenu() {
+      const nav = document.querySelector('.navbar');
+      const navLinks = document.querySelector('.nav-links');
+      const overlay = document.querySelector('.mobile-overlay');
+      const hamburger = document.querySelector('.hamburger');
+      const body = document.body;
+      const quizButton = document.querySelector('.quiz-header-ad');
+      
+      nav.classList.remove('active');
+      navLinks.classList.remove('show');
+      overlay.classList.remove('show');
+      hamburger.classList.remove('active');
+
+      if (quizButton) {
+        quizButton.classList.remove('hidden');
+      }
+      body.style.overflow = '';
+    }
+
+    // General event listeners
+    document.addEventListener('DOMContentLoaded', () => {
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+          closeMenu();
+        }
+      });
+
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+      });
+    });
+    
+    // Confetti from CDN
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "m9rfm9i445");
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js';
+    document.body.appendChild(script);
+
   </script>
+  <script src="view-switcher.js"></script>
 </body>
 </html>
