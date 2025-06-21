@@ -1,4 +1,4 @@
-// email-handler.js
+
 class EmailHandler {
   constructor(apiBaseUrl = 'http://localhost:8000') {
     this.apiBaseUrl = apiBaseUrl;
