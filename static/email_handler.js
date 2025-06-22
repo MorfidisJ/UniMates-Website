@@ -12,7 +12,7 @@ class EmailHandler {
    */
   async submitEmail(email, firstName = null) {
     try {
-      const response = await fetch(`${this.apiBaseUrl}/subscribers`, {
+      const response = await fetch(`${this.apiBaseUrl}/api/subscribers`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ class EmailHandler {
    */
   async getSubscriberCount() {
     try {
-      const response = await fetch(`${this.apiBaseUrl}/subscribers`);
+      const response = await fetch(`${this.apiBaseUrl}/api/subscribers`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
