@@ -110,12 +110,15 @@
         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@unimates.net&su=Regarding Your Inquiry&body=Dear Unimates Team,"aria-label="Email" class="footer-social-link"><i class="fas fa-envelope"></i></a></div>
       </div>
     </div>
-    <div class="footer-copy">&copy; 2025 UniMates. All rights reserved.</div>
+    <div class="footer-copy">&copy; 2025 UniMates. All rights reserved. | <a href="Privacy-policy.html" style="color: var(--accent); text-decoration: none;">Privacy Policy</a></div>
   </footer>
 
   <canvas id="confetti-canvas"></canvas>
 
+  <script src="shared.js"></script>
   <script>
+    // Page-specific functionality for quiz.html
+    
     const questions = [
       {
         text: "How do you typically spend your evenings at home?",
@@ -199,210 +202,63 @@
         ]
       },
       {
-        text: "How do you manage shared expenses?",
+        text: "What's most important to you in a living space?",
         options: [
-          { icon: "📊", text: "Detailed spreadsheets", value: "organized" },
-          { icon: "📱", text: "Using split apps", value: "tech" },
-          { icon: "💰", text: "Keep rough tallies", value: "casual" },
-          { icon: "🤝", text: "Pay as needed", value: "flexible" }
+          { icon: "🏠", text: "Peace and quiet", value: "tranquil" },
+          { icon: "🎨", text: "Creative inspiration", value: "inspiring" },
+          { icon: "👥", text: "Social atmosphere", value: "communal" },
+          { icon: "📚", text: "Productive environment", value: "focused" }
         ]
       }
     ];
 
-    const personalityTypes = {
-      socialButterfly: {
-        title: "The Social Butterfly",
-        icon: "🦋",
-        description: "You thrive in a lively home environment and love bringing people together. Your ideal living space is a social hub where friends gather and memories are made.",
-        traits: [
-          { icon: "🎉", label: "Social Energy", value: "High" },
-          { icon: "🤝", label: "Sharing Style", value: "Open & Generous" },
-          { icon: "🏠", label: "Home Vibe", value: "Lively & Welcoming" },
-          { icon: "⭐", label: "Best Quality", value: "Community Builder" }
-        ],
-        compatibleWith: ["Creative Spirit", "Free Spirit", "Balanced Mediator"]
-      },
-      focusedScholar: {
-        title: "The Focused Scholar",
-        icon: "📚",
-        description: "You value structure, quiet time, and an organized living space. Your ideal home is a peaceful sanctuary that supports your academic and personal goals.",
-        traits: [
-          { icon: "🤫", label: "Noise Preference", value: "Minimal" },
-          { icon: "📋", label: "Organization", value: "Highly Structured" },
-          { icon: "🏠", label: "Home Vibe", value: "Calm & Focused" },
-          { icon: "⭐", label: "Best Quality", value: "Self-Disciplined" }
-        ],
-        compatibleWith: ["Mindful Zen", "Tech Enthusiast", "Balanced Mediator"]
-      },
-      creativeSpirit: {
-        title: "The Creative Spirit",
-        icon: "🎨",
-        description: "You bring artistic flair and spontaneity to your living space. Your ideal home is a canvas for expression and inspiration.",
-        traits: [
-          { icon: "🎨", label: "Expression", value: "Highly Creative" },
-          { icon: "🏠", label: "Home Vibe", value: "Artistic & Inspiring" },
-          { icon: "⌚", label: "Schedule", value: "Flexible" },
-          { icon: "⭐", label: "Best Quality", value: "Imaginative" }
-        ],
-        compatibleWith: ["Social Butterfly", "Free Spirit", "Tech Enthusiast"]
-      },
-      mindfulZen: {
-        title: "The Mindful Zen",
-        icon: "🧘",
-        description: "You prioritize a clean, tranquil, and harmonious environment. Your ideal home is a peaceful retreat from the hustle and bustle of daily life.",
-        traits: [
-          { icon: "🌿", label: "Atmosphere", value: "Calm & Tidy" },
-          { icon: "🤝", label: "Conflict Style", value: "Diplomatic" },
-          { icon: "🏠", label: "Home Vibe", value: "Peaceful & Harmonious" },
-          { icon: "⭐", label: "Best Quality", value: "Considerate" }
-        ],
-        compatibleWith: ["Focused Scholar", "Balanced Mediator", "Tech Enthusiast"]
-      },
-      techEnthusiast: {
-        title: "The Tech Enthusiast",
-        icon: "🚀",
-        description: "You're passionate about the latest gadgets and smart home technology. Your ideal home is an efficient, modern space optimized with technology.",
-        traits: [
-          { icon: "📱", label: "Gadgets", value: "Latest & Greatest" },
-          { icon: "💰", label: "Expenses", value: "Managed with Apps" },
-          { icon: "🏠", label: "Home Vibe", value: "Modern & Efficient" },
-          { icon: "⭐", label: "Best Quality", value: "Innovative" }
-        ],
-        compatibleWith: ["Focused Scholar", "Creative Spirit", "Free Spirit"]
-      },
-      freeSpirit: {
-        title: "The Free Spirit",
-        icon: "🕊️",
-        description: "You're adaptable, easygoing, and prefer to go with the flow. Your ideal living situation is relaxed and flexible, without rigid rules.",
-        traits: [
-          { icon: "✨", label: "Cleanliness", value: "Relaxed" },
-          { icon: "⌚", label: "Schedule", value: "Highly Flexible" },
-          { icon: "🏠", label: "Home Vibe", value: "Easygoing & Adaptable" },
-          { icon: "⭐", label: "Best Quality", value: "Spontaneous" }
-        ],
-        compatibleWith: ["Social Butterfly", "Creative Spirit", "Tech Enthusiast"]
-      },
-      balancedMediator: {
-        title: "The Balanced Mediator",
-        icon: "⚖️",
-        description: "You're a master of compromise and value harmony above all. Your ideal home is a fair, cooperative space where everyone feels heard.",
-        traits: [
-          { icon: "🤝", label: "Approach", value: "Diplomatic & Fair" },
-          { icon: "🔄", label: "Sharing", value: "With Boundaries" },
-          { icon: "🏠", label: "Home Vibe", value: "Cooperative & Harmonious" },
-          { icon: "⭐", label: "Best Quality", value: "Fair-minded" }
-        ],
-        compatibleWith: ["Social Butterfly", "Focused Scholar", "Mindful Zen"]
-      }
-    };
-    
-    // Quiz state and elements
-    const progressBar = document.getElementById('progress');
-    const questionText = document.getElementById('questionText');
-    const optionsGrid = document.getElementById('options');
-    const nextBtn = document.getElementById('nextBtn');
-    const prevBtn = document.getElementById('prevBtn');
+    let currentQuestionIndex = 0;
+    let userAnswers = [];
+
     const questionCard = document.getElementById('questionCard');
     const resultsSection = document.getElementById('resultsSection');
-    const fullResultsContainer = document.getElementById('fullResults');
-    const resultsTeaser = document.getElementById('resultsTeaser');
-
-    let currentQuestionIndex = 0;
-    let userAnswers = {};
+    const currentQuestionSpan = document.getElementById('currentQuestion');
+    const questionText = document.getElementById('questionText');
+    const optionsGrid = document.getElementById('options');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const progressBar = document.getElementById('progress');
 
     function updateQuestion() {
-      optionsGrid.classList.remove('has-selection');
       const question = questions[currentQuestionIndex];
+      currentQuestionSpan.textContent = currentQuestionIndex + 1;
       questionText.textContent = question.text;
-      optionsGrid.innerHTML = '';
       
-      question.options.forEach(option => {
-        const optionElement = document.createElement('div');
-        optionElement.className = 'answer-option';
-        optionElement.dataset.value = option.value;
-        optionElement.innerHTML = `
+      optionsGrid.innerHTML = '';
+      question.options.forEach((option, index) => {
+        const optionDiv = document.createElement('div');
+        optionDiv.className = 'option';
+        optionDiv.innerHTML = `
           <div class="option-icon">${option.icon}</div>
           <div class="option-text">${option.text}</div>
         `;
-        optionsGrid.appendChild(optionElement);
-      });
-
-      const selectedValue = userAnswers[currentQuestionIndex];
-      if (selectedValue) {
-        const selectedOption = optionsGrid.querySelector(`.answer-option[data-value="${selectedValue}"]`);
-        if (selectedOption) {
-          selectedOption.classList.add('selected');
-          optionsGrid.classList.add('has-selection');
-          const indicator = document.createElement('span');
-          indicator.className = 'selection-indicator';
-          indicator.innerHTML = `<i class="fas fa-check"></i>`;
-          selectedOption.appendChild(indicator);
+        
+        if (userAnswers[currentQuestionIndex] === option.value) {
+          optionDiv.classList.add('selected');
         }
-      }
-
-      updateProgress();
-      document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
-      
-      prevBtn.style.display = currentQuestionIndex > 0 ? 'inline-block' : 'none';
-      if(currentQuestionIndex === questions.length - 1) {
-        nextBtn.textContent = 'See Results';
-      } else {
-        nextBtn.textContent = 'Next';
-      }
-      
-      const isAnswered = userAnswers[currentQuestionIndex] !== undefined;
-      nextBtn.disabled = !isAnswered;
-      if(isAnswered) {
+        
+        optionDiv.addEventListener('click', () => {
+          document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+          optionDiv.classList.add('selected');
+          userAnswers[currentQuestionIndex] = option.value;
+          nextBtn.disabled = false;
           nextBtn.classList.remove('disabled');
-      } else {
-          nextBtn.classList.add('disabled');
-      }
-    }
-
-    function updateProgress() {
-      const progressPercentage = ((currentQuestionIndex + 1) / questions.length) * 100;
-      progressBar.style.width = `${progressPercentage}%`;
-    }
-
-    optionsGrid.addEventListener('click', (e) => {
-      const option = e.target.closest('.answer-option');
-      if (!option) return;
-
-      const currentOptions = optionsGrid.querySelectorAll('.answer-option');
-      currentOptions.forEach(opt => {
-        opt.classList.remove('selected');
-        const indicator = opt.querySelector('.selection-indicator');
-        if (indicator) {
-          indicator.remove();
-        }
+        });
+        
+        optionsGrid.appendChild(optionDiv);
       });
       
-      option.classList.add('selected');
-      const indicator = document.createElement('span');
-      indicator.className = 'selection-indicator';
-      indicator.innerHTML = `<i class="fas fa-check"></i>`;
-      option.appendChild(indicator);
-
-      optionsGrid.classList.add('has-selection');
+      prevBtn.style.display = currentQuestionIndex === 0 ? 'none' : 'block';
+      nextBtn.textContent = currentQuestionIndex === questions.length - 1 ? 'See Results' : 'Next';
       
-      const selectedValue = option.dataset.value;
-      userAnswers[currentQuestionIndex] = selectedValue;
-      nextBtn.disabled = false;
-      nextBtn.classList.remove('disabled');
-    });
-
-    nextBtn.addEventListener('click', () => {
-      if (userAnswers[currentQuestionIndex] === undefined) {
-        // Optionally, show a message to select an answer
-        return;
-      }
-      if (currentQuestionIndex < questions.length - 1) {
-        currentQuestionIndex++;
-        updateQuestion();
-      } else {
-        showResults();
-      }
-    });
+      const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+      progressBar.style.width = progress + '%';
+    }
 
     prevBtn.addEventListener('click', () => {
       if (currentQuestionIndex > 0) {
@@ -411,85 +267,97 @@
       }
     });
 
-    function calculatePersonalityType(answers) {
-      const counts = answers.reduce((acc, value) => {
-        acc[value] = (acc[value] || 0) + 1;
-        return acc;
-      }, {});
-
-      let primaryTrait = 'balancedMediator';
-      let maxCount = 0;
-
-      const traitMapping = {
-        social: 'socialButterfly',
-        studious: 'focusedScholar', quiet: 'focusedScholar', organized: 'focusedScholar',
-        creative: 'creativeSpirit',
-        relaxed: 'freeSpirit', flexible: 'freeSpirit',
-        direct: 'balancedMediator', diplomatic: 'balancedMediator',
-        tech: 'techEnthusiast',
-        communal: 'socialButterfly',
-        private: 'mindfulZen',
-      };
-      
-      for(const answer in counts) {
-          const count = counts[answer];
-          const trait = traitMapping[answer];
-          if(trait && count > maxCount) {
-              maxCount = count;
-              primaryTrait = trait;
-          }
+    nextBtn.addEventListener('click', () => {
+      if (userAnswers[currentQuestionIndex]) {
+        if (currentQuestionIndex < questions.length - 1) {
+          currentQuestionIndex++;
+          updateQuestion();
+        } else {
+          showResults();
+        }
       }
-
-      const socialCount = (counts['social'] || 0) + (counts['vibrant'] || 0);
-      if (socialCount >= 2) primaryTrait = 'socialButterfly';
-      
-      const quietCount = (counts['quiet'] || 0) + (counts['studious'] || 0);
-      if(quietCount >=2) primaryTrait = 'focusedScholar';
-
-      return primaryTrait;
-    }
+    });
 
     function showResults() {
-      const personalityType = calculatePersonalityType(Object.values(userAnswers));
-      const result = personalityTypes[personalityType];
-      
       questionCard.style.display = 'none';
       resultsSection.style.display = 'block';
-
-      // Populate Teaser
+      
+      const result = calculateResult();
+      const resultsTeaser = document.getElementById('resultsTeaser');
       resultsTeaser.innerHTML = `
-        <div class="teaser-icon">${result.icon}</div>
-        <h3 class="teaser-title">You're a ${result.title}!</h3>
-        <p class="teaser-description">${result.description}</p>
+        <div class="results-preview-content">
+          <div class="results-preview-icon">${result.icon}</div>
+          <h3 class="results-preview-title">${result.title}</h3>
+          <p class="results-preview-description">${result.description}</p>
+        </div>
       `;
+    }
 
-      // Populate Full Results (initially hidden)
-      fullResultsContainer.innerHTML = `
-        <h3 class="full-results-title">Your Complete ${result.title} Profile</h3>
-        <div class="full-results-grid">
-            ${result.traits.map(trait => `
-              <div class="result-trait-card">
-                  <div class="trait-icon">${trait.icon}</div>
-                  <div class="trait-label">${trait.label}</div>
-                  <div class="trait-value">${trait.value}</div>
-              </div>
-            `).join('')}
-        </div>
-        <div class="compatible-section">
-            <h4 class="compatible-title">You're most compatible with:</h4>
-            <div class="compatible-grid">
-                ${result.compatibleWith.map(compType => {
-                  const compatibleResult = personalityTypes[compType];
-                  return `
-                    <div class="compatible-card">
-                        <div class="compatible-icon">${compatibleResult.icon}</div>
-                        <div class="compatible-name">${compatibleResult.title}</div>
-                    </div>
-                  `
-                }).join('')}
-            </div>
-        </div>
-      `;
+    function calculateResult() {
+      const personalityTypes = {
+        "social": {
+          title: "The Social Butterfly",
+          icon: "🦋",
+          description: "You thrive in lively environments and love connecting with people.",
+          traits: [
+            { label: "Social Energy", value: "High" },
+            { label: "Communication", value: "Excellent" },
+            { label: "Adaptability", value: "Very High" }
+          ],
+          compatibleWith: ["creative", "active"]
+        },
+        "studious": {
+          title: "The Focused Scholar",
+          icon: "📚",
+          description: "You value quiet study time and organization.",
+          traits: [
+            { label: "Focus", value: "High" },
+            { label: "Organization", value: "Excellent" },
+            { label: "Discipline", value: "Very High" }
+          ],
+          compatibleWith: ["organized", "quiet"]
+        },
+        "creative": {
+          title: "The Creative Spirit",
+          icon: "🎨",
+          description: "You bring art and inspiration to your living space.",
+          traits: [
+            { label: "Creativity", value: "High" },
+            { label: "Expression", value: "Excellent" },
+            { label: "Innovation", value: "Very High" }
+          ],
+          compatibleWith: ["social", "inspiring"]
+        },
+        "organized": {
+          title: "The Organized Planner",
+          icon: "📋",
+          description: "You love structure and keeping things in order.",
+          traits: [
+            { label: "Organization", value: "High" },
+            { label: "Planning", value: "Excellent" },
+            { label: "Reliability", value: "Very High" }
+          ],
+          compatibleWith: ["studious", "focused"]
+        }
+      };
+
+      // Simple scoring system - count most common answers
+      const answerCounts = {};
+      userAnswers.forEach(answer => {
+        answerCounts[answer] = (answerCounts[answer] || 0) + 1;
+      });
+
+      let dominantType = "social"; // default
+      let maxCount = 0;
+      
+      Object.keys(answerCounts).forEach(type => {
+        if (answerCounts[type] > maxCount) {
+          maxCount = answerCounts[type];
+          dominantType = type;
+        }
+      });
+
+      return personalityTypes[dominantType] || personalityTypes["social"];
     }
 
     // Waitlist Form Handling
@@ -573,89 +441,6 @@
     // Initial call
     updateQuestion();
 
-    // Footer cube continuous animation
-    (function() {
-      const cube = document.querySelector('.footer-cube-container .cube');
-      if (!cube) return;
-      
-      let angleY = 30;
-      let angleX = -20;
-      let animationFrame;
-      let running = true;
-
-      function animate() {
-        if (running) {
-          angleY += 0.6; // speed of rotation
-          if (angleY > 360) angleY -= 360;
-          cube.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
-        }
-        animationFrame = requestAnimationFrame(animate);
-      }
-
-      cube.addEventListener('mouseenter', () => { running = false; });
-      cube.addEventListener('mouseleave', () => { running = true; });
-      cube.addEventListener('focus', () => { running = false; });
-      cube.addEventListener('blur', () => { running = true; });
-
-      animate();
-    })();
-
-    // Menu functionality
-    function toggleMenu(btn) {
-      const nav = document.querySelector('.navbar');
-      const navLinks = document.querySelector('.nav-links');
-      const overlay = document.querySelector('.mobile-overlay');
-      const body = document.body;
-      const quizButton = document.querySelector('.quiz-header-ad');
-      
-      nav.classList.toggle('active');
-      navLinks.classList.toggle('show');
-      overlay.classList.toggle('show');
-      btn.classList.toggle('active');
-
-      if (quizButton) {
-        quizButton.classList.toggle('hidden');
-      }
-      
-      if (navLinks.classList.contains('show')) {
-        body.style.overflow = 'hidden';
-      } else {
-        body.style.overflow = '';
-      }
-    }
-
-    function closeMenu() {
-      const nav = document.querySelector('.navbar');
-      const navLinks = document.querySelector('.nav-links');
-      const overlay = document.querySelector('.mobile-overlay');
-      const hamburger = document.querySelector('.hamburger');
-      const body = document.body;
-      const quizButton = document.querySelector('.quiz-header-ad');
-      
-      nav.classList.remove('active');
-      navLinks.classList.remove('show');
-      overlay.classList.remove('show');
-      hamburger.classList.remove('active');
-
-      if (quizButton) {
-        quizButton.classList.remove('hidden');
-      }
-      body.style.overflow = '';
-    }
-
-    // General event listeners
-    document.addEventListener('DOMContentLoaded', () => {
-      window.addEventListener('resize', () => {
-        if (window.innerWidth > 768) {
-          closeMenu();
-        }
-      });
-
-      document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', closeMenu);
-      });
-    });
-    
     // Confetti from CDN
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};

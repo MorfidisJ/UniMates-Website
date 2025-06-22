@@ -163,70 +163,10 @@
         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@unimates.net&su=Regarding Your Inquiry&body=Dear Unimates Team,"aria-label="Email" class="footer-social-link"><i class="fas fa-envelope"></i></a></div>
       </div>
     </div>
-    <div class="footer-copy">&copy; 2025 UniMates. All rights reserved.</div>
+    <div class="footer-copy">&copy; 2025 UniMates. All rights reserved. | <a href="Privacy-policy.html" style="color: var(--accent); text-decoration: none;">Privacy Policy</a></div>
   </footer>
 
-  <script>
-    // Footer cube continuous animation
-    (function() {
-      const cube = document.querySelector('.footer-cube-container .cube');
-      let angleY = 30;
-      let angleX = -20;
-      let animationFrame;
-      let running = true;
-
-      function animate() {
-        if (running) {
-          angleY += 0.6; // speed of rotation
-          if (angleY > 360) angleY -= 360;
-          cube.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
-        }
-        animationFrame = requestAnimationFrame(animate);
-      }
-
-      cube.addEventListener('mouseenter', () => { running = false; });
-      cube.addEventListener('mouseleave', () => { running = true; });
-      cube.addEventListener('focus', () => { running = false; });
-      cube.addEventListener('blur', () => { running = true; });
-
-      animate();
-    })();
-  </script>
-
+  <script src="shared.js"></script>
   <script src="view-switcher.js"></script>
-  <script>
-    // Hamburger menu logic (copied from index.html)
-    function toggleMenu(button) {
-      const navLinks = document.querySelector('.nav-links');
-      const overlay = document.querySelector('.mobile-overlay');
-      const body = document.body;
-      const quizButton = document.querySelector('.quiz-header-ad');
-      navLinks.classList.toggle('show');
-      overlay.classList.toggle('show');
-      button.classList.toggle('active');
-      if (quizButton) {
-        quizButton.classList.toggle('hidden');
-      }
-      if (navLinks.classList.contains('show')) {
-        body.style.overflow = 'hidden';
-      } else {
-        body.style.overflow = '';
-      }
-    }
-    function closeMenu() {
-      const navLinks = document.querySelector('.nav-links');
-      const overlay = document.querySelector('.mobile-overlay');
-      const hamburger = document.querySelector('.hamburger');
-      const body = document.body;
-      const quizButton = document.querySelector('.quiz-header-ad');
-      navLinks.classList.remove('show');
-      overlay.classList.remove('show');
-      hamburger.classList.remove('active');
-      if (quizButton) {
-        quizButton.classList.remove('hidden');
-      }
-      body.style.overflow = '';
-    }
-  </script>
 </body>
 </html> 
