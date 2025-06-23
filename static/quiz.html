@@ -232,24 +232,24 @@
       optionsGrid.innerHTML = '';
       question.options.forEach((option, index) => {
         const optionDiv = document.createElement('div');
-        optionDiv.className = 'option';
+        optionDiv.className = 'answer-option';
         optionDiv.innerHTML = `
           <div class="option-icon">${option.icon}</div>
           <div class="option-text">${option.text}</div>
         `;
-        
         if (userAnswers[currentQuestionIndex] === option.value) {
           optionDiv.classList.add('selected');
+          optionDiv.innerHTML += `<span class=\"selection-indicator\" aria-label=\"Selected\" title=\"Selected\">✔</span>`;
         }
-        
         optionDiv.addEventListener('click', () => {
-          document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+          document.querySelectorAll('.answer-option').forEach(opt => opt.classList.remove('selected'));
+          document.querySelectorAll('.selection-indicator').forEach(el => el.remove());
           optionDiv.classList.add('selected');
+          optionDiv.innerHTML += `<span class=\"selection-indicator\" aria-label=\"Selected\" title=\"Selected\">✔</span>`;
           userAnswers[currentQuestionIndex] = option.value;
           nextBtn.disabled = false;
           nextBtn.classList.remove('disabled');
         });
-        
         optionsGrid.appendChild(optionDiv);
       });
       
@@ -281,7 +281,7 @@
     function showResults() {
       questionCard.style.display = 'none';
       resultsSection.style.display = 'block';
-      
+
       const result = calculateResult();
       const resultsTeaser = document.getElementById('resultsTeaser');
       resultsTeaser.innerHTML = `
@@ -376,7 +376,7 @@
       submitButton.disabled = !isValid;
       if (isValid) {
         submitButton.classList.remove('disabled');
-      } else {
+        } else {
         submitButton.classList.add('disabled');
       }
     }
@@ -403,10 +403,10 @@
         
         if (response.ok) {
           successMessage.style.display = 'block';
-          waitlistForm.style.display = 'none';
-          document.querySelector('.results-lock-icon').style.display = 'none';
-          document.querySelector('.results-lock-title').style.display = 'none';
-          document.querySelector('.results-lock-description').style.display = 'none';
+      waitlistForm.style.display = 'none';
+      document.querySelector('.results-lock-icon').style.display = 'none';
+      document.querySelector('.results-lock-title').style.display = 'none';
+      document.querySelector('.results-lock-description').style.display = 'none';
           
           resultsOverlay.style.backdropFilter = 'none';
           resultsOverlay.style.background = 'none';
