@@ -16,10 +16,20 @@ class Subscriber(BaseModel):
 
 api_router = APIRouter()
 
+# not dynamic but can save time on vercel
+# resets on every sleep
+
+_cache_count = None
+
 @api_router.get("/subscribers")
 async def get_subscribers():
-    response = requests.get(f"{urlv4}/subscribers", headers={"X-Kit-Api-Key": os.getenv("API_KEY_V4")})
-    return {"subscriber_count": len(response.json()["subscribers"])}
+    global _cache_count
+
+    if _cache_count is None:
+        response = requests.get(f"{urlv4}/subscribers", headers={"X-Kit-Api-Key": os.getenv("API_KEY_V4")})
+        _cache_count = len(response.json()["subscribers"])
+
+    return {"subscriber_count": _cache_count}
 
 
 @api_router.post("/subscribers")

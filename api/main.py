@@ -3,12 +3,19 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 from dotenv import load_dotenv
-from api  import api_router
+from .api import api_router
 
-load_dotenv("../.env")
+import os
+
+# load .env on dev only
+dotenv_path = "../.env"
+if os.getenv("VERCEL") is None:
+    load_dotenv(dotenv_path)
+
 app = FastAPI()
 
 origins = [
+    "https://landing-page-unimatesnet.vercel.app",
     "http://localhost:8000",
     "https://unimates.net"
 ]
@@ -21,5 +28,4 @@ app.add_middleware(
 )
 
 app.include_router(api_router, prefix="/api")
-app.mount("/", StaticFiles(directory="../static", html=True), name="static")
 

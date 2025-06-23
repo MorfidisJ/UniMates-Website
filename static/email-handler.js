@@ -55,7 +55,7 @@ class EmailHandler {
 }
 
 // Initialize the email handler
-const emailHandler = new EmailHandler();
+const emailHandler = new EmailHandler(window.location.origin);
 
 // Enhanced form handling with API integration
 document.addEventListener('DOMContentLoaded', () => {
