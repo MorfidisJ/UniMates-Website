@@ -1,4 +1,3 @@
-
 class EmailHandler {
   constructor(apiBaseUrl = 'http://localhost:8000') {
     this.apiBaseUrl = apiBaseUrl;
@@ -12,7 +11,7 @@ class EmailHandler {
    */
   async submitEmail(email, firstName = null) {
     try {
-      const response = await fetch(`${this.apiBaseUrl}/api/subscribers`, {
+      const response = await fetch(`${this.apiBaseUrl}/subscribers`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -41,7 +40,7 @@ class EmailHandler {
    */
   async getSubscriberCount() {
     try {
-      const response = await fetch(`${this.apiBaseUrl}/api/subscribers`);
+      const response = await fetch(`${this.apiBaseUrl}/subscribers`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -55,7 +54,7 @@ class EmailHandler {
 }
 
 // Initialize the email handler
-const emailHandler = new EmailHandler(window.location.origin);
+const emailHandler = new EmailHandler();
 
 // Enhanced form handling with API integration
 document.addEventListener('DOMContentLoaded', () => {
@@ -161,8 +160,12 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('Successfully submitted:', response);
       
       // Launch confetti
-      if (typeof launchConfetti === 'function') {
-        launchConfetti();
+      try {
+        if (typeof launchConfetti === 'function') {
+          launchConfetti();
+        }
+      } catch (confettiError) {
+        console.warn('Confetti animation failed:', confettiError);
       }
       
       // Animate form out
@@ -216,10 +219,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const statNumber = document.querySelector('.stat-number');
       if (statNumber && statNumber.textContent !== 'Every' && statNumber.textContent !== '95%') {
         // Animate the number change
-        const currentCount = parseInt(statNumber.textContent) || 0;
-        const newCount = count;
+        const base = 36;
+        const currentCount = parseInt(statNumber.textContent) || base;
+        const newCount = base + count;
         
-        if (newCount > currentCount) {
+        if (newCount !== currentCount) {
           animateCounter(statNumber, currentCount, newCount, 1000);
         }
       }

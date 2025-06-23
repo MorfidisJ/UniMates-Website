@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Flatmate Style Quiz - UniMates</title>
+  <title>Roommate Style Quiz - UniMates</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
@@ -42,7 +42,7 @@
   </nav>
 
   <header class="quiz-header">
-    <h1 class="section-title">What's Your Flatmate Style?</h1>
+    <h1 class="section-title">What's Your Roommate Style?</h1>
     <p class="section-subtitle">
       Answer a few questions to discover your living preferences and find compatible flatmates.
     </p>
@@ -71,7 +71,7 @@
           <div class="results-lock-icon">🔒</div>
           <h3 class="results-lock-title">Unlock Your Full Results</h3>
           <p class="results-lock-description">
-            Join our waitlist to see your complete personality profile and start connecting with compatible flatmates!
+            Join our waitlist to see your complete personality profile and start connecting with compatible roommates!
           </p>
           <form id="waitlistForm" class="waitlist-form">
             <input type="email" id="email" placeholder="Enter your email address" required />
@@ -395,7 +395,7 @@
       if(!email) return;
 
       try {
-        const response = await fetch('http://127.0.0.1:8000/join-waitlist', {
+        const response = await fetch('http://127.0.0.1:8000/suncribers', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: email, answers: userAnswers })
