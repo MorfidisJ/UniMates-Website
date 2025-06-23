@@ -331,43 +331,5 @@
   <script src="email-handler.js"></script>
   <script src="view-switcher.js"></script>
   <script src="shared.js"></script>
-  <script>
-    // Page-specific functionality for index.html
-    
-    // Confetti animation for waitlist success
-    document.addEventListener('DOMContentLoaded', () => {
-      const waitlistForm = document.getElementById('waitlistForm');
-      const successMessage = document.getElementById('successMessage');
-      
-      if (waitlistForm) {
-        waitlistForm.addEventListener('submit', async (e) => {
-          e.preventDefault();
-          const email = document.getElementById('email').value;
-          const consent = document.getElementById('consent').checked;
-          
-          if (!email || !consent) return;
-          
-          try {
-            const response = await fetch('http://127.0.0.1:8000/join-waitlist', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ email: email })
-            });
-            
-            if (response.ok) {
-              waitlistForm.style.display = 'none';
-              successMessage.style.display = 'block';
-              launchConfetti(); // Use shared confetti function
-            } else {
-              alert('Error joining waitlist. Please try again.');
-            }
-          } catch (error) {
-            console.error('Submission error:', error);
-            alert('Connection error. Please try again later.');
-          }
-        });
-      }
-    });
-  </script>
 </body>
 </html>
