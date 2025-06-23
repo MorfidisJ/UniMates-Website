@@ -2,14 +2,16 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
-from dotenv import load_dotenv
-from .api import api_router
+from dotenv import load_dotenv, find_dotenv
+from api.api import api_router
 
 import os
 
 # load .env on dev only
-dotenv_path = "../.env"
+print(os.getenv("VERCEL"))
 if os.getenv("VERCEL") is None:
+    dotenv_path = find_dotenv()
+    print("loading:", dotenv_path)
     load_dotenv(dotenv_path)
 
 app = FastAPI()
