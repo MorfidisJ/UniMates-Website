@@ -403,10 +403,10 @@
         
         if (response.ok) {
           successMessage.style.display = 'block';
-      waitlistForm.style.display = 'none';
-      document.querySelector('.results-lock-icon').style.display = 'none';
-      document.querySelector('.results-lock-title').style.display = 'none';
-      document.querySelector('.results-lock-description').style.display = 'none';
+          waitlistForm.style.display = 'none';
+          document.querySelector('.results-lock-icon').style.display = 'none';
+          document.querySelector('.results-lock-title').style.display = 'none';
+          document.querySelector('.results-lock-description').style.display = 'none';
           
           resultsOverlay.style.backdropFilter = 'none';
           resultsOverlay.style.background = 'none';
@@ -425,8 +425,34 @@
           setTimeout(() => {
               fullResultsContainer.style.maxHeight = fullResultsContainer.scrollHeight + 'px';
               fullResultsContainer.style.opacity = '1';
-          }, 200);
 
+              // Add share button with updated message
+              const shareBtn = document.createElement('button');
+              shareBtn.className = 'result-share-btn';
+              shareBtn.innerHTML = '<i class="fa fa-share"></i> Share your result';
+              const result = calculateResult();
+              const shareMessage = `I just took the UniMates Roommate Style Quiz and got "${result.title}"! Find your perfect roommate at https://unimates.net 🎓\nTake the quiz yourself!`;
+              shareBtn.onclick = async () => {
+                if (navigator.share) {
+                  try {
+                    await navigator.share({
+                      title: 'My UniMates Roommate Style',
+                      text: shareMessage,
+                      url: 'https://unimates.net/quiz.html'
+                    });
+                  } catch (err) {}
+                } else {
+                  try {
+                    await navigator.clipboard.writeText(shareMessage);
+                    shareBtn.textContent = 'Copied!';
+                    setTimeout(() => { shareBtn.textContent = 'Share your result'; }, 1500);
+                  } catch (err) {
+                    alert('Copy this message to share: ' + shareMessage);
+                  }
+                }
+              };
+              fullResultsContainer.appendChild(shareBtn);
+          }, 200);
 
         } else {
           const errorData = await response.json();
