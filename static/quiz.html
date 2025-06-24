@@ -395,10 +395,10 @@
       if(!email) return;
 
       try {
-        const response = await fetch(`${window.location.origin}/api/subscribers`, {
+        const response = await fetch('http://127.0.0.1:8000/api/subscribers', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, answers: userAnswers })
+          body: JSON.stringify({ email: email })
         });
         
         if (response.ok) {
@@ -410,6 +410,31 @@
           
           resultsOverlay.style.backdropFilter = 'none';
           resultsOverlay.style.background = 'none';
+          
+          // Show full results
+          const fullResultsContainer = document.getElementById('fullResults');
+          const result = calculateResult();
+          fullResultsContainer.innerHTML = `
+            <div class="full-results-content">
+              <h3 class="full-results-title">${result.title}</h3>
+              <div class="full-results-icon">${result.icon}</div>
+              <p class="full-results-description">${result.description}</p>
+              <div class="traits-grid">
+                ${result.traits.map(trait => `
+                  <div class="trait-card">
+                    <div class="trait-label">${trait.label}</div>
+                    <div class="trait-value">${trait.value}</div>
+                  </div>
+                `).join('')}
+              </div>
+              <div class="compatibility-section">
+                <h4>Best Compatible With:</h4>
+                <div class="compatibility-tags">
+                  ${result.compatibleWith.map(type => `<span class="compatibility-tag">${type}</span>`).join('')}
+                </div>
+              </div>
+            </div>
+          `;
           
           // Confetti
           const canvas = document.getElementById('confetti-canvas');
@@ -430,7 +455,6 @@
               const shareBtn = document.createElement('button');
               shareBtn.className = 'result-share-btn';
               shareBtn.innerHTML = '<i class="fa fa-share"></i> Share your result';
-              const result = calculateResult();
               const shareMessage = `I just took the UniMates Roommate Style Quiz and got "${result.title}"! Find your perfect roommate at https://unimates.net 🎓\nTake the quiz yourself!`;
               shareBtn.onclick = async () => {
                 if (navigator.share) {
