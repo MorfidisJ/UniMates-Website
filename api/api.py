@@ -19,33 +19,31 @@ api_router = APIRouter()
 # not dynamic but can save time on vercel
 # resets on every sleep
 
-_cache_count = None
-_cache_subs = set()
+_cache = set()
 
 @api_router.get("/subscribers")
 async def get_subscribers():
-    global _cache_count, _cache_subs
+    global _cache
 
-    if _cache_count is None:
+    if len(_cache) == 0:
         response = requests.get(f"{urlv4}/subscribers", headers={"X-Kit-Api-Key": os.getenv("API_KEY_V4")})
         if response.status_code >= 400:
             print(response.json()["errors"][0])
             raise HTTPException(status_code=status.HTTP_502_BAD_GATEWAY)
         
         subs = response.json()["subscribers"]
-        _cache_count = len(subs)
-        _cache_subs = set([record["email_address"] for record in subs])
+        _cache = set([record["email_address"] for record in subs])
 
-    return {"subscriber_count": _cache_count}
+    return {"subscriber_count": len(_cache)}
 
 
 @api_router.post("/subscribers")
 async def create_subscriber(sub: Subscriber):
-    global _cache_subs
+    global _cache
 
     if sub.email == "":
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="No email provided")
-    elif sub.email in _cache_subs:
+    elif sub.email in _cache:
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Email already exists")
 
     # Create subscriber
@@ -61,6 +59,6 @@ async def create_subscriber(sub: Subscriber):
         print(response.json())
         raise HTTPException(status_code=status.HTTP_502_BAD_GATEWAY)
 
-    _cache_subs.add(sub.email)
+    _cache.add(sub.email)
     return JSONResponse(content={"subscriber": sub.model_dump()}, status_code=status.HTTP_201_CREATED)
 

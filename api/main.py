@@ -8,10 +8,9 @@ from api.api import api_router
 import os
 
 # load .env on dev only
-print(os.getenv("VERCEL"))
 if os.getenv("VERCEL") is None:
     dotenv_path = find_dotenv()
-    print("loading:", dotenv_path)
+    print("loading environment from:", dotenv_path)
     load_dotenv(dotenv_path)
 
 app = FastAPI()
