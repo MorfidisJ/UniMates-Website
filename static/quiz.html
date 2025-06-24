@@ -417,6 +417,27 @@
           });
           
           if (response.ok) {
+            // Save quiz results to mock API
+            try {
+              const result = calculateResult();
+              const quizResultData = {
+                email: email,
+                personality_type: result.title,
+                answers: userAnswers,
+                timestamp: new Date().toISOString()
+              };
+              
+              await fetch('http://127.0.0.1:8000/quiz-results', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(quizResultData)
+              });
+              
+              console.log('Quiz results saved to mock API');
+            } catch (quizError) {
+              console.log('Could not save quiz results (mock API may not be running):', quizError);
+            }
+            
             // Show success message
             if (successMessage) {
               successMessage.style.display = 'block';
@@ -461,21 +482,55 @@
             if (fullResultsContainer) {
               fullResultsContainer.innerHTML = `
                 <div class="full-results-content">
-                  <h3 class="full-results-title">${result.title}</h3>
-                  <div class="full-results-icon">${result.icon}</div>
-                  <p class="full-results-description">${result.description}</p>
-                  <div class="traits-grid">
-                    ${result.traits.map(trait => `
-                      <div class="trait-card">
-                        <div class="trait-label">${trait.label}</div>
-                        <div class="trait-value">${trait.value}</div>
-                      </div>
-                    `).join('')}
+                  <div class="result-header">
+                    <div class="result-icon-container">
+                      <div class="result-icon">${result.icon}</div>
+                      <div class="result-icon-glow"></div>
+                    </div>
+                    <h3 class="full-results-title">${result.title}</h3>
+                    <div class="result-subtitle">Your Perfect Roommate Profile</div>
                   </div>
+                  
+                  <div class="result-description-container">
+                    <p class="full-results-description">${result.description}</p>
+                  </div>
+                  
+                  <div class="traits-section">
+                    <h4 class="traits-title">Your Key Traits</h4>
+                    <div class="traits-grid">
+                      ${result.traits.map((trait, index) => `
+                        <div class="trait-card" style="animation-delay: ${index * 0.1}s">
+                          <div class="trait-icon">${getTraitIcon(trait.label)}</div>
+                          <div class="trait-content">
+                            <div class="trait-label">${trait.label}</div>
+                            <div class="trait-value">${trait.value}</div>
+                          </div>
+                          <div class="trait-progress">
+                            <div class="trait-progress-bar" style="width: ${getTraitProgress(trait.value)}%"></div>
+                          </div>
+                        </div>
+                      `).join('')}
+                    </div>
+                  </div>
+                  
                   <div class="compatibility-section">
-                    <h4>Best Compatible With:</h4>
+                    <h4 class="compatibility-title">🎯 Best Compatible With</h4>
                     <div class="compatibility-tags">
-                      ${result.compatibleWith.map(type => `<span class="compatibility-tag">${type}</span>`).join('')}
+                      ${result.compatibleWith.map((type, index) => `<span class="compatibility-tag" style="animation-delay: ${index * 0.15}s">${getCompatibilityIcon(type)} ${type}</span>`).join('')}
+                    </div>
+                  </div>
+                  
+                  <div class="result-cta">
+                    <p class="result-cta-text">Ready to find your perfect roommate match?</p>
+                    <div class="result-cta-buttons">
+                      <button class="cta-primary-btn" onclick="window.location.href='index.html'">
+                        <i class="fas fa-home"></i>
+                        Join UniMates
+                      </button>
+                      <button class="cta-secondary-btn" onclick="window.location.reload()">
+                        <i class="fas fa-redo"></i>
+                        Take Quiz Again
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -487,9 +542,10 @@
             if (canvas && window.confetti) {
               canvas.style.display = 'block';
               window.confetti({
-                particleCount: 150,
-                spread: 80,
-                origin: { y: 0.6 }
+                particleCount: 200,
+                spread: 100,
+                origin: { y: 0.6 },
+                colors: ['#6366f1', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981']
               });
             }
 
@@ -500,33 +556,83 @@
                 fullResultsContainer.style.maxHeight = fullResultsContainer.scrollHeight + 'px';
                 fullResultsContainer.style.opacity = '1';
 
-                // Add share button
+                // Add share button with enhanced styling
                 const shareBtn = document.createElement('button');
                 shareBtn.className = 'result-share-btn';
-                shareBtn.innerHTML = '<i class="fa fa-share"></i> Share your result';
-                const shareMessage = `I just took the UniMates Roommate Style Quiz and got "${result.title}"! Find your perfect roommate at https://unimates.net 🎓\nTake the quiz yourself!`;
+                shareBtn.innerHTML = `
+                  <div class="share-btn-content">
+                    <i class="fas fa-share-alt"></i>
+                    <span>Share Your Result</span>
+                  </div>
+                  <div class="share-btn-glow"></div>
+                `;
+                
+                // Enhanced share message
+                const shareMessage = `🎓 Just discovered I'm a "${result.title}" on UniMates! 
+
+🏠 Finding the perfect roommate is crucial for your university experience, and this quiz helped me understand my living style better.
+
+✨ Want to find your ideal roommate match? Take the UniMates Roommate Style Quiz and discover your perfect living companion!
+
+🔗 Take the quiz: https://unimates.net/quiz.html
+#UniMates #RoommateQuiz #UniversityLife #PerfectMatch`;
+
+                const shareTitle = `I'm a ${result.title} - What's Your Roommate Style?`;
+                const shareUrl = 'https://unimates.net/quiz.html';
                 
                 shareBtn.onclick = async () => {
-                  if (navigator.share) {
-                    try {
-                      await navigator.share({
-                        title: 'My UniMates Roommate Style',
-                        text: shareMessage,
-                        url: 'https://unimates.net/quiz.html'
-                      });
-                    } catch (err) {
-                      console.log('Share cancelled or failed');
+                  // Try Web Share API first (mobile devices)
+                  if (navigator.share && navigator.canShare) {
+                    const shareData = {
+                      title: shareTitle,
+                      text: shareMessage,
+                      url: shareUrl
+                    };
+                    
+                    // Check if the platform can share this data
+                    if (navigator.canShare(shareData)) {
+                      try {
+                        await navigator.share(shareData);
+                        return; // Successfully shared
+                      } catch (err) {
+                        console.log('Web Share API failed, falling back to clipboard');
+                      }
                     }
-                  } else {
-                    try {
-                      await navigator.clipboard.writeText(shareMessage);
-                      shareBtn.textContent = 'Copied!';
-                      setTimeout(() => { 
-                        shareBtn.innerHTML = '<i class="fa fa-share"></i> Share your result'; 
-                      }, 1500);
-                    } catch (err) {
-                      alert('Copy this message to share: ' + shareMessage);
-                    }
+                  }
+                  
+                  // Fallback: Copy to clipboard with better user feedback
+                  try {
+                    // Create a more shareable message for clipboard
+                    const clipboardMessage = `${shareMessage}\n\n${shareUrl}`;
+                    await navigator.clipboard.writeText(clipboardMessage);
+                    
+                    // Show success feedback
+                    shareBtn.innerHTML = `
+                      <div class="share-btn-content">
+                        <i class="fas fa-check"></i>
+                        <span>Copied to Clipboard!</span>
+                      </div>
+                      <div class="share-btn-glow"></div>
+                    `;
+                    
+                    // Show a toast notification
+                    showShareToast('Message copied! You can now paste it anywhere.');
+                    
+                    setTimeout(() => { 
+                      shareBtn.innerHTML = `
+                        <div class="share-btn-content">
+                          <i class="fas fa-share-alt"></i>
+                          <span>Share Your Result</span>
+                        </div>
+                        <div class="share-btn-glow"></div>
+                      `; 
+                    }, 3000);
+                    
+                  } catch (err) {
+                    console.error('Clipboard copy failed:', err);
+                    
+                    // Final fallback: Show modal with share options
+                    showShareModal(shareMessage, shareUrl, shareTitle);
                   }
                 };
                 
@@ -548,6 +654,166 @@
         }
       });
     }
+
+    // Helper functions for enhanced results
+    function getTraitIcon(traitLabel) {
+      const icons = {
+        'Social Energy': '👥',
+        'Focus': '🎯',
+        'Creativity': '🎨',
+        'Organization': '📋',
+        'Communication': '💬',
+        'Expression': '🎭',
+        'Innovation': '💡',
+        'Planning': '📅',
+        'Reliability': '✅',
+        'Discipline': '⚡'
+      };
+      return icons[traitLabel] || '⭐';
+    }
+
+    function getTraitProgress(value) {
+      const progressMap = {
+        'High': 85,
+        'Very High': 95,
+        'Excellent': 90,
+        'Moderate': 60,
+        'Good': 75,
+        'Average': 50
+      };
+      return progressMap[value] || 70;
+    }
+
+    function getCompatibilityIcon(type) {
+      const icons = {
+        'social': '🦋',
+        'creative': '🎨',
+        'studious': '📚',
+        'organized': '📋',
+        'quiet': '🤫',
+        'inspiring': '✨',
+        'communal': '🏠',
+        'focused': '🎯',
+        'active': '🏃',
+        'flexible': '🔄'
+      };
+      return icons[type] || '💫';
+    }
+
+    // Helper function to show share toast notification
+    function showShareToast(message) {
+      // Remove existing toast if any
+      const existingToast = document.querySelector('.share-toast');
+      if (existingToast) {
+        existingToast.remove();
+      }
+      
+      const toast = document.createElement('div');
+      toast.className = 'share-toast';
+      toast.innerHTML = `
+        <div class="toast-content">
+          <i class="fas fa-check-circle"></i>
+          <span>${message}</span>
+        </div>
+      `;
+      
+      document.body.appendChild(toast);
+      
+      // Animate in
+      setTimeout(() => toast.classList.add('show'), 100);
+      
+      // Remove after 4 seconds
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+      }, 4000);
+    }
+
+    // Helper function to show share modal with multiple options
+    function showShareModal(message, url, title) {
+      // Remove existing modal if any
+      const existingModal = document.querySelector('.share-modal');
+      if (existingModal) {
+        existingModal.remove();
+      }
+      
+      const modal = document.createElement('div');
+      modal.className = 'share-modal';
+      modal.innerHTML = `
+        <div class="share-modal-overlay"></div>
+        <div class="share-modal-content">
+          <div class="share-modal-header">
+            <h3>Share Your Result</h3>
+            <button class="share-modal-close" onclick="this.closest('.share-modal').remove()">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <div class="share-modal-body">
+            <div class="share-options">
+              <button class="share-option" onclick="copyToClipboard('${message.replace(/'/g, "\\'")}', this)">
+                <i class="fas fa-copy"></i>
+                <span>Copy Message</span>
+              </button>
+              <button class="share-option" onclick="copyToClipboard('${url}', this)">
+                <i class="fas fa-link"></i>
+                <span>Copy Link</span>
+              </button>
+              <button class="share-option" onclick="shareOnTwitter('${title.replace(/'/g, "\\'")}', '${url}')">
+                <i class="fab fa-twitter"></i>
+                <span>Share on Twitter</span>
+              </button>
+              <button class="share-option" onclick="shareOnWhatsApp('${message.replace(/'/g, "\\'")}')">
+                <i class="fab fa-whatsapp"></i>
+                <span>Share on WhatsApp</span>
+              </button>
+            </div>
+            <div class="share-preview">
+              <h4>Preview:</h4>
+              <div class="share-preview-text">${message}</div>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      document.body.appendChild(modal);
+      
+      // Close modal when clicking overlay
+      modal.querySelector('.share-modal-overlay').onclick = () => modal.remove();
+      
+      // Close on escape key
+      document.addEventListener('keydown', function closeOnEscape(e) {
+        if (e.key === 'Escape') {
+          modal.remove();
+          document.removeEventListener('keydown', closeOnEscape);
+        }
+      });
+    }
+
+    // Global helper functions for sharing
+    window.copyToClipboard = async function(text, button) {
+      try {
+        await navigator.clipboard.writeText(text);
+        const originalText = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check"></i><span>Copied!</span>';
+        button.style.background = 'var(--accent)';
+        setTimeout(() => {
+          button.innerHTML = originalText;
+          button.style.background = '';
+        }, 2000);
+      } catch (err) {
+        alert('Copy this text:\n\n' + text);
+      }
+    };
+
+    window.shareOnTwitter = function(title, url) {
+      const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`;
+      window.open(twitterUrl, '_blank');
+    };
+
+    window.shareOnWhatsApp = function(message) {
+      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+    };
 
     // Initialize the quiz
     updateQuestion();
