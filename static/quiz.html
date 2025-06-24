@@ -118,7 +118,7 @@
   <script src="shared.js"></script>
   <script>
     // Page-specific functionality for quiz.html
-    
+
     const questions = [
       {
         text: "How do you typically spend your evenings at home?",
@@ -215,6 +215,7 @@
     let currentQuestionIndex = 0;
     let userAnswers = [];
 
+    // Get DOM elements
     const questionCard = document.getElementById('questionCard');
     const resultsSection = document.getElementById('resultsSection');
     const currentQuestionSpan = document.getElementById('currentQuestion');
@@ -239,13 +240,13 @@
         `;
         if (userAnswers[currentQuestionIndex] === option.value) {
           optionDiv.classList.add('selected');
-          optionDiv.innerHTML += `<span class=\"selection-indicator\" aria-label=\"Selected\" title=\"Selected\">✔</span>`;
+          optionDiv.innerHTML += `<span class="selection-indicator" aria-label="Selected" title="Selected">✔</span>`;
         }
         optionDiv.addEventListener('click', () => {
           document.querySelectorAll('.answer-option').forEach(opt => opt.classList.remove('selected'));
           document.querySelectorAll('.selection-indicator').forEach(el => el.remove());
           optionDiv.classList.add('selected');
-          optionDiv.innerHTML += `<span class=\"selection-indicator\" aria-label=\"Selected\" title=\"Selected\">✔</span>`;
+          optionDiv.innerHTML += `<span class="selection-indicator" aria-label="Selected" title="Selected">✔</span>`;
           userAnswers[currentQuestionIndex] = option.value;
           nextBtn.disabled = false;
           nextBtn.classList.remove('disabled');
@@ -284,13 +285,15 @@
 
       const result = calculateResult();
       const resultsTeaser = document.getElementById('resultsTeaser');
-      resultsTeaser.innerHTML = `
-        <div class="results-preview-content">
-          <div class="results-preview-icon">${result.icon}</div>
-          <h3 class="results-preview-title">${result.title}</h3>
-          <p class="results-preview-description">${result.description}</p>
-        </div>
-      `;
+      if (resultsTeaser) {
+        resultsTeaser.innerHTML = `
+          <div class="results-preview-content">
+            <div class="results-preview-icon">${result.icon}</div>
+            <h3 class="results-preview-title">${result.title}</h3>
+            <p class="results-preview-description">${result.description}</p>
+          </div>
+        `;
+      }
     }
 
     function calculateResult() {
@@ -366,134 +369,193 @@
     const successMessage = document.getElementById('successMessage');
     const resultsOverlay = document.querySelector('.results-overlay');
     const checkbox = document.getElementById('waitlist-accept');
-    const submitButton = waitlistForm.querySelector('.cta-button');
 
     function validateForm() {
-      const emailValid = emailInput.value.trim() !== '';
-      const checkboxValid = checkbox.checked;
+      if (!waitlistForm) return;
+      
+      const submitButton = waitlistForm.querySelector('.cta-button');
+      if (!submitButton) return;
+      
+      const emailValid = emailInput && emailInput.value.trim() !== '';
+      const checkboxValid = checkbox && checkbox.checked;
       const isValid = emailValid && checkboxValid;
       
       submitButton.disabled = !isValid;
       if (isValid) {
         submitButton.classList.remove('disabled');
-        } else {
+      } else {
         submitButton.classList.add('disabled');
       }
     }
 
-    emailInput.addEventListener('input', validateForm);
-    checkbox.addEventListener('change', validateForm);
+    // Add event listeners with null checks
+    if (emailInput) {
+      emailInput.addEventListener('input', validateForm);
+    }
+    if (checkbox) {
+      checkbox.addEventListener('change', validateForm);
+    }
 
     // Initial validation
     validateForm();
 
-    waitlistForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const email = emailInput.value;
-      
-      // Basic validation
-      if(!email) return;
-
-      try {
-        const response = await fetch('http://127.0.0.1:8000/api/subscribers', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email })
-        });
+    if (waitlistForm) {
+      waitlistForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
         
-        if (response.ok) {
-          successMessage.style.display = 'block';
-          waitlistForm.style.display = 'none';
-          document.querySelector('.results-lock-icon').style.display = 'none';
-          document.querySelector('.results-lock-title').style.display = 'none';
-          document.querySelector('.results-lock-description').style.display = 'none';
-          
-          resultsOverlay.style.backdropFilter = 'none';
-          resultsOverlay.style.background = 'none';
-          
-          // Show full results
-          const fullResultsContainer = document.getElementById('fullResults');
-          const result = calculateResult();
-          fullResultsContainer.innerHTML = `
-            <div class="full-results-content">
-              <h3 class="full-results-title">${result.title}</h3>
-              <div class="full-results-icon">${result.icon}</div>
-              <p class="full-results-description">${result.description}</p>
-              <div class="traits-grid">
-                ${result.traits.map(trait => `
-                  <div class="trait-card">
-                    <div class="trait-label">${trait.label}</div>
-                    <div class="trait-value">${trait.value}</div>
-                  </div>
-                `).join('')}
-              </div>
-              <div class="compatibility-section">
-                <h4>Best Compatible With:</h4>
-                <div class="compatibility-tags">
-                  ${result.compatibleWith.map(type => `<span class="compatibility-tag">${type}</span>`).join('')}
-                </div>
-              </div>
-            </div>
-          `;
-          
-          // Confetti
-          const canvas = document.getElementById('confetti-canvas');
-          const confetti = window.confetti;
-          canvas.style.display = 'block';
-          confetti({
-            particleCount: 150,
-            spread: 80,
-            origin: { y: 0.6 }
+        if (!emailInput) return;
+        const email = emailInput.value;
+        
+        // Basic validation
+        if (!email) return;
+
+        try {
+          const response = await fetch('http://127.0.0.1:8000/api/subscribers', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email })
           });
+          
+          if (response.ok) {
+            // Show success message
+            if (successMessage) {
+              successMessage.style.display = 'block';
+              resultsOverlay.style.display = 'none';
 
-          // Reveal full results
-          setTimeout(() => {
-              fullResultsContainer.style.maxHeight = fullResultsContainer.scrollHeight + 'px';
-              fullResultsContainer.style.opacity = '1';
+              const resultsTeaser = document.querySelector('.results-teaser');
+              if (resultsTeaser) {
+                resultsTeaser.style.filter = 'none';
+                resultsTeaser.style.pointerEvents = 'auto';
+                resultsTeaser.style.userSelect = 'auto';
+              }
 
-              // Add share button with updated message
-              const shareBtn = document.createElement('button');
-              shareBtn.className = 'result-share-btn';
-              shareBtn.innerHTML = '<i class="fa fa-share"></i> Share your result';
-              const shareMessage = `I just took the UniMates Roommate Style Quiz and got "${result.title}"! Find your perfect roommate at https://unimates.net 🎓\nTake the quiz yourself!`;
-              shareBtn.onclick = async () => {
-                if (navigator.share) {
-                  try {
-                    await navigator.share({
-                      title: 'My UniMates Roommate Style',
-                      text: shareMessage,
-                      url: 'https://unimates.net/quiz.html'
-                    });
-                  } catch (err) {}
-                } else {
-                  try {
-                    await navigator.clipboard.writeText(shareMessage);
-                    shareBtn.textContent = 'Copied!';
-                    setTimeout(() => { shareBtn.textContent = 'Share your result'; }, 1500);
-                  } catch (err) {
-                    alert('Copy this message to share: ' + shareMessage);
+              const fullResults = document.getElementById('fullResults');
+              if (fullResults) {
+                fullResults.classList.add('visible');
+              }
+
+            }
+            if (waitlistForm) {
+              waitlistForm.style.display = 'none';
+            }
+            
+            // Hide lock elements
+            const lockIcon = document.querySelector('.results-lock-icon');
+            const lockTitle = document.querySelector('.results-lock-title');
+            const lockDescription = document.querySelector('.results-lock-description');
+            
+            if (lockIcon) lockIcon.style.display = 'none';
+            if (lockTitle) lockTitle.style.display = 'none';
+            if (lockDescription) lockDescription.style.display = 'none';
+            
+            // Remove overlay effects
+            if (resultsOverlay) {
+              resultsOverlay.style.backdropFilter = 'none';
+              resultsOverlay.style.background = 'none';
+            }
+            
+            // Generate and show full results
+            const result = calculateResult();
+            const fullResultsContainer = document.getElementById('fullResults');
+            
+            if (fullResultsContainer) {
+              fullResultsContainer.innerHTML = `
+                <div class="full-results-content">
+                  <h3 class="full-results-title">${result.title}</h3>
+                  <div class="full-results-icon">${result.icon}</div>
+                  <p class="full-results-description">${result.description}</p>
+                  <div class="traits-grid">
+                    ${result.traits.map(trait => `
+                      <div class="trait-card">
+                        <div class="trait-label">${trait.label}</div>
+                        <div class="trait-value">${trait.value}</div>
+                      </div>
+                    `).join('')}
+                  </div>
+                  <div class="compatibility-section">
+                    <h4>Best Compatible With:</h4>
+                    <div class="compatibility-tags">
+                      ${result.compatibleWith.map(type => `<span class="compatibility-tag">${type}</span>`).join('')}
+                    </div>
+                  </div>
+                </div>
+              `;
+            }
+            
+            // Show confetti animation
+            const canvas = document.getElementById('confetti-canvas');
+            if (canvas && window.confetti) {
+              canvas.style.display = 'block';
+              window.confetti({
+                particleCount: 150,
+                spread: 80,
+                origin: { y: 0.6 }
+              });
+            }
+
+            // Reveal full results with animation
+            setTimeout(() => {
+              const fullResultsContainer = document.getElementById('fullResults');
+              if (fullResultsContainer) {
+                fullResultsContainer.style.maxHeight = fullResultsContainer.scrollHeight + 'px';
+                fullResultsContainer.style.opacity = '1';
+
+                // Add share button
+                const shareBtn = document.createElement('button');
+                shareBtn.className = 'result-share-btn';
+                shareBtn.innerHTML = '<i class="fa fa-share"></i> Share your result';
+                const shareMessage = `I just took the UniMates Roommate Style Quiz and got "${result.title}"! Find your perfect roommate at https://unimates.net 🎓\nTake the quiz yourself!`;
+                
+                shareBtn.onclick = async () => {
+                  if (navigator.share) {
+                    try {
+                      await navigator.share({
+                        title: 'My UniMates Roommate Style',
+                        text: shareMessage,
+                        url: 'https://unimates.net/quiz.html'
+                      });
+                    } catch (err) {
+                      console.log('Share cancelled or failed');
+                    }
+                  } else {
+                    try {
+                      await navigator.clipboard.writeText(shareMessage);
+                      shareBtn.textContent = 'Copied!';
+                      setTimeout(() => { 
+                        shareBtn.innerHTML = '<i class="fa fa-share"></i> Share your result'; 
+                      }, 1500);
+                    } catch (err) {
+                      alert('Copy this message to share: ' + shareMessage);
+                    }
                   }
-                }
-              };
-              fullResultsContainer.appendChild(shareBtn);
-          }, 200);
+                };
+                
+                fullResultsContainer.appendChild(shareBtn);
+              }
+            }, 200);
 
-        } else {
-          const errorData = await response.json();
-          alert(`Error: ${errorData.detail || 'Could not join waitlist.'}`);
+          } else {
+            try {
+              const errorData = await response.json();
+              alert(`Error: ${errorData.detail || 'Could not join waitlist.'}`);
+            } catch {
+              alert('Could not join waitlist. Please try again.');
+            }
+          }
+        } catch (error) {
+          console.error('Submission error:', error);
+          alert('Connection error. Please try again later.');
         }
-      } catch (error) {
-        console.error('Submission error:', error);
-        alert('Connection error. Please try again later.');
-      }
-    });
-    
-    // Initial call
+      });
+    }
+
+    // Initialize the quiz
     updateQuestion();
 
-    // Confetti from CDN
+    // Load confetti library
     const script = document.createElement('script');
     script.src = 'https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js';
+    script.onerror = () => console.log('Confetti library failed to load');
     document.body.appendChild(script);
 
   </script>
