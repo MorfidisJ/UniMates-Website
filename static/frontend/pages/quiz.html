@@ -410,34 +410,13 @@
         if (!email) return;
 
         try {
-          const response = await fetch('http://127.0.0.1:8000/api/subscribers', {
+          const response = await fetch(window.location.origin + '/api/subscribers', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: email })
           });
           
           if (response.ok) {
-            // Save quiz results to mock API
-            try {
-              const result = calculateResult();
-              const quizResultData = {
-                email: email,
-                personality_type: result.title,
-                answers: userAnswers,
-                timestamp: new Date().toISOString()
-              };
-              
-              await fetch('http://127.0.0.1:8000/quiz-results', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(quizResultData)
-              });
-              
-              console.log('Quiz results saved to mock API');
-            } catch (quizError) {
-              console.log('Could not save quiz results (mock API may not be running):', quizError);
-            }
-            
             // Show success message
             if (successMessage) {
               successMessage.style.display = 'block';
@@ -568,14 +547,7 @@
                 `;
                 
                 // Enhanced share message
-                const shareMessage = `🎓 Just discovered I'm a "${result.title}" on UniMates! 
-
-🏠 Finding the perfect roommate is crucial for your university experience, and this quiz helped me understand my living style better.
-
-✨ Want to find your ideal roommate match? Take the UniMates Roommate Style Quiz and discover your perfect living companion!
-
-🔗 Take the quiz: https://unimates.net/quiz.html
-#UniMates #RoommateQuiz #UniversityLife #PerfectMatch`;
+                const shareMessage = `🎓 Just discovered I'm a "${result.title}" on UniMates! \n\n🏠 Finding the perfect roommate is crucial for your university experience, and this quiz helped me understand my living style better.\n\n✨ Want to find your ideal roommate match? Take the UniMates Roommate Style Quiz and discover your perfect living companion!\n\n🔗 Take the quiz: https://unimates.net/quiz.html\n#UniMates #RoommateQuiz #UniversityLife #PerfectMatch`;
 
                 const shareTitle = `I'm a ${result.title} - What's Your Roommate Style?`;
                 const shareUrl = 'https://unimates.net/quiz.html';

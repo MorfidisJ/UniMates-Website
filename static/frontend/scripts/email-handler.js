@@ -1,5 +1,5 @@
 class EmailHandler {
-  constructor(apiBaseUrl = 'http://localhost:8000') {
+  constructor(apiBaseUrl = window.location.origin + '/api') {
     this.apiBaseUrl = apiBaseUrl;
   }
 
