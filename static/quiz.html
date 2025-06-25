@@ -344,23 +344,53 @@
         }
       };
 
+      const roommateTypes = {
+        "social + studious":{
+          title: "The Engaging Intellectual",
+          icon: "🧠",
+          description : "You’re outgoing and fun to be around, but you also know when it’s time to buckle down and focus. You bring the perfect mix of energy and calm to a shared space, making you easy to live with for both introverts and extroverts."
+        },
+        "social + creative":{
+          title: "The Vibrant Visionary",
+          icon: "🎨",
+          description: "You're the life of the apartment — always coming up with exciting ideas and inviting energy into the room. Whether you're planning a movie night or redecorating the living room, your enthusiasm and artistic flair make the space feel alive."
+        },
+        "social + organized":{
+          title: "The Social Strategist",
+          icon:"📅",
+          description: "You love connecting with people but also value structure and planning. You're the roommate who hosts gatherings with a schedule and ensures everything runs smoothly — equal parts fun and functional."
+        },
+         "studious + creative":{
+          title: "The Thoughtful Creator",
+          icon:"📖",
+          description:"You enjoy quiet time and mental focus, but your imagination also runs deep. You’re the kind of roommate who will have late-night sketch sessions after finishing a research paper. Your space is a peaceful haven with a touch of inspiration."
+        },
+         "social + organized":{
+          title: "The Methodical Mastermind",
+          icon: "📚",
+          description: "You thrive on structure and discipline, making you the most dependable roommate in the house. Chores get done, deadlines are met, and your shared living space always feels calm and under control."
+        },
+         "social + organized":{
+          title: "The Artistic Architect",
+          icon: "🧩",
+          description: "You bring beauty and order together — your living space is likely both visually stunning and efficiently run. You’re the type of roommate who color-codes the spice rack and hand-makes wall art. A dream to live with!"
+        }
+      }
+
       // Simple scoring system - count most common answers
       const answerCounts = {};
       userAnswers.forEach(answer => {
         answerCounts[answer] = (answerCounts[answer] || 0) + 1;
       });
 
-      let dominantType = "social"; // default
-      let maxCount = 0;
-      
-      Object.keys(answerCounts).forEach(type => {
-        if (answerCounts[type] > maxCount) {
-          maxCount = answerCounts[type];
-          dominantType = type;
-        }
-      });
+      // Convert counts to an array of [type, count] pairs
+      const sortedTypes = Object.entries(answerCounts).sort((a, b) => b[1] - a[1]);
 
-      return personalityTypes[dominantType] || personalityTypes["social"];
+      // Get the top two
+      const topType = sortedTypes[0] ? sortedTypes[0][0] : null;
+      const secondType = sortedTypes[1] ? sortedTypes[1][0] : null;
+
+      return { topType, secondType };
     }
 
     // Waitlist Form Handling
