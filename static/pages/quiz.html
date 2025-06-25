@@ -6,9 +6,9 @@
   <title>Roommate Style Quiz - UniMates</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="mobile.css">
-  <link rel="stylesheet" href="quiz-desktop.css">
+  <link rel="stylesheet" href="../styles/styles.css">
+  <link rel="stylesheet" href="../styles/mobile.css">
+  <link rel="stylesheet" href="../styles/quiz-desktop.css">
 </head>
 <body class="quiz-page-body">
   <div class="bg-animation"></div>
@@ -20,7 +20,7 @@
   <nav class="navbar">
     <div class="nav-container">
       <a href="index.html" class="logo">
-        <img src="logo.png" alt="UniMates Logo">
+        <img src="../assets/images/logo.png" alt="UniMates Logo">
         <span class="logo-text">UniMates</span>
       </a>
       <a href="quiz.html" class="quiz-header-ad">
@@ -94,12 +94,12 @@
     <div class="footer-content">
       <div class="footer-cube-container">
         <div class="cube" tabindex="0">
-          <div class="cube-face cube-face-front"><img src="logo.svg" alt="Logo" width="60" height="60"></div>
-          <div class="cube-face cube-face-back"><img src="logo.svg" alt="Logo" width="60" height="60"></div>
-          <div class="cube-face cube-face-right"><img src="logo.svg" alt="Logo" width="60" height="60"></div>
-          <div class="cube-face cube-face-left"><img src="logo.svg" alt="Logo" width="60" height="60"></div>
-          <div class="cube-face cube-face-top"><img src="logo.svg" alt="Logo" width="60" height="60"></div>
-          <div class="cube-face cube-face-bottom"><img src="logo.svg" alt="Logo" width="60" height="60"></div>
+          <div class="cube-face cube-face-front"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
+          <div class="cube-face cube-face-back"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
+          <div class="cube-face cube-face-right"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
+          <div class="cube-face cube-face-left"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
+          <div class="cube-face cube-face-top"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
+          <div class="cube-face cube-face-bottom"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
         </div>
       </div>
       <div class="footer-social">
@@ -115,7 +115,7 @@
 
   <canvas id="confetti-canvas"></canvas>
 
-  <script src="shared.js"></script>
+  <script src="../scripts/shared.js"></script>
   <script>
     // Page-specific functionality for quiz.html
 
@@ -440,34 +440,13 @@
         if (!email) return;
 
         try {
-          const response = await fetch('http://127.0.0.1:8000/api/subscribers', {
+          const response = await fetch(window.location.origin + '/api/subscribers', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: email })
           });
           
           if (response.ok) {
-            // Save quiz results to mock API
-            try {
-              const result = calculateResult();
-              const quizResultData = {
-                email: email,
-                personality_type: result.title,
-                answers: userAnswers,
-                timestamp: new Date().toISOString()
-              };
-              
-              await fetch('http://127.0.0.1:8000/quiz-results', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(quizResultData)
-              });
-              
-              console.log('Quiz results saved to mock API');
-            } catch (quizError) {
-              console.log('Could not save quiz results (mock API may not be running):', quizError);
-            }
-            
             // Show success message
             if (successMessage) {
               successMessage.style.display = 'block';
@@ -598,14 +577,7 @@
                 `;
                 
                 // Enhanced share message
-                const shareMessage = `🎓 Just discovered I'm a "${result.title}" on UniMates! 
-
-🏠 Finding the perfect roommate is crucial for your university experience, and this quiz helped me understand my living style better.
-
-✨ Want to find your ideal roommate match? Take the UniMates Roommate Style Quiz and discover your perfect living companion!
-
-🔗 Take the quiz: https://unimates.net/quiz.html
-#UniMates #RoommateQuiz #UniversityLife #PerfectMatch`;
+                const shareMessage = `🎓 Just discovered I'm a "${result.title}" on UniMates! \n\n🏠 Finding the perfect roommate is crucial for your university experience, and this quiz helped me understand my living style better.\n\n✨ Want to find your ideal roommate match? Take the UniMates Roommate Style Quiz and discover your perfect living companion!\n\n🔗 Take the quiz: https://unimates.net/quiz.html\n#UniMates #RoommateQuiz #UniversityLife #PerfectMatch`;
 
                 const shareTitle = `I'm a ${result.title} - What's Your Roommate Style?`;
                 const shareUrl = 'https://unimates.net/quiz.html';
@@ -855,6 +827,6 @@
     document.body.appendChild(script);
 
   </script>
-  <script src="view-switcher.js"></script>
+  <script src="../scripts/view-switcher.js"></script>
 </body>
 </html>

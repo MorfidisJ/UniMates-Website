@@ -16,16 +16,37 @@
       "dest": "api/main.py"
     },
     {
-      "src": "/static/(.*)",
-      "dest": "static/$1"
-    },
-    {
-      "src": "/(.*\\.html|.*\\.css|.*\\.js|.*\\.jpg|.*\\.png|.*\\.svg)",
-      "dest": "static/$1"
+      "src": "/(about|how-it-works|quiz|Privacy-policy)",
+      "dest": "static/pages/$1.html"
     },
     {
       "src": "/",
-      "dest": "static/index.html"
+      "dest": "static/pages/index.html"
+    },
+    {
+      "src": "/styles/(.*)",
+      "dest": "static/styles/$1"
+    },
+    {
+      "src": "/scripts/(.*)",
+      "dest": "static/scripts/$1"
+    },
+    {
+      "src": "/assets/(.*)",
+      "dest": "static/assets/$1"
+    },
+    {
+      "src": "/(.*\\.html)",
+      "dest": "static/pages/$1"
+    },
+    {
+      "src": "/(.*\\.js)",
+      "dest": "static/scripts/$1"
+    },
+    {
+      "src": "/(.*\\.css)",
+      "dest": "static/styles/$1"
     }
   ]
 }
+

@@ -1,5 +1,5 @@
 class EmailHandler {
-  constructor(apiBaseUrl = 'http://localhost:8000') {
+  constructor(apiBaseUrl = window.location.origin + '/api') {
     this.apiBaseUrl = apiBaseUrl;
   }
 
@@ -11,7 +11,7 @@ class EmailHandler {
    */
   async submitEmail(email, firstName = null) {
     try {
-      const response = await fetch(`${this.apiBaseUrl}/api/subscribers`, {
+      const response = await fetch(`${this.apiBaseUrl}/subscribers`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ class EmailHandler {
    */
   async getSubscriberCount() {
     try {
-      const response = await fetch(`${this.apiBaseUrl}/api/subscribers`);
+      const response = await fetch(`${this.apiBaseUrl}/subscribers`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -54,7 +54,7 @@ class EmailHandler {
 }
 
 // Initialize the email handler
-const emailHandler = new EmailHandler(window.location.origin);
+const emailHandler = new EmailHandler();
 
 // Enhanced form handling with API integration
 document.addEventListener('DOMContentLoaded', () => {
