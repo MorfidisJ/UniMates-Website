@@ -56,11 +56,12 @@ async def create_subscriber(sub: Subscriber):
     }
     response = requests.post(f"{urlv3}/forms/{os.getenv('FORM_ID')}/subscribe", json=payload)
 
-    print(response.status)
+    print("Reseponse:", response.status_code)
     if response.status_code >= 400:
         print(response.json())
         raise HTTPException(status_code=status.HTTP_502_BAD_GATEWAY)
 
+    print(sub.email, "subscribed")
     _cache.add(sub.email)
-    return JSONResponse(content={"subscriber": sub.model_dump()}, status_code=status.HTTP_201_CREATED)
+    return JSONResponse(content={"subscriber": sub.dict()}, status_code=status.HTTP_201_CREATED)
 
