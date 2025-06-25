@@ -34,6 +34,7 @@ async def get_subscribers():
         subs = response.json()["subscribers"]
         _cache = set([record["email_address"] for record in subs])
 
+    print(_cache)
     return {"subscriber_count": len(_cache)}
 
 
@@ -55,6 +56,7 @@ async def create_subscriber(sub: Subscriber):
     }
     response = requests.post(f"{urlv3}/forms/{os.getenv('FORM_ID')}/subscribe", json=payload)
 
+    print(response.status)
     if response.status_code >= 400:
         print(response.json())
         raise HTTPException(status_code=status.HTTP_502_BAD_GATEWAY)
