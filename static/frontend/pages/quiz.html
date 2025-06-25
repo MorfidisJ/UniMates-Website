@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Roommate Style Quiz - UniMates</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../styles/styles.css">
+  <link rel="stylesheet" href="../styles/mobile.css">
+  <link rel="stylesheet" href="../styles/quiz-desktop.css">
+</head>
+<body class="quiz-page-body">
+  <div class="bg-animation"></div>
+  
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="../assets/images/logo.png" alt="UniMates Logo">
+        <span class="logo-text">UniMates</span>
+      </a>
+      <a href="quiz.html" class="quiz-header-ad">
+        <span class="quiz-header-ad-icon">✨</span>
+        <span class="quiz-header-ad-text">Take the Personality Quiz!</span>
+      </a>
+      <button class="hamburger" onclick="toggleMenu(this)" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="how-it-works.html">How it works</a></li>
+        <li><a href="about.html">About us</a></li>
+      </ul>
+    </div>
+    <div class="mobile-overlay" onclick="closeMenu()"></div>
+  </nav>
+
+  <header class="quiz-header">
+    <h1 class="section-title">What's Your Roommate Style?</h1>
+    <p class="section-subtitle">
+      Answer a few questions to discover your living preferences and find compatible flatmates.
+    </p>
+    <div class="quiz-progress">
+      <div class="progress-bar" id="progress"></div>
+    </div>
+  </header>
+
+  <main class="quiz-container">
+    <div class="question-card" id="questionCard">
+      <div class="question-number">Question <span id="currentQuestion">1</span> of 10</div>
+      <div class="question-text" id="questionText"></div>
+      <div class="options-grid" id="options"></div>
+      <div class="quiz-navigation">
+        <button class="nav-button" id="prevBtn" style="display: none;">Previous</button>
+        <button class="nav-button next" id="nextBtn">Next</button>
+      </div>
+    </div>
+
+    <div class="results-section" id="resultsSection">
+      <h2 class="section-title">Your Results Are Ready!</h2>
+      
+      <div class="results-preview">
+        <div class="results-teaser" id="resultsTeaser"></div>
+        <div class="results-overlay">
+          <div class="results-lock-icon">🔒</div>
+          <h3 class="results-lock-title">Unlock Your Full Results</h3>
+          <p class="results-lock-description">
+            Join our waitlist to see your complete personality profile and start connecting with compatible roommates!
+          </p>
+          <form id="waitlistForm" class="waitlist-form">
+            <input type="email" id="email" placeholder="Enter your email address" required />
+            <label class="waitlist-checkbox-label" style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.88rem; color: var(--text-dim); margin-top: 0.2rem; font-weight: 400;">
+              <input type="checkbox" id="waitlist-accept" required style="accent-color: var(--accent); width: 1rem; height: 1rem; border-radius: 5px; margin-right: 0.4rem;" />
+              I agree to receive updates, beta invitations, and occasional emails from UniMates. I understand I can unsubscribe at any time.
+            </label>
+            <button type="submit" class="cta-button">Join Waitlist</button>
+          </form>
+          <div id="successMessage" class="success-message" style="display:none;">
+            🎉 You're on the list! Check out your complete results below.
+          </div>
+        </div>
+      </div>
+      
+      <div class="full-results" id="fullResults"></div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-cube-container">
+        <div class="cube" tabindex="0">
+          <div class="cube-face cube-face-front"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
+          <div class="cube-face cube-face-back"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
+          <div class="cube-face cube-face-right"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
+          <div class="cube-face cube-face-left"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
+          <div class="cube-face cube-face-top"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
+          <div class="cube-face cube-face-bottom"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
+        </div>
+      </div>
+      <div class="footer-social">
+        <a href="https://instagram.com/unimates.info" target="_blank" aria-label="Instagram" class="footer-social-link"><i class="fab fa-instagram"></i></a>
+        <a href="https://tiktok.com/@unimatesapp" target="_blank" aria-label="TikTok" class="footer-social-link"><i class="fab fa-tiktok"></i></a>
+        <a href="https://www.youtube.com/channel/UCMKHVISj443ioGYAZYRUrTQ" target="_blank" aria-label="YouTube" class="footer-social-link"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.linkedin.com/company/unimatesapp" target="_blank" aria-label="LinkedIn" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@unimates.net&su=Regarding Your Inquiry&body=Dear Unimates Team,"aria-label="Email" class="footer-social-link"><i class="fas fa-envelope"></i></a></div>
+      </div>
+    </div>
+    <div class="footer-copy">&copy; 2025 UniMates. All rights reserved. | <a href="Privacy-policy.html" style="color: var(--accent); text-decoration: none;">Privacy Policy</a></div>
+  </footer>
+
+  <canvas id="confetti-canvas"></canvas>
+
+  <script src="../scripts/shared.js"></script>
+  <script>
+    // Page-specific functionality for quiz.html
+
+    const questions = [
+      {
+        text: "How do you typically spend your evenings at home?",
+        options: [
+          { icon: "🎮", text: "Gaming or watching movies", value: "entertainment" },
+          { icon: "📚", text: "Studying or reading", value: "studious" },
+          { icon: "🎨", text: "Creative hobbies", value: "creative" },
+          { icon: "👥", text: "Socializing with friends", value: "social" }
+        ]
+      },
+      {
+        text: "What's your ideal noise level at home?",
+        options: [
+          { icon: "🤫", text: "Complete silence", value: "quiet" },
+          { icon: "📱", text: "Background noise is fine", value: "moderate" },
+          { icon: "🎵", text: "Music and conversation", value: "lively" },
+          { icon: "🎉", text: "The livelier, the better", value: "vibrant" }
+        ]
+      },
+      {
+        text: "How do you prefer to handle household chores?",
+        options: [
+          { icon: "📋", text: "Strict cleaning schedule", value: "organized" },
+          { icon: "🤝", text: "Share tasks as needed", value: "flexible" },
+          { icon: "✨", text: "Clean when it gets messy", value: "relaxed" },
+          { icon: "💰", text: "Hire cleaning service", value: "outsource" }
+        ]
+      },
+      {
+        text: "What's your typical sleep schedule?",
+        options: [
+          { icon: "🌅", text: "Early bird (Before 6 AM)", value: "early" },
+          { icon: "☀️", text: "Morning person (6-8 AM)", value: "morning" },
+          { icon: "🌙", text: "Night owl (After midnight)", value: "night" },
+          { icon: "⭐", text: "Varies day to day", value: "flexible" }
+        ]
+      },
+      {
+        text: "How often do you cook at home?",
+        options: [
+          { icon: "👨‍🍳", text: "Love cooking daily", value: "chef" },
+          { icon: "🥗", text: "Cook simple meals", value: "casual" },
+          { icon: "🔄", text: "Meal prep weekly", value: "prep" },
+          { icon: "🚶", text: "Prefer takeout/eating out", value: "takeout" }
+        ]
+      },
+      {
+        text: "How do you feel about sharing items?",
+        options: [
+          { icon: "🤲", text: "Happy to share everything", value: "communal" },
+          { icon: "🔄", text: "Share with clear boundaries", value: "selective" },
+          { icon: "🔒", text: "Prefer keeping things separate", value: "private" },
+          { icon: "💭", text: "Depends on the item", value: "flexible" }
+        ]
+      },
+      {
+        text: "What's your approach to guests?",
+        options: [
+          { icon: "🎉", text: "Love hosting often", value: "social" },
+          { icon: "👥", text: "Occasional small gatherings", value: "moderate" },
+          { icon: "🤝", text: "Only close friends", value: "selective" },
+          { icon: "🏠", text: "Prefer private space", value: "private" }
+        ]
+      },
+      {
+        text: "How do you handle conflicts?",
+        options: [
+          { icon: "💬", text: "Address immediately", value: "direct" },
+          { icon: "🤝", text: "Find compromise", value: "diplomatic" },
+          { icon: "📝", text: "Write it down first", value: "thoughtful" },
+          { icon: "🕊️", text: "Avoid confrontation", value: "passive" }
+        ]
+      },
+      {
+        text: "What's your ideal weekend activity?",
+        options: [
+          { icon: "🏃", text: "Active and outdoors", value: "active" },
+          { icon: "🎮", text: "Relaxing at home", value: "homebody" },
+          { icon: "🎨", text: "Creative projects", value: "creative" },
+          { icon: "🎉", text: "Social activities", value: "social" }
+        ]
+      },
+      {
+        text: "What's most important to you in a living space?",
+        options: [
+          { icon: "🏠", text: "Peace and quiet", value: "tranquil" },
+          { icon: "🎨", text: "Creative inspiration", value: "inspiring" },
+          { icon: "👥", text: "Social atmosphere", value: "communal" },
+          { icon: "📚", text: "Productive environment", value: "focused" }
+        ]
+      }
+    ];
+
+    let currentQuestionIndex = 0;
+    let userAnswers = [];
+
+    // Get DOM elements
+    const questionCard = document.getElementById('questionCard');
+    const resultsSection = document.getElementById('resultsSection');
+    const currentQuestionSpan = document.getElementById('currentQuestion');
+    const questionText = document.getElementById('questionText');
+    const optionsGrid = document.getElementById('options');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const progressBar = document.getElementById('progress');
+
+    function updateQuestion() {
+      const question = questions[currentQuestionIndex];
+      currentQuestionSpan.textContent = currentQuestionIndex + 1;
+      questionText.textContent = question.text;
+      
+      optionsGrid.innerHTML = '';
+      question.options.forEach((option, index) => {
+        const optionDiv = document.createElement('div');
+        optionDiv.className = 'answer-option';
+        optionDiv.innerHTML = `
+          <div class="option-icon">${option.icon}</div>
+          <div class="option-text">${option.text}</div>
+        `;
+        if (userAnswers[currentQuestionIndex] === option.value) {
+          optionDiv.classList.add('selected');
+          optionDiv.innerHTML += `<span class="selection-indicator" aria-label="Selected" title="Selected">✔</span>`;
+        }
+        optionDiv.addEventListener('click', () => {
+          document.querySelectorAll('.answer-option').forEach(opt => opt.classList.remove('selected'));
+          document.querySelectorAll('.selection-indicator').forEach(el => el.remove());
+          optionDiv.classList.add('selected');
+          optionDiv.innerHTML += `<span class="selection-indicator" aria-label="Selected" title="Selected">✔</span>`;
+          userAnswers[currentQuestionIndex] = option.value;
+          nextBtn.disabled = false;
+          nextBtn.classList.remove('disabled');
+        });
+        optionsGrid.appendChild(optionDiv);
+      });
+      
+      prevBtn.style.display = currentQuestionIndex === 0 ? 'none' : 'block';
+      nextBtn.textContent = currentQuestionIndex === questions.length - 1 ? 'See Results' : 'Next';
+      
+      const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+      progressBar.style.width = progress + '%';
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        updateQuestion();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (userAnswers[currentQuestionIndex]) {
+        if (currentQuestionIndex < questions.length - 1) {
+          currentQuestionIndex++;
+          updateQuestion();
+        } else {
+          showResults();
+        }
+      }
+    });
+
+    function showResults() {
+      questionCard.style.display = 'none';
+      resultsSection.style.display = 'block';
+
+      const result = calculateResult();
+      const resultsTeaser = document.getElementById('resultsTeaser');
+      if (resultsTeaser) {
+        resultsTeaser.innerHTML = `
+          <div class="results-preview-content">
+            <div class="results-preview-icon">${result.icon}</div>
+            <h3 class="results-preview-title">${result.title}</h3>
+            <p class="results-preview-description">${result.description}</p>
+          </div>
+        `;
+      }
+    }
+
+    function calculateResult() {
+      const personalityTypes = {
+        "social": {
+          title: "The Social Butterfly",
+          icon: "🦋",
+          description: "You thrive in lively environments and love connecting with people.",
+          traits: [
+            { label: "Social Energy", value: "High" },
+            { label: "Communication", value: "Excellent" },
+            { label: "Adaptability", value: "Very High" }
+          ],
+          compatibleWith: ["creative", "active"]
+        },
+        "studious": {
+          title: "The Focused Scholar",
+          icon: "📚",
+          description: "You value quiet study time and organization.",
+          traits: [
+            { label: "Focus", value: "High" },
+            { label: "Organization", value: "Excellent" },
+            { label: "Discipline", value: "Very High" }
+          ],
+          compatibleWith: ["organized", "quiet"]
+        },
+        "creative": {
+          title: "The Creative Spirit",
+          icon: "🎨",
+          description: "You bring art and inspiration to your living space.",
+          traits: [
+            { label: "Creativity", value: "High" },
+            { label: "Expression", value: "Excellent" },
+            { label: "Innovation", value: "Very High" }
+          ],
+          compatibleWith: ["social", "inspiring"]
+        },
+        "organized": {
+          title: "The Organized Planner",
+          icon: "📋",
+          description: "You love structure and keeping things in order.",
+          traits: [
+            { label: "Organization", value: "High" },
+            { label: "Planning", value: "Excellent" },
+            { label: "Reliability", value: "Very High" }
+          ],
+          compatibleWith: ["studious", "focused"]
+        }
+      };
+
+      // Simple scoring system - count most common answers
+      const answerCounts = {};
+      userAnswers.forEach(answer => {
+        answerCounts[answer] = (answerCounts[answer] || 0) + 1;
+      });
+
+      let dominantType = "social"; // default
+      let maxCount = 0;
+      
+      Object.keys(answerCounts).forEach(type => {
+        if (answerCounts[type] > maxCount) {
+          maxCount = answerCounts[type];
+          dominantType = type;
+        }
+      });
+
+      return personalityTypes[dominantType] || personalityTypes["social"];
+    }
+
+    // Waitlist Form Handling
+    const waitlistForm = document.getElementById('waitlistForm');
+    const emailInput = document.getElementById('email');
+    const successMessage = document.getElementById('successMessage');
+    const resultsOverlay = document.querySelector('.results-overlay');
+    const checkbox = document.getElementById('waitlist-accept');
+
+    function validateForm() {
+      if (!waitlistForm) return;
+      
+      const submitButton = waitlistForm.querySelector('.cta-button');
+      if (!submitButton) return;
+      
+      const emailValid = emailInput && emailInput.value.trim() !== '';
+      const checkboxValid = checkbox && checkbox.checked;
+      const isValid = emailValid && checkboxValid;
+      
+      submitButton.disabled = !isValid;
+      if (isValid) {
+        submitButton.classList.remove('disabled');
+      } else {
+        submitButton.classList.add('disabled');
+      }
+    }
+
+    // Add event listeners with null checks
+    if (emailInput) {
+      emailInput.addEventListener('input', validateForm);
+    }
+    if (checkbox) {
+      checkbox.addEventListener('change', validateForm);
+    }
+
+    // Initial validation
+    validateForm();
+
+    if (waitlistForm) {
+      waitlistForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        if (!emailInput) return;
+        const email = emailInput.value;
+        
+        // Basic validation
+        if (!email) return;
+
+        try {
+          const response = await fetch('http://127.0.0.1:8000/api/subscribers', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email })
+          });
+          
+          if (response.ok) {
+            // Save quiz results to mock API
+            try {
+              const result = calculateResult();
+              const quizResultData = {
+                email: email,
+                personality_type: result.title,
+                answers: userAnswers,
+                timestamp: new Date().toISOString()
+              };
+              
+              await fetch('http://127.0.0.1:8000/quiz-results', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(quizResultData)
+              });
+              
+              console.log('Quiz results saved to mock API');
+            } catch (quizError) {
+              console.log('Could not save quiz results (mock API may not be running):', quizError);
+            }
+            
+            // Show success message
+            if (successMessage) {
+              successMessage.style.display = 'block';
+              resultsOverlay.style.display = 'none';
+
+              const resultsTeaser = document.querySelector('.results-teaser');
+              if (resultsTeaser) {
+                resultsTeaser.style.filter = 'none';
+                resultsTeaser.style.pointerEvents = 'auto';
+                resultsTeaser.style.userSelect = 'auto';
+              }
+
+              const fullResults = document.getElementById('fullResults');
+              if (fullResults) {
+                fullResults.classList.add('visible');
+              }
+
+            }
+            if (waitlistForm) {
+              waitlistForm.style.display = 'none';
+            }
+            
+            // Hide lock elements
+            const lockIcon = document.querySelector('.results-lock-icon');
+            const lockTitle = document.querySelector('.results-lock-title');
+            const lockDescription = document.querySelector('.results-lock-description');
+            
+            if (lockIcon) lockIcon.style.display = 'none';
+            if (lockTitle) lockTitle.style.display = 'none';
+            if (lockDescription) lockDescription.style.display = 'none';
+            
+            // Remove overlay effects
+            if (resultsOverlay) {
+              resultsOverlay.style.backdropFilter = 'none';
+              resultsOverlay.style.background = 'none';
+            }
+            
+            // Generate and show full results
+            const result = calculateResult();
+            const fullResultsContainer = document.getElementById('fullResults');
+            
+            if (fullResultsContainer) {
+              fullResultsContainer.innerHTML = `
+                <div class="full-results-content">
+                  <div class="result-header">
+                    <div class="result-icon-container">
+                      <div class="result-icon">${result.icon}</div>
+                      <div class="result-icon-glow"></div>
+                    </div>
+                    <h3 class="full-results-title">${result.title}</h3>
+                    <div class="result-subtitle">Your Perfect Roommate Profile</div>
+                  </div>
+                  
+                  <div class="result-description-container">
+                    <p class="full-results-description">${result.description}</p>
+                  </div>
+                  
+                  <div class="traits-section">
+                    <h4 class="traits-title">Your Key Traits</h4>
+                    <div class="traits-grid">
+                      ${result.traits.map((trait, index) => `
+                        <div class="trait-card" style="animation-delay: ${index * 0.1}s">
+                          <div class="trait-icon">${getTraitIcon(trait.label)}</div>
+                          <div class="trait-content">
+                            <div class="trait-label">${trait.label}</div>
+                            <div class="trait-value">${trait.value}</div>
+                          </div>
+                          <div class="trait-progress">
+                            <div class="trait-progress-bar" style="width: ${getTraitProgress(trait.value)}%"></div>
+                          </div>
+                        </div>
+                      `).join('')}
+                    </div>
+                  </div>
+                  
+                  <div class="compatibility-section">
+                    <h4 class="compatibility-title">🎯 Best Compatible With</h4>
+                    <div class="compatibility-tags">
+                      ${result.compatibleWith.map((type, index) => `<span class="compatibility-tag" style="animation-delay: ${index * 0.15}s">${getCompatibilityIcon(type)} ${type}</span>`).join('')}
+                    </div>
+                  </div>
+                  
+                  <div class="result-cta">
+                    <p class="result-cta-text">Ready to find your perfect roommate match?</p>
+                    <div class="result-cta-buttons">
+                      <button class="cta-primary-btn" onclick="window.location.href='index.html'">
+                        <i class="fas fa-home"></i>
+                        Join UniMates
+                      </button>
+                      <button class="cta-secondary-btn" onclick="window.location.reload()">
+                        <i class="fas fa-redo"></i>
+                        Take Quiz Again
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              `;
+            }
+            
+            // Show confetti animation
+            const canvas = document.getElementById('confetti-canvas');
+            if (canvas && window.confetti) {
+              canvas.style.display = 'block';
+              window.confetti({
+                particleCount: 200,
+                spread: 100,
+                origin: { y: 0.6 },
+                colors: ['#6366f1', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981']
+              });
+            }
+
+            // Reveal full results with animation
+            setTimeout(() => {
+              const fullResultsContainer = document.getElementById('fullResults');
+              if (fullResultsContainer) {
+                fullResultsContainer.style.maxHeight = fullResultsContainer.scrollHeight + 'px';
+                fullResultsContainer.style.opacity = '1';
+
+                // Add share button with enhanced styling
+                const shareBtn = document.createElement('button');
+                shareBtn.className = 'result-share-btn';
+                shareBtn.innerHTML = `
+                  <div class="share-btn-content">
+                    <i class="fas fa-share-alt"></i>
+                    <span>Share Your Result</span>
+                  </div>
+                  <div class="share-btn-glow"></div>
+                `;
+                
+                // Enhanced share message
+                const shareMessage = `🎓 Just discovered I'm a "${result.title}" on UniMates! 
+
+🏠 Finding the perfect roommate is crucial for your university experience, and this quiz helped me understand my living style better.
+
+✨ Want to find your ideal roommate match? Take the UniMates Roommate Style Quiz and discover your perfect living companion!
+
+🔗 Take the quiz: https://unimates.net/quiz.html
+#UniMates #RoommateQuiz #UniversityLife #PerfectMatch`;
+
+                const shareTitle = `I'm a ${result.title} - What's Your Roommate Style?`;
+                const shareUrl = 'https://unimates.net/quiz.html';
+                
+                shareBtn.onclick = async () => {
+                  // Try Web Share API first (mobile devices)
+                  if (navigator.share && navigator.canShare) {
+                    const shareData = {
+                      title: shareTitle,
+                      text: shareMessage,
+                      url: shareUrl
+                    };
+                    
+                    // Check if the platform can share this data
+                    if (navigator.canShare(shareData)) {
+                      try {
+                        await navigator.share(shareData);
+                        return; // Successfully shared
+                      } catch (err) {
+                        console.log('Web Share API failed, falling back to clipboard');
+                      }
+                    }
+                  }
+                  
+                  // Fallback: Copy to clipboard with better user feedback
+                  try {
+                    // Create a more shareable message for clipboard
+                    const clipboardMessage = `${shareMessage}\n\n${shareUrl}`;
+                    await navigator.clipboard.writeText(clipboardMessage);
+                    
+                    // Show success feedback
+                    shareBtn.innerHTML = `
+                      <div class="share-btn-content">
+                        <i class="fas fa-check"></i>
+                        <span>Copied to Clipboard!</span>
+                      </div>
+                      <div class="share-btn-glow"></div>
+                    `;
+                    
+                    // Show a toast notification
+                    showShareToast('Message copied! You can now paste it anywhere.');
+                    
+                    setTimeout(() => { 
+                      shareBtn.innerHTML = `
+                        <div class="share-btn-content">
+                          <i class="fas fa-share-alt"></i>
+                          <span>Share Your Result</span>
+                        </div>
+                        <div class="share-btn-glow"></div>
+                      `; 
+                    }, 3000);
+                    
+                  } catch (err) {
+                    console.error('Clipboard copy failed:', err);
+                    
+                    // Final fallback: Show modal with share options
+                    showShareModal(shareMessage, shareUrl, shareTitle);
+                  }
+                };
+                
+                fullResultsContainer.appendChild(shareBtn);
+              }
+            }, 200);
+
+          } else {
+            try {
+              const errorData = await response.json();
+              alert(`Error: ${errorData.detail || 'Could not join waitlist.'}`);
+            } catch {
+              alert('Could not join waitlist. Please try again.');
+            }
+          }
+        } catch (error) {
+          console.error('Submission error:', error);
+          alert('Connection error. Please try again later.');
+        }
+      });
+    }
+
+    // Helper functions for enhanced results
+    function getTraitIcon(traitLabel) {
+      const icons = {
+        'Social Energy': '👥',
+        'Focus': '🎯',
+        'Creativity': '🎨',
+        'Organization': '📋',
+        'Communication': '💬',
+        'Expression': '🎭',
+        'Innovation': '💡',
+        'Planning': '📅',
+        'Reliability': '✅',
+        'Discipline': '⚡'
+      };
+      return icons[traitLabel] || '⭐';
+    }
+
+    function getTraitProgress(value) {
+      const progressMap = {
+        'High': 85,
+        'Very High': 95,
+        'Excellent': 90,
+        'Moderate': 60,
+        'Good': 75,
+        'Average': 50
+      };
+      return progressMap[value] || 70;
+    }
+
+    function getCompatibilityIcon(type) {
+      const icons = {
+        'social': '🦋',
+        'creative': '🎨',
+        'studious': '📚',
+        'organized': '📋',
+        'quiet': '🤫',
+        'inspiring': '✨',
+        'communal': '🏠',
+        'focused': '🎯',
+        'active': '🏃',
+        'flexible': '🔄'
+      };
+      return icons[type] || '💫';
+    }
+
+    // Helper function to show share toast notification
+    function showShareToast(message) {
+      // Remove existing toast if any
+      const existingToast = document.querySelector('.share-toast');
+      if (existingToast) {
+        existingToast.remove();
+      }
+      
+      const toast = document.createElement('div');
+      toast.className = 'share-toast';
+      toast.innerHTML = `
+        <div class="toast-content">
+          <i class="fas fa-check-circle"></i>
+          <span>${message}</span>
+        </div>
+      `;
+      
+      document.body.appendChild(toast);
+      
+      // Animate in
+      setTimeout(() => toast.classList.add('show'), 100);
+      
+      // Remove after 4 seconds
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+      }, 4000);
+    }
+
+    // Helper function to show share modal with multiple options
+    function showShareModal(message, url, title) {
+      // Remove existing modal if any
+      const existingModal = document.querySelector('.share-modal');
+      if (existingModal) {
+        existingModal.remove();
+      }
+      
+      const modal = document.createElement('div');
+      modal.className = 'share-modal';
+      modal.innerHTML = `
+        <div class="share-modal-overlay"></div>
+        <div class="share-modal-content">
+          <div class="share-modal-header">
+            <h3>Share Your Result</h3>
+            <button class="share-modal-close" onclick="this.closest('.share-modal').remove()">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <div class="share-modal-body">
+            <div class="share-options">
+              <button class="share-option" onclick="copyToClipboard('${message.replace(/'/g, "\\'")}', this)">
+                <i class="fas fa-copy"></i>
+                <span>Copy Message</span>
+              </button>
+              <button class="share-option" onclick="copyToClipboard('${url}', this)">
+                <i class="fas fa-link"></i>
+                <span>Copy Link</span>
+              </button>
+              <button class="share-option" onclick="shareOnTwitter('${title.replace(/'/g, "\\'")}', '${url}')">
+                <i class="fab fa-twitter"></i>
+                <span>Share on Twitter</span>
+              </button>
+              <button class="share-option" onclick="shareOnWhatsApp('${message.replace(/'/g, "\\'")}')">
+                <i class="fab fa-whatsapp"></i>
+                <span>Share on WhatsApp</span>
+              </button>
+            </div>
+            <div class="share-preview">
+              <h4>Preview:</h4>
+              <div class="share-preview-text">${message}</div>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      document.body.appendChild(modal);
+      
+      // Close modal when clicking overlay
+      modal.querySelector('.share-modal-overlay').onclick = () => modal.remove();
+      
+      // Close on escape key
+      document.addEventListener('keydown', function closeOnEscape(e) {
+        if (e.key === 'Escape') {
+          modal.remove();
+          document.removeEventListener('keydown', closeOnEscape);
+        }
+      });
+    }
+
+    // Global helper functions for sharing
+    window.copyToClipboard = async function(text, button) {
+      try {
+        await navigator.clipboard.writeText(text);
+        const originalText = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check"></i><span>Copied!</span>';
+        button.style.background = 'var(--accent)';
+        setTimeout(() => {
+          button.innerHTML = originalText;
+          button.style.background = '';
+        }, 2000);
+      } catch (err) {
+        alert('Copy this text:\n\n' + text);
+      }
+    };
+
+    window.shareOnTwitter = function(title, url) {
+      const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`;
+      window.open(twitterUrl, '_blank');
+    };
+
+    window.shareOnWhatsApp = function(message) {
+      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+    };
+
+    // Initialize the quiz
+    updateQuestion();
+
+    // Load confetti library
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js';
+    script.onerror = () => console.log('Confetti library failed to load');
+    document.body.appendChild(script);
+
+  </script>
+  <script src="../scripts/view-switcher.js"></script>
+</body>
+</html>
