@@ -28,7 +28,8 @@ async def get_subscribers():
     if len(_cache) == 0:
         response = requests.get(f"{urlv4}/subscribers", headers={"X-Kit-Api-Key": os.getenv("API_KEY_V4")})
         if response.status_code >= 400:
-            print(response.json()["errors"][0])
+            print(response.status_code)
+            print(response.text)
             raise HTTPException(status_code=status.HTTP_502_BAD_GATEWAY)
         
         subs = response.json()["subscribers"]
