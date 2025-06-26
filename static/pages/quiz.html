@@ -631,9 +631,13 @@
                   
                   <div class="compatibility-section">
                     <h4 class="compatibility-title">🎯 Best Compatible With</h4>
-                    <div class="compatibility-tags">
-                      ${result.compatibleWith.map((type, index) => `<span class="compatibility-tag" style="animation-delay: ${index * 0.15}s">${getCompatibilityIcon(type)} ${type}</span>`).join('')}
+                    <div class="compatibility-subtitle">Select the type of roommate you'd like to connect with most:</div>
+                    <div class="compatibility-tags" id="compatibilityTags">
+                      <!-- Compatibility options will be rendered here -->
                     </div>
+                    <div id="noCompatibleTypes" style="display:none; color:var(--text-dim); font-size:1.05rem; margin:1.2rem 0;">No compatible roommate types found for this result.</div>
+                    <button id="confirmCompatibleBtn" class="cta-primary-btn" style="margin-top:1.2rem; display:none;">Confirm Choice</button>
+                    <div id="compatibilitySuccess" style="display:none; color:var(--accent); margin-top:0.7rem; font-weight:600;"></div>
                   </div>
                   
                   <div class="result-cta">
@@ -751,6 +755,78 @@
                 };
                 
                 fullResultsContainer.appendChild(shareBtn);
+
+                // --- Compatibility selection logic ---
+                const compatibilityTags = document.getElementById('compatibilityTags');
+                const confirmBtn = document.getElementById('confirmCompatibleBtn');
+                const successMsg = document.getElementById('compatibilitySuccess');
+                const noCompatibleTypes = document.getElementById('noCompatibleTypes');
+                let selectedCompatible = null;
+                if (compatibilityTags) {
+                  compatibilityTags.innerHTML = '';
+                  let compatibleArr = Array.isArray(result.compatibleWith) ? result.compatibleWith.slice(0,3) : [];
+                  if (compatibleArr.length > 0) {
+                    noCompatibleTypes.style.display = 'none';
+                    compatibleArr.forEach((type, idx) => {
+                      const tag = document.createElement('button');
+                      tag.className = 'compatibility-tag';
+                      tag.type = 'button';
+                      tag.style.cursor = 'pointer';
+                      tag.innerHTML = `${getCompatibilityIcon(type)} ${type}`;
+                      tag.onclick = () => {
+                        compatibilityTags.querySelectorAll('.compatibility-tag').forEach(btn => btn.classList.remove('selected'));
+                        tag.classList.add('selected');
+                        selectedCompatible = type;
+                        confirmBtn.disabled = false;
+                        confirmBtn.style.opacity = 1;
+                      };
+                      compatibilityTags.appendChild(tag);
+                    });
+                    confirmBtn.style.display = 'inline-block';
+                    confirmBtn.disabled = true;
+                    confirmBtn.style.opacity = 0.7;
+                  } else {
+                    noCompatibleTypes.style.display = 'block';
+                    confirmBtn.style.display = 'none';
+                  }
+                  confirmBtn.onclick = async () => {
+                    if (!selectedCompatible) return;
+                    confirmBtn.disabled = true;
+                    confirmBtn.textContent = 'Sending...';
+                    successMsg.style.display = 'none';
+                    let email = '';
+                    if (typeof emailInput !== 'undefined' && emailInput && emailInput.value) email = emailInput.value;
+                    const payload = {
+                      email,
+                      personalityType: result.title,
+                      compatibleType: selectedCompatible
+                    };
+                    try {
+                      const resp = await fetch('/api/compatible-choice', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                      });
+                      if (resp.ok) {
+                        successMsg.textContent = 'Your choice has been sent!';
+                        successMsg.style.display = 'block';
+                        confirmBtn.textContent = 'Confirmed!';
+                        confirmBtn.style.opacity = 0.7;
+                      } else {
+                        successMsg.textContent = 'Could not send your choice. Please try again.';
+                        successMsg.style.display = 'block';
+                        confirmBtn.disabled = false;
+                        confirmBtn.textContent = 'Confirm Choice';
+                      }
+                    } catch (e) {
+                      successMsg.textContent = 'Network error. Please try again.';
+                      successMsg.style.display = 'block';
+                      confirmBtn.disabled = false;
+                      confirmBtn.textContent = 'Confirm Choice';
+                    }
+                  };
+                }
+                // --- End compatibility selection logic ---
               }
             }, 200);
 
@@ -972,6 +1048,10 @@
     script.src = 'https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js';
     script.onerror = () => console.log('Confetti library failed to load');
     document.body.appendChild(script);
+
+    // On page load, ensure only the question card is visible
+    questionCard.style.display = 'block';
+    resultsSection.style.display = 'none';
 
   </script>
   <script src="../scripts/view-switcher.js"></script>
