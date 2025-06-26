@@ -248,8 +248,7 @@
           optionDiv.classList.add('selected');
           optionDiv.innerHTML += `<span class="selection-indicator" aria-label="Selected" title="Selected">✔</span>`;
           userAnswers[currentQuestionIndex] = option.value;
-          nextBtn.disabled = false;
-          nextBtn.classList.remove('disabled');
+          updateNextButtonState();
         });
         optionsGrid.appendChild(optionDiv);
       });
@@ -257,8 +256,21 @@
       prevBtn.style.display = currentQuestionIndex === 0 ? 'none' : 'block';
       nextBtn.textContent = currentQuestionIndex === questions.length - 1 ? 'See Results' : 'Next';
       
+      // Update button state based on current answer
+      updateNextButtonState();
+      
       const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
       progressBar.style.width = progress + '%';
+    }
+
+    function updateNextButtonState() {
+      const hasAnswer = userAnswers[currentQuestionIndex] !== undefined;
+      nextBtn.disabled = !hasAnswer;
+      if (hasAnswer) {
+        nextBtn.classList.remove('disabled');
+      } else {
+        nextBtn.classList.add('disabled');
+      }
     }
 
     prevBtn.addEventListener('click', () => {
@@ -345,52 +357,141 @@
       };
 
       const roommateTypes = {
-        "social + studious":{
+        "social + studious": {
           title: "The Engaging Intellectual",
           icon: "🧠",
-          description : "You’re outgoing and fun to be around, but you also know when it’s time to buckle down and focus. You bring the perfect mix of energy and calm to a shared space, making you easy to live with for both introverts and extroverts."
+          description: "You're outgoing and fun to be around, but you also know when it's time to buckle down and focus. You bring the perfect mix of energy and calm to a shared space, making you easy to live with for both introverts and extroverts.",
+          traits: [
+            { label: "Social Energy", value: "High" },
+            { label: "Focus", value: "High" },
+            { label: "Balance", value: "Excellent" }
+          ],
+          compatibleWith: ["creative", "organized", "flexible"]
         },
-        "social + creative":{
+        "social + creative": {
           title: "The Vibrant Visionary",
           icon: "🎨",
-          description: "You're the life of the apartment — always coming up with exciting ideas and inviting energy into the room. Whether you're planning a movie night or redecorating the living room, your enthusiasm and artistic flair make the space feel alive."
+          description: "You're the life of the apartment — always coming up with exciting ideas and inviting energy into the room. Whether you're planning a movie night or redecorating the living room, your enthusiasm and artistic flair make the space feel alive.",
+          traits: [
+            { label: "Social Energy", value: "Very High" },
+            { label: "Creativity", value: "Very High" },
+            { label: "Innovation", value: "Excellent" }
+          ],
+          compatibleWith: ["social", "inspiring", "active"]
         },
-        "social + organized":{
+        "social + organized": {
           title: "The Social Strategist",
-          icon:"📅",
-          description: "You love connecting with people but also value structure and planning. You're the roommate who hosts gatherings with a schedule and ensures everything runs smoothly — equal parts fun and functional."
+          icon: "📅",
+          description: "You love connecting with people but also value structure and planning. You're the roommate who hosts gatherings with a schedule and ensures everything runs smoothly — equal parts fun and functional.",
+          traits: [
+            { label: "Social Energy", value: "High" },
+            { label: "Organization", value: "Very High" },
+            { label: "Planning", value: "Excellent" }
+          ],
+          compatibleWith: ["social", "studious", "focused"]
         },
-         "studious + creative":{
+        "studious + creative": {
           title: "The Thoughtful Creator",
-          icon:"📖",
-          description:"You enjoy quiet time and mental focus, but your imagination also runs deep. You’re the kind of roommate who will have late-night sketch sessions after finishing a research paper. Your space is a peaceful haven with a touch of inspiration."
+          icon: "📖",
+          description: "You enjoy quiet time and mental focus, but your imagination also runs deep. You're the kind of roommate who will have late-night sketch sessions after finishing a research paper. Your space is a peaceful haven with a touch of inspiration.",
+          traits: [
+            { label: "Focus", value: "High" },
+            { label: "Creativity", value: "High" },
+            { label: "Innovation", value: "Excellent" }
+          ],
+          compatibleWith: ["creative", "quiet", "inspiring"]
         },
-         "social + organized":{
+        "studious + organized": {
           title: "The Methodical Mastermind",
           icon: "📚",
-          description: "You thrive on structure and discipline, making you the most dependable roommate in the house. Chores get done, deadlines are met, and your shared living space always feels calm and under control."
+          description: "You thrive on structure and discipline, making you the most dependable roommate in the house. Chores get done, deadlines are met, and your shared living space always feels calm and under control.",
+          traits: [
+            { label: "Focus", value: "Very High" },
+            { label: "Organization", value: "Very High" },
+            { label: "Discipline", value: "Excellent" }
+          ],
+          compatibleWith: ["studious", "organized", "focused"]
         },
-         "social + organized":{
+        "creative + organized": {
           title: "The Artistic Architect",
           icon: "🧩",
-          description: "You bring beauty and order together — your living space is likely both visually stunning and efficiently run. You’re the type of roommate who color-codes the spice rack and hand-makes wall art. A dream to live with!"
+          description: "You bring beauty and order together — your living space is likely both visually stunning and efficiently run. You're the type of roommate who color-codes the spice rack and hand-makes wall art. A dream to live with!",
+          traits: [
+            { label: "Creativity", value: "High" },
+            { label: "Organization", value: "High" },
+            { label: "Innovation", value: "Excellent" }
+          ],
+          compatibleWith: ["creative", "organized", "inspiring"]
         }
-      }
+      };
 
-      // Simple scoring system - count most common answers
-      const answerCounts = {};
+      // Map answer values to personality categories
+      const answerToPersonality = {
+        "social": "social",
+        "studious": "studious", 
+        "creative": "creative",
+        "organized": "organized",
+        "entertainment": "social",
+        "quiet": "studious",
+        "moderate": "social",
+        "lively": "social",
+        "vibrant": "social",
+        "flexible": "organized",
+        "relaxed": "creative",
+        "outsource": "organized",
+        "early": "organized",
+        "morning": "organized", 
+        "night": "creative",
+        "chef": "organized",
+        "casual": "social",
+        "prep": "organized",
+        "takeout": "social",
+        "communal": "social",
+        "selective": "organized",
+        "private": "studious",
+        "direct": "organized",
+        "diplomatic": "social",
+        "thoughtful": "studious",
+        "passive": "creative",
+        "active": "social",
+        "homebody": "studious",
+        "tranquil": "studious",
+        "inspiring": "creative",
+        "focused": "studious"
+      };
+
+      // Convert answers to personality types and count them
+      const personalityCounts = {};
       userAnswers.forEach(answer => {
-        answerCounts[answer] = (answerCounts[answer] || 0) + 1;
+        const personality = answerToPersonality[answer] || "social";
+        personalityCounts[personality] = (personalityCounts[personality] || 0) + 1;
       });
 
-      // Convert counts to an array of [type, count] pairs
-      const sortedTypes = Object.entries(answerCounts).sort((a, b) => b[1] - a[1]);
-
-      // Get the top two
+      // Get top two personality types
+      const sortedTypes = Object.entries(personalityCounts).sort((a, b) => b[1] - a[1]);
       const topType = sortedTypes[0] ? sortedTypes[0][0] : null;
       const secondType = sortedTypes[1] ? sortedTypes[1][0] : null;
 
-      return { topType, secondType };
+      // Try to find a combined result first
+      if (topType && secondType && topType !== secondType) {
+        // Try both combinations (order might matter)
+        const combo1 = `${topType} + ${secondType}`;
+        const combo2 = `${secondType} + ${topType}`;
+        
+        if (roommateTypes[combo1]) {
+          return roommateTypes[combo1];
+        } else if (roommateTypes[combo2]) {
+          return roommateTypes[combo2];
+        }
+      }
+
+      // Fall back to single personality type
+      if (topType && personalityTypes[topType]) {
+        return personalityTypes[topType];
+      }
+
+      // Default fallback
+      return personalityTypes["social"];
     }
 
     // Waitlist Form Handling
@@ -406,7 +507,8 @@
       const submitButton = waitlistForm.querySelector('.cta-button');
       if (!submitButton) return;
       
-      const emailValid = emailInput && emailInput.value.trim() !== '';
+      const email = emailInput ? emailInput.value.trim() : '';
+      const emailValid = email !== '' && isValidEmail(email);
       const checkboxValid = checkbox && checkbox.checked;
       const isValid = emailValid && checkboxValid;
       
@@ -416,6 +518,11 @@
       } else {
         submitButton.classList.add('disabled');
       }
+    }
+
+    function isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
     }
 
     // Add event listeners with null checks
@@ -548,14 +655,19 @@
             
             // Show confetti animation
             const canvas = document.getElementById('confetti-canvas');
-            if (canvas && window.confetti) {
+            if (canvas) {
               canvas.style.display = 'block';
-              window.confetti({
-                particleCount: 200,
-                spread: 100,
-                origin: { y: 0.6 },
-                colors: ['#6366f1', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981']
-              });
+              // Check if confetti is available and handle gracefully if not
+              if (typeof window.confetti === 'function') {
+                window.confetti({
+                  particleCount: 200,
+                  spread: 100,
+                  origin: { y: 0.6 },
+                  colors: ['#6366f1', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981']
+                });
+              } else {
+                console.log('Confetti library not available');
+              }
             }
 
             // Reveal full results with animation
@@ -645,14 +757,21 @@
           } else {
             try {
               const errorData = await response.json();
-              alert(`Error: ${errorData.detail || 'Could not join waitlist.'}`);
-            } catch {
+              const errorMessage = errorData.detail || errorData.message || 'Could not join waitlist.';
+              alert(`Error: ${errorMessage}`);
+            } catch (parseError) {
+              // If we can't parse the error response, show a generic message
               alert('Could not join waitlist. Please try again.');
             }
           }
         } catch (error) {
           console.error('Submission error:', error);
-          alert('Connection error. Please try again later.');
+          // Distinguish between network errors and other errors
+          if (error.name === 'TypeError' && error.message.includes('fetch')) {
+            alert('Network error. Please check your internet connection and try again.');
+          } else {
+            alert('An unexpected error occurred. Please try again later.');
+          }
         }
       });
     }
@@ -669,7 +788,8 @@
         'Innovation': '💡',
         'Planning': '📅',
         'Reliability': '✅',
-        'Discipline': '⚡'
+        'Discipline': '⚡',
+        'Balance': '⚖️'
       };
       return icons[traitLabel] || '⭐';
     }
@@ -741,46 +861,74 @@
       
       const modal = document.createElement('div');
       modal.className = 'share-modal';
-      modal.innerHTML = `
-        <div class="share-modal-overlay"></div>
-        <div class="share-modal-content">
-          <div class="share-modal-header">
-            <h3>Share Your Result</h3>
-            <button class="share-modal-close" onclick="this.closest('.share-modal').remove()">
-              <i class="fas fa-times"></i>
-            </button>
-          </div>
-          <div class="share-modal-body">
-            <div class="share-options">
-              <button class="share-option" onclick="copyToClipboard('${message.replace(/'/g, "\\'")}', this)">
-                <i class="fas fa-copy"></i>
-                <span>Copy Message</span>
-              </button>
-              <button class="share-option" onclick="copyToClipboard('${url}', this)">
-                <i class="fas fa-link"></i>
-                <span>Copy Link</span>
-              </button>
-              <button class="share-option" onclick="shareOnTwitter('${title.replace(/'/g, "\\'")}', '${url}')">
-                <i class="fab fa-twitter"></i>
-                <span>Share on Twitter</span>
-              </button>
-              <button class="share-option" onclick="shareOnWhatsApp('${message.replace(/'/g, "\\'")}')">
-                <i class="fab fa-whatsapp"></i>
-                <span>Share on WhatsApp</span>
-              </button>
-            </div>
-            <div class="share-preview">
-              <h4>Preview:</h4>
-              <div class="share-preview-text">${message}</div>
-            </div>
-          </div>
-        </div>
-      `;
+      
+      // Create modal structure safely
+      const overlay = document.createElement('div');
+      overlay.className = 'share-modal-overlay';
+      
+      const content = document.createElement('div');
+      content.className = 'share-modal-content';
+      
+      const header = document.createElement('div');
+      header.className = 'share-modal-header';
+      
+      const headerTitle = document.createElement('h3');
+      headerTitle.textContent = 'Share Your Result';
+      
+      const closeBtn = document.createElement('button');
+      closeBtn.className = 'share-modal-close';
+      closeBtn.innerHTML = '<i class="fas fa-times"></i>';
+      closeBtn.onclick = () => modal.remove();
+      
+      header.appendChild(headerTitle);
+      header.appendChild(closeBtn);
+      
+      const body = document.createElement('div');
+      body.className = 'share-modal-body';
+      
+      const options = document.createElement('div');
+      options.className = 'share-options';
+      
+      // Create share option buttons safely
+      const createShareButton = (icon, text, onClick) => {
+        const btn = document.createElement('button');
+        btn.className = 'share-option';
+        btn.innerHTML = `<i class="${icon}"></i><span>${text}</span>`;
+        btn.onclick = onClick;
+        return btn;
+      };
+      
+      options.appendChild(createShareButton('fas fa-copy', 'Copy Message', () => copyToClipboard(message, this)));
+      options.appendChild(createShareButton('fas fa-link', 'Copy Link', () => copyToClipboard(url, this)));
+      options.appendChild(createShareButton('fab fa-twitter', 'Share on Twitter', () => shareOnTwitter(title, url)));
+      options.appendChild(createShareButton('fab fa-whatsapp', 'Share on WhatsApp', () => shareOnWhatsApp(message)));
+      
+      const preview = document.createElement('div');
+      preview.className = 'share-preview';
+      
+      const previewTitle = document.createElement('h4');
+      previewTitle.textContent = 'Preview:';
+      
+      const previewText = document.createElement('div');
+      previewText.className = 'share-preview-text';
+      previewText.textContent = message;
+      
+      preview.appendChild(previewTitle);
+      preview.appendChild(previewText);
+      
+      body.appendChild(options);
+      body.appendChild(preview);
+      
+      content.appendChild(header);
+      content.appendChild(body);
+      
+      modal.appendChild(overlay);
+      modal.appendChild(content);
       
       document.body.appendChild(modal);
       
       // Close modal when clicking overlay
-      modal.querySelector('.share-modal-overlay').onclick = () => modal.remove();
+      overlay.onclick = () => modal.remove();
       
       // Close on escape key
       document.addEventListener('keydown', function closeOnEscape(e) {
@@ -790,7 +938,6 @@
         }
       });
     }
-
     // Global helper functions for sharing
     window.copyToClipboard = async function(text, button) {
       try {
