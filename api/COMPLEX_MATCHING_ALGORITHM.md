@@ -27,8 +27,10 @@ graph TD;
     E --> F[Calculate trait similarities (weighted, method from config)];
     F --> G[Aggregate by category (with user & global weights)];
     G --> H[Apply cross-trait penalties];
-    H --> I[Compute final compatibility score];
-    I --> J[Return top matches with explanations];
+    H --> I[Compute rule-based compatibility score];
+    I --> J[Compute ML model prediction using trained model];
+    J --> K[Combine or select best score];
+    K --> L[Return top matches with explanations];
 ```
 
 ---
@@ -55,7 +57,9 @@ graph TD;
     B --> C[For each trait:];
     C --> D[Show user1 & user2 values, weight, similarity];
     D --> E[Aggregate similarities for category];
-    E --> F[Return full breakdown as JSON];
+    E --> F[Compute rule-based explanation];
+    F --> G[Compute ML model SHAP/LIME explanation];
+    G --> H[Return full breakdown as JSON];
 ```
 
 ---
@@ -147,4 +151,74 @@ To train the machine learning model for match prediction, you need a dataset of 
 - Add new traits/categories in the config and questionnaire.
 - Adjust weights or similarity method in `matching_config.json`.
 - Use the `/rate-match-dynamic` endpoint to let the system learn from real user feedback.
-- Use `/explain-match` to debug or visualize why matches are strong or weak. 
+- Use `/explain-match` to debug or visualize why matches are strong or weak.
+
+---
+
+## Machine Learning Model Integration
+
+The UniMates matching system uses a hybrid approach: a rule-based algorithm (with adaptive weights and explainability) and a machine learning (ML) model trained on real user feedback. The ML model can learn complex, non-linear relationships between user traits and match outcomes, improving accuracy as more data is collected.
+
+### How it Works
+1. **Data Export:**
+   - Use `export_feedback_data.py` to export user match feedback and trait similarities to `feedback_export.csv`.
+2. **Model Training:**
+   - Use `train_match_model.ipynb` to train a regression model (e.g., Random Forest) to predict match ratings from trait/category similarities.
+   - The model is saved as `match_model.pkl`.
+3. **Model Loading & Prediction:**
+   - The backend loads the model using `ml_model_loader.py`.
+   - For each candidate match, the system computes features and predicts match quality using the ML model.
+4. **Hybrid Scoring:**
+   - The ML model's prediction can be used as the final compatibility score, or combined with the rule-based score for robust matching.
+5. **Explainability:**
+   - SHAP or LIME is used to explain the ML model's predictions for any match, showing which features (traits/categories) contributed most.
+
+---
+
+## Updated Main Matching Flow
+
+```mermaid
+graph TD
+A[User submits profile & answers] --> B[Scores calculated for each trait/category]
+B --> C[User requests matches]
+C --> D[For each candidate]
+D --> E[Impute missing traits (cluster-based)]
+E --> F[Calculate trait similarities (weighted, method from config)]
+F --> G[Aggregate by category (with user & global weights)]
+G --> H[Apply cross-trait penalties]
+H --> I[Compute rule-based compatibility score]
+I --> J[Compute ML model prediction using trained model]
+J --> K[Combine or select best score]
+K --> L[Return top matches with explanations]
+```
+
+---
+
+## Adaptive Learning Flow
+
+```mermaid
+graph TD
+A[User rates a match] --> B{Rating > 0.8?}
+B -- Yes --> C[Reward best-matching category & trait weights]
+B -- No --> D{Rating < 0.5?}
+D -- Yes --> E[Penalize worst-matching category & trait weights]
+D -- No --> F[No weight change]
+C --> G[Update config & feedback history]
+E --> G
+F --> G
+```
+
+---
+
+## Updated Explanation Generation Flow
+
+```mermaid
+graph TD
+A[User requests explanation for a match] --> B[For each category]
+B --> C[For each trait]
+C --> D[Show user1 & user2 values, weight, similarity]
+D --> E[Aggregate similarities for category]
+E --> F[Compute rule-based explanation]
+F --> G[Compute ML model SHAP/LIME explanation]
+G --> H[Return full breakdown as JSON]
+``` 
