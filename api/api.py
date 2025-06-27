@@ -4,8 +4,14 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from typing import Optional
 
+import gspread
 import requests
+import base64
+import json
 import os
+
+
+# Subscribers and Kit
 
 urlv3 = "https://api.convertkit.com/v3" 
 urlv4 = "https://api.kit.com/v4" 
@@ -13,6 +19,25 @@ urlv4 = "https://api.kit.com/v4"
 class Subscriber(BaseModel):
     email: str
     first_name: Optional[str] = None
+
+
+# Sheets
+
+scopes = [
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive"
+]
+
+gc = gspread.service_account_from_dict(json.loads(base64.b64decode(os.getenv("GOOGLE_CREDENTIALS"))))
+sheet = gc.open_by_key(os.getenv("SPREADSHEET_KEY")).sheet1
+
+class QuizResult(BaseModel):
+    email: str
+    personalityType: str
+    compatibleType: str
+
+
+# API Router
 
 api_router = APIRouter()
 
@@ -65,4 +90,10 @@ async def create_subscriber(sub: Subscriber):
     print(sub.email, "subscribed")
     _cache.add(sub.email)
     return JSONResponse(content={"subscriber": sub.dict()}, status_code=status.HTTP_201_CREATED)
+
+
+
+@api_router.post("/compatible-choice")
+async def quiz_result(res: QuizResult):
+    sheet.append_row([res.email, res.personalityType, res.compatibleType])
 
