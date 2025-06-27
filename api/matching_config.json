@@ -1,0 +1,10 @@
+{
+  "category_weights": {
+    "personality": 0.3,
+    "habit": 0.25,
+    "lifestyle": 0.25,
+    "characteristic": 0.2
+  },
+  "trait_weights": {},
+  "similarity_method": "cosine"
+} 

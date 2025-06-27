@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniMates - Advanced Compatibility Quiz</title>
+    <link rel="stylesheet" href="../styles/complex-quiz.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles/styles.css"
+</head>
+<body>
+    <div id="errorToast" class="error-toast" style="display:none;"></div>
+    <!-- Animated background and orbs for visual consistency -->
+    <div class="bg-animation"></div>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <img src="../assets/images/logo.svg" alt="UniMates" class="logo-img">
+                <span class="logo-text">UniMates API</span>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <span class="progress-text" id="progressText">Question 1 of 12</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Welcome Screen -->
+            <div class="welcome-screen" id="welcomeScreen">
+                <div class="welcome-content">
+                    <div class="welcome-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h1 class="welcome-title">Find Your Perfect Roommate Match</h1>
+                    <p class="welcome-subtitle">
+                        Our advanced compatibility algorithm analyzes your personality, habits, lifestyle, and characteristics 
+                        to find the most compatible roommate for you.
+                    </p>
+                    <div class="features">
+                        <div class="feature">
+                            <i class="fas fa-brain"></i>
+                            <span>Personality Analysis</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-clock"></i>
+                            <span>Lifestyle Matching</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Elo-Style Scoring</span>
+                        </div>
+                    </div>
+                    <button class="start-btn" id="startBtn">
+                        <span>Start Quiz</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Question Screen -->
+            <div class="question-screen" id="questionScreen" style="display: none;">
+                <div class="question-container">
+                    <div class="question-header">
+                        <div class="question-category" id="questionCategory">
+                            <i class="fas fa-tag"></i>
+                            <span id="categoryText">Study Habits</span>
+                        </div>
+                        <div class="question-number" id="questionNumber">1</div>
+                    </div>
+                    
+                    <div class="question-content">
+                        <h2 class="question-text" id="questionText">
+                            What's your ideal study environment?
+                        </h2>
+                        
+                        <div class="options-container" id="optionsContainer">
+                            <!-- Options will be dynamically populated -->
+                        </div>
+                    </div>
+                    
+                    <div class="question-navigation">
+                        <button class="nav-btn prev-btn" id="prevBtn" disabled>
+                            <i class="fas fa-chevron-left"></i>
+                            <span>Previous</span>
+                        </button>
+                        <button class="nav-btn next-btn" id="nextBtn" disabled>
+                            <span>Next</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Screen -->
+            <div class="results-screen" id="resultsScreen" style="display: none;">
+                <div class="results-container">
+                    <div class="results-header">
+                        <div class="results-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h1 class="results-title">Your Compatibility Profile</h1>
+                        <p class="results-subtitle">Based on your responses, here's your detailed personality and lifestyle analysis</p>
+                    </div>
+                    <div class="results-layout">
+                        <div class="results-main">
+                            <!-- Detailed Analysis -->
+                            <div class="analysis-section">
+                                <div class="analysis-card">
+
+                    <!-- Detailed Analysis -->
+                    <div class="analysis-section">
+                        <div class="analysis-card">
+                            <h3>Personality Traits</h3>
+                            <div class="traits-grid" id="personalityTraits">
+                                <!-- Personality traits will be populated -->
+                            </div>
+                        </div>
+                        
+                        <div class="analysis-card">
+                            <h3>Habit Patterns</h3>
+                            <div class="traits-grid" id="habitTraits">
+                                <!-- Habit traits will be populated -->
+                            </div>
+                        </div>
+                        
+                        <div class="analysis-card">
+                            <h3>Lifestyle Preferences</h3>
+                            <div class="traits-grid" id="lifestyleTraits">
+                                <!-- Lifestyle traits will be populated -->
+                            </div>
+                        </div>
+                        
+                        <div class="analysis-card">
+                            <h3>Characteristics</h3>
+                            <div class="traits-grid" id="characteristicTraits">
+                                <!-- Characteristic traits will be populated -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Find Matches Section -->
+                    <div class="matches-section">
+                        <div class="matches-header">
+                            <h3>Find Your Matches</h3>
+                            <p>Connect with compatible roommates based on your profile</p>
+                        </div>
+                        
+                        <div class="email-form">
+                            <div class="form-group">
+                                <label for="emailInput">Enter your email to find matches:</label>
+                                <input type="email" id="emailInput" placeholder="your.email@example.com" required>
+                            </div>
+                            <button class="find-matches-btn" id="findMatchesBtn">
+                                <i class="fas fa-search"></i>
+                                <span>Find Matches</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Matches Results -->
+                    <div class="matches-results" id="matchesResults" style="display: none;">
+                        <h3>Your Top Matches</h3>
+                        <div class="matches-grid" id="matchesGrid">
+                            <!-- Matches will be populated dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Mock Matches Section -->
+                    <div class="mock-matches-section" id="mockMatchesSection" style="display:none; margin-top:2.5rem;">
+                        <div class="matches-header">
+                            <h3>Your Top 3 Mock Roommate Matches</h3>
+                            <p>See which mock profiles are most compatible with you!</p>
+                        </div>
+                        <div class="matches-grid" id="mockMatchesGrid">
+                            <!-- Mock matches will be rendered here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Screen -->
+            <div class="loading-screen" id="loadingScreen" style="display: none;">
+                <div class="loading-content">
+                    <div class="loading-spinner">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                    <h3>Analyzing your responses...</h3>
+                    <p>Our advanced algorithm is calculating your compatibility profile</p>
+                </div>
+            </div>
+
+            <!-- Profile Modal -->
+            <div class="profile-modal" id="profileModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.18); z-index:10000; align-items:center; justify-content:center;">
+                <div class="profile-modal-content" style="background:#fff; border-radius:1.5rem; box-shadow:0 8px 32px rgba(99,102,241,0.13); padding:2.5rem 2rem; max-width:350px; width:90%; text-align:center; position:relative;">
+                    <h2 style="margin-bottom:0.7rem; font-size:1.5rem; font-weight:700;">Create Your Profile</h2>
+                    <p style="color:#6b7280; margin-bottom:1.5rem;">Enter your details to get your personalized compatibility results.</p>
+                    <input type="text" id="profileNameInput" placeholder="Your Name" required style="margin-bottom:1rem; width:100%; padding:0.7rem; border-radius:8px; border:1.5px solid #ccc; font-size:1rem;">
+                    <input type="number" id="profileAgeInput" placeholder="Your Age" min="16" max="100" required style="margin-bottom:1rem; width:100%; padding:0.7rem; border-radius:8px; border:1.5px solid #ccc; font-size:1rem;">
+                    <input type="email" id="profileEmailInput" placeholder="your.email@example.com" required style="margin-bottom:1rem; width:100%; padding:0.7rem; border-radius:8px; border:1.5px solid #ccc; font-size:1rem;">
+                    <div id="profileEmailError" style="color:#e53e3e; font-size:0.95rem; margin-bottom:0.7rem; display:none;"></div>
+                    <button id="profileSubmitBtn" class="start-btn" style="width:100%; margin-top:0.5rem;">Continue</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999;"></canvas>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="../scripts/complex-quiz.js"></script>
+
+    <div id="errorMessage" style="color: red; text-align: center; margin: 1rem 0;"></div>
+</body>
+</html> 
