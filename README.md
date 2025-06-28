@@ -4,14 +4,14 @@ A modern, responsive website for UniMates - a platform that helps university stu
 
 ## 📚 Documentation
 
-- **[Technical Documentation](QUIZ_TECHNICAL_DOCS.md)** - Comprehensive guide to the quiz system architecture, scoring algorithm, and technical implementation
-- **[Project Structure](frontend/PROJECT_STRUCTURE.md)** - Detailed frontend architecture and development guidelines
+- **[Technical Documentation](static/scripts/QUIZ_TECHNICAL_DOCS.md)** - Comprehensive guide to the quiz system architecture, scoring algorithm, and technical implementation
+- **[Project Structure](static/PROJECT_STRUCTURE.md)** - Detailed frontend architecture and development guidelines
 
 ## 🏗️ Project Structure
 
 ```
 UniMates Website/
-├── 📁 frontend/                    # Frontend files
+├── 📁 static/                      # Static files (Frontend)
 │   ├── 📁 pages/                   # HTML pages
 │   │   ├── index.html              # Homepage
 │   │   ├── quiz.html               # Roommate Style Quiz
@@ -25,7 +25,7 @@ UniMates Website/
 │   │   ├── how-it-works-desktop.css # How it works desktop styles
 │   │   └── about-desktop.css       # About page desktop styles
 │   ├── 📁 scripts/                # JavaScript files
-|   |   ├── QUIZ_TECHNICAL_DOCS.md  # Technical quiz system documentation
+│   │   ├── QUIZ_TECHNICAL_DOCS.md  # Technical quiz system documentation
 │   │   ├── shared.js               # Shared functionality
 │   │   ├── email-handler.js        # Email handling logic
 │   │   └── view-switcher.js        # View switching functionality
@@ -44,10 +44,14 @@ UniMates Website/
 │   │   └── 📁 email/               # Email templates
 │   │       └── unimates-email-signature.html
 │   └── PROJECT_STRUCTURE.md        # Frontend architecture guide
-├── 📁 backend/                     # Backend files
+├── 📁 api/                         # Backend files
 │   ├── api.py                      # API routes and handlers
 │   ├── main.py                     # FastAPI application entry point
 │   └── requirements.txt            # Python dependencies
+├── vercel.json                     # Vercel deployment configuration
+├── logo-bg.svg                     # Project logo
+├── unimates-email-signature.html   # Email signature template
+├── CNAME                           # Custom domain configuration
 └── README.md                       # This file
 ```
 
@@ -62,24 +66,24 @@ UniMates Website/
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/MorfidisJ/UniMates-Website.git
    cd UniMates-Website
    ```
 
 2. **Install Python dependencies**
    ```bash
-   pip install -r backend/requirements.txt
+   pip install -r api/requirements.txt
    ```
 
 3. **Start the backend server**
    ```bash
-   cd backend
+   cd api
    python main.py
    ```
 
 4. **Open the website**
-   - Navigate to `frontend/pages/index.html` in your browser
-   - Or serve the frontend directory with a local server
+   - Navigate to `static/pages/index.html` in your browser
+   - Or serve the static directory with a local server
 
 ## 📱 Pages Overview
 
@@ -101,7 +105,10 @@ UniMates Website/
   - Email collection for waitlist
   - Social sharing functionality
   - Enhanced animations and styling
-- **Technical Details**: See [QUIZ_TECHNICAL_DOCS.md](QUIZ_TECHNICAL_DOCS.md) for complete implementation guide
+  - **NEW**: Improved layout with footer clearance
+  - **NEW**: Subtle success messages with auto-fade
+  - **NEW**: Enhanced user feedback system
+- **Technical Details**: See [QUIZ_TECHNICAL_DOCS.md](static/scripts/QUIZ_TECHNICAL_DOCS.md) for complete implementation guide
 
 ### ℹ️ How It Works (`how-it-works.html`)
 - **Purpose**: Explains the UniMates platform process
@@ -169,6 +176,8 @@ UniMates Website/
 - **Accessibility** compliant
 - **Cross-browser** compatible
 - **Performance** optimized
+- **Layout stability** with proper footer clearance
+- **Enhanced UX** with subtle feedback messages
 
 ## 🎯 Quiz System
 
@@ -201,6 +210,8 @@ UniMates Website/
 5. **Email collection** for waitlist
 6. **Enhanced results** display with animations
 7. **Social sharing** functionality
+8. **NEW**: Subtle success feedback with auto-fade
+9. **NEW**: Improved layout preventing footer overlap
 
 ### Technical Implementation
 - **Scoring Algorithm**: Weighted point system for personality type calculation
@@ -208,8 +219,10 @@ UniMates Website/
 - **Animation System**: Staggered animations and confetti effects
 - **Data Persistence**: Email collection and API integration
 - **Responsive Design**: Mobile-optimized quiz experience
+- **Layout Management**: Proper spacing and footer clearance
+- **User Feedback**: Subtle success messages with smooth transitions
 
-**📖 For complete technical details, see [QUIZ_TECHNICAL_DOCS.md](QUIZ_TECHNICAL_DOCS.md)**
+**📖 For complete technical details, see [QUIZ_TECHNICAL_DOCS.md](static/scripts/QUIZ_TECHNICAL_DOCS.md)**
 
 ## 📧 Email System
 
@@ -230,14 +243,16 @@ UniMates Website/
 
 ### Quiz Results
 - `POST /api/quiz-results` - Save quiz results (planned)
+- `POST /api/compatible-choice` - Save compatibility preferences
 
 ## 🚀 Deployment
 
-### Netlify Deployment
+### Vercel Deployment
 - **Serverless functions** support
 - **Automatic builds** from Git
 - **CDN distribution** for fast loading
 - **SSL certificates** included
+- **Custom domain** support
 
 ### Environment Variables
 ```bash
@@ -265,6 +280,12 @@ FORM_ID=your_form_id
 - **CSS minification**: Reduced file sizes
 - **Lazy loading**: Deferred non-critical resources
 - **Caching strategies**: Browser and CDN caching
+
+### Recent Improvements
+- **Layout Stability**: Fixed footer overlap issues in quiz results
+- **User Experience**: Added subtle success messages with auto-fade
+- **Visual Polish**: Enhanced feedback system with smooth transitions
+- **Code Organization**: Improved CSS structure and JavaScript functionality
 
 ## 📱 Mobile Experience
 
@@ -301,12 +322,14 @@ FORM_ID=your_form_id
 - **Staggered animations** for lists and grids
 - **Hover effects** for interactive elements
 - **Loading states** and feedback
+- **Fade-out effects** for user notifications
 
 ### JavaScript Animations
 - **Confetti effects** for celebrations
 - **Progress animations** for quiz completion
 - **Modal animations** for overlays
 - **Scroll-triggered** animations
+- **Auto-fade notifications** for better UX
 
 ## 📊 Analytics & Tracking
 
@@ -342,8 +365,8 @@ FORM_ID=your_form_id
   - LinkedIn: UniMates Company
 
 ### Documentation
-- **[Technical Documentation](QUIZ_TECHNICAL_DOCS.md)** - Complete quiz system implementation guide
-- **[Frontend Architecture](frontend/PROJECT_STRUCTURE.md)** - Frontend development guidelines
+- **[Technical Documentation](static/scripts/QUIZ_TECHNICAL_DOCS.md)** - Complete quiz system implementation guide
+- **[Frontend Architecture](static/PROJECT_STRUCTURE.md)** - Frontend development guidelines
 - **API Documentation**: Available at `/docs` when server is running
 - **Code Comments**: Inline documentation in source files
 - **README**: This comprehensive guide

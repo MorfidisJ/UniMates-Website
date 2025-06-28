@@ -411,6 +411,8 @@
     padding: 2rem;
     position: relative;
     z-index: 10;
+    margin-bottom: 6rem; /* Ensure space for footer */
+    box-sizing: border-box;
   }
 
   .results-section.show {
@@ -576,17 +578,17 @@
   .full-results {
     /* REMOVED: display: none; */
     max-width: 800px;
-    margin: 0 auto;
+    margin: 0 auto 6rem auto; /* Add bottom margin for footer clearance */
     padding: 2rem;
     background: rgba(255, 255, 255, 0.92) !important;
     box-shadow: 0 8px 32px rgba(139,92,246,0.10), 0 2px 8px rgba(0,0,0,0.04);
     border-radius: 2.2rem;
     border: 1.5px solid rgba(139,92,246,0.13);
     padding: 2.5rem 1.5rem 2.5rem 1.5rem;
-    margin-bottom: 2.5rem;
     position: relative;
     z-index: 10;
     color: #222 !important;
+    box-sizing: border-box;
   }
 
   .full-results.visible { 
@@ -893,32 +895,39 @@
   }
 
   #compatibilitySuccess {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: #22c55e;
-    margin-top: 1.2rem;
-    background: linear-gradient(90deg, #e0ffe6 0%, #b9fbc0 100%);
-    border-radius: 1.2rem;
-    padding: 0.9rem 1.5rem;
-    box-shadow: 0 2px 8px rgba(34,197,94,0.10);
+    font-size: 1rem;
+    font-weight: 500;
+    color: #16a34a;
+    margin-top: 1rem;
+    background: rgba(34, 197, 94, 0.08);
+    border: 1px solid rgba(34, 197, 94, 0.15);
+    border-radius: 0.8rem;
+    padding: 0.7rem 1.2rem;
+    box-shadow: 0 1px 4px rgba(34,197,94,0.08);
     display: inline-flex;
     align-items: center;
-    gap: 0.7rem;
-    animation: popIn 0.5s;
+    gap: 0.6rem;
+    animation: popIn 0.4s ease-out;
+    opacity: 0.9;
+    transition: opacity 0.5s ease-out;
+  }
+
+  #compatibilitySuccess.fade-out {
+    opacity: 0;
   }
 
   #compatibilitySuccess::before {
     content: '\2714';
-    font-size: 1.3rem;
-    color: #22c55e;
-    background: #fff;
+    font-size: 1.1rem;
+    color: #16a34a;
+    background: rgba(255, 255, 255, 0.8);
     border-radius: 50%;
-    width: 1.7rem;
-    height: 1.7rem;
+    width: 1.4rem;
+    height: 1.4rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 8px rgba(34,197,94,0.10);
+    box-shadow: 0 1px 3px rgba(34,197,94,0.1);
   }
 
   /* Enhanced CTA Section */
@@ -1105,7 +1114,8 @@
   @media (max-width: 768px) {
     .full-results {
       padding: 1.5rem;
-      margin: 0 1rem;
+      margin: 0 1rem 6rem 1rem; /* Add bottom margin for footer clearance */
+      box-sizing: border-box;
     }
 
     .full-results-title {
