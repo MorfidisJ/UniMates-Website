@@ -812,17 +812,44 @@
                         successMsg.style.display = 'block';
                         confirmBtn.textContent = 'Confirmed!';
                         confirmBtn.style.opacity = 0.7;
+                        
+                        // Fade out the success message after 3 seconds
+                        setTimeout(() => {
+                          successMsg.classList.add('fade-out');
+                          setTimeout(() => {
+                            successMsg.style.display = 'none';
+                            successMsg.classList.remove('fade-out');
+                          }, 500);
+                        }, 3000);
                       } else {
                         successMsg.textContent = 'Could not send your choice. Please try again.';
                         successMsg.style.display = 'block';
                         confirmBtn.disabled = false;
                         confirmBtn.textContent = 'Confirm Choice';
+                        
+                        // Fade out error message after 4 seconds
+                        setTimeout(() => {
+                          successMsg.classList.add('fade-out');
+                          setTimeout(() => {
+                            successMsg.style.display = 'none';
+                            successMsg.classList.remove('fade-out');
+                          }, 500);
+                        }, 4000);
                       }
                     } catch (e) {
                       successMsg.textContent = 'Network error. Please try again.';
                       successMsg.style.display = 'block';
                       confirmBtn.disabled = false;
                       confirmBtn.textContent = 'Confirm Choice';
+                      
+                      // Fade out error message after 4 seconds
+                      setTimeout(() => {
+                        successMsg.classList.add('fade-out');
+                        setTimeout(() => {
+                          successMsg.style.display = 'none';
+                          successMsg.classList.remove('fade-out');
+                        }, 500);
+                      }, 4000);
                     }
                   };
                 }
