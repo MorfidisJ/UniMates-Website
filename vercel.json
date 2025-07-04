@@ -16,7 +16,7 @@
       "dest": "api/main.py"
     },
     {
-      "src": "/(about|how-it-works|quiz|Privacy-policy)",
+      "src": "/(about|how-it-works|quiz|Privacy-policy|customer-feedback|matching-survey)",
       "dest": "static/pages/$1.html"
     },
     {
