@@ -1080,6 +1080,91 @@
     questionCard.style.display = 'block';
     resultsSection.style.display = 'none';
 
+    // On page load, check if user already joined the waitlist (shared with index)
+    function bypassWaitlistIfJoined() {
+      if (localStorage.getItem('waitlistJoined') === 'true') {
+        questionCard.style.display = 'none';
+        resultsSection.style.display = 'block';
+        if (resultsOverlay) resultsOverlay.style.display = 'none';
+        if (waitlistForm) waitlistForm.style.display = 'none';
+        if (successMessage) successMessage.style.display = 'block';
+        // Remove lock elements
+        const lockIcon = document.querySelector('.results-lock-icon');
+        const lockTitle = document.querySelector('.results-lock-title');
+        const lockDescription = document.querySelector('.results-lock-description');
+        if (lockIcon) lockIcon.style.display = 'none';
+        if (lockTitle) lockTitle.style.display = 'none';
+        if (lockDescription) lockDescription.style.display = 'none';
+        if (resultsOverlay) {
+          resultsOverlay.style.backdropFilter = 'none';
+          resultsOverlay.style.background = 'none';
+        }
+        // Show full results
+        const result = calculateResult();
+        const fullResultsContainer = document.getElementById('fullResults');
+        if (fullResultsContainer) {
+          fullResultsContainer.innerHTML = `
+            <div class="full-results-content">
+              <div class="result-header">
+                <div class="result-icon-container">
+                  <div class="result-icon">${result.icon}</div>
+                  <div class="result-icon-glow"></div>
+                </div>
+                <h3 class="full-results-title">${result.title}</h3>
+                <div class="result-subtitle">Your Perfect Roommate Profile</div>
+              </div>
+              <div class="result-description-container">
+                <p class="full-results-description">${result.description}</p>
+              </div>
+              <div class="traits-section">
+                <h4 class="traits-title">Your Key Traits</h4>
+                <div class="traits-grid">
+                  ${result.traits.map((trait, index) => `
+                    <div class="trait-card" style="animation-delay: ${index * 0.1}s">
+                      <div class="trait-icon">${getTraitIcon(trait.label)}</div>
+                      <div class="trait-content">
+                        <div class="trait-label">${trait.label}</div>
+                        <div class="trait-value">${trait.value}</div>
+                      </div>
+                      <div class="trait-progress">
+                        <div class="trait-progress-bar" style="width: ${getTraitProgress(trait.value)}%"></div>
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+              <div class="compatibility-section">
+                <h4 class="compatibility-title">🎯 Best Compatible With</h4>
+                <div class="compatibility-subtitle">Select the type of roommate you'd like to connect with most:</div>
+                <div class="compatibility-tags" id="compatibilityTags"></div>
+                <div id="noCompatibleTypes" style="display:none; color:var(--text-dim); font-size:1.05rem; margin:1.2rem 0;">No compatible roommate types found for this result.</div>
+                <button id="confirmCompatibleBtn" class="cta-primary-btn" style="margin-top:1.2rem; display:none;">Confirm Choice</button>
+                <div id="compatibilitySuccess" style="display:none; color:var(--accent); margin-top:0.7rem; font-weight:600;"></div>
+              </div>
+              <div class="result-cta">
+                <p class="result-cta-text">Ready to find your perfect roommate match?</p>
+                <div class="result-cta-buttons">
+                  <button class="cta-primary-btn" onclick="window.location.href='index.html'">
+                    <i class="fas fa-home"></i>
+                    Join UniMates
+                  </button>
+                  <button class="cta-secondary-btn" onclick="window.location.reload()">
+                    <i class="fas fa-redo"></i>
+                    Take Quiz Again
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+          fullResultsContainer.classList.add('visible');
+          fullResultsContainer.style.maxHeight = fullResultsContainer.scrollHeight + 'px';
+          fullResultsContainer.style.opacity = '1';
+        }
+      }
+    }
+    // Call bypass on page load
+    bypassWaitlistIfJoined();
+
   </script>
   <script src="../scripts/view-switcher.js"></script>
 </body>

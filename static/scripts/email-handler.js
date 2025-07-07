@@ -136,6 +136,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initial button state
   updateSubmitButton();
 
+  // On DOMContentLoaded, check if user already joined waitlist
+  if (localStorage.getItem('waitlistJoined') === 'true') {
+    form.style.display = 'none';
+    successMessage.style.display = 'block';
+    successMessage.style.opacity = '1';
+    successMessage.classList.add('visible');
+  }
+
   // Form submission with API integration
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -158,6 +166,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const response = await emailHandler.submitEmail(email, firstName);
       
       console.log('Successfully submitted:', response);
+      
+      // Set localStorage flag
+      localStorage.setItem('waitlistJoined', 'true');
       
       // Launch confetti
       try {
