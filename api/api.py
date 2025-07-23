@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, status
 from fastapi.responses import JSONResponse
 
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, List
 
 import gspread
 import requests
@@ -29,13 +29,23 @@ scopes = [
 ]
 
 gc = gspread.service_account_from_dict(json.loads(base64.b64decode(os.getenv("GOOGLE_CREDENTIALS"))))
-sheet = gc.open_by_key(os.getenv("SPREADSHEET_KEY")).sheet1
+sheets = gc.open_by_key(os.getenv("SPREADSHEET_KEY"))
+print(sheets)
+quiz_sheet = gc.open_by_key(os.getenv("SPREADSHEET_KEY")).sheet1
+matcher_sheet = gc.open_by_key(os.getenv("SPREADSHEET_KEY")).get_worksheet(1)
 
 class QuizResult(BaseModel):
     email: str
     personalityType: str
     compatibleType: str
 
+class QuizWMatch(BaseModel):
+    email: str
+    name: str
+    phone: str
+    gender: str
+    city: str
+    answers: List[int]
 
 # API Router
 
@@ -95,5 +105,10 @@ async def create_subscriber(sub: Subscriber):
 
 @api_router.post("/compatible-choice")
 async def quiz_result(res: QuizResult):
-    sheet.append_row([res.email, res.personalityType, res.compatibleType])
+    quiz_sheet.append_row([res.email, res.personalityType, res.compatibleType])
 
+@api_router.post("/quiz-with-match")
+async def store_matching_quiz_result(res: QuizWMatch):
+    # send the quiz responses to matcher sheet
+    matcher_sheet.append_row([res.name, res.email, res.city, res.phone, res.gender] + res.answers)
+    return {"status": "created"}   

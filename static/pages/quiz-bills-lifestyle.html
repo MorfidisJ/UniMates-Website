@@ -821,7 +821,7 @@
 
       // Send to /quiz-with-match endpoint
       try {
-        const resp = await fetch('/quiz-with-match', {
+        const resp = await fetch('/api/quiz-with-match', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
