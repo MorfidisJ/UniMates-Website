@@ -61,7 +61,11 @@
         </div>
         <div class="form-group">
           <label for="userCity">City of Studying</label>
-          <input type="text" id="userCity" name="userCity" required placeholder="e.g. London" />
+          <select id="userCity" name="userCity" required>
+            <option value="" disabled selected>Select your city</option>
+            <option value="Ioannina">Ioannina</option>
+            <option value="Patra">Patra</option>
+          </select>
         </div>
         <div class="form-group">
           <label for="userPhone">Phone Number</label>
