@@ -797,10 +797,47 @@
         }
       }
     });
-    function showThankYou() {
+    async function showThankYou() {
       const questionCardWrapper = document.getElementById('questionCardWrapper');
       questionCardWrapper.style.display = 'none';
       resultsSection.style.display = 'block';
+
+      // Collect user info
+      const name = document.getElementById('userName').value.trim();
+      const email = document.getElementById('userEmail').value.trim();
+      const city = document.getElementById('userCity').value.trim();
+      const phone = document.getElementById('userPhone').value.trim();
+      const gender = document.getElementById('userGender').value;
+
+      // Prepare payload
+      const payload = {
+        name,
+        email,
+        city,
+        phone,
+        gender,
+        answers: userAnswers.slice() // array of selected option indices
+      };
+
+      // Send to /quiz-with-match endpoint
+      try {
+        const resp = await fetch('/quiz-with-match', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!resp.ok) {
+          // Try to parse error
+          let msg = 'Could not submit your answers.';
+          try {
+            const err = await resp.json();
+            msg = err.detail || err.message || msg;
+          } catch {}
+          alert(msg);
+        }
+      } catch (e) {
+        alert('Network error. Please try again.');
+      }
     }
     // Hide quiz until user info is submitted
     const userInfoSection = document.getElementById('userInfoSection');
