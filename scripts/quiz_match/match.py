@@ -150,6 +150,7 @@ if __name__ == "__main__":
 
     if len(sys.argv) < 2:
         print("no file")
+        print("usage: python match.py path/to/quiz/results.csv")
         exit(1)
 
     fpath = sys.argv[1]
