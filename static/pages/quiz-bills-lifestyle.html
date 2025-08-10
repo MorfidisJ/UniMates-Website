@@ -48,17 +48,40 @@
     </div>
   </header>
   <main class="quiz-container">
-    <div id="userInfoSection" class="user-info-section">
-      <h2 class="section-title">Tell us about yourself</h2>
-      <form id="userInfoForm" class="user-info-form">
-        <div class="form-group">
-          <label for="userName">Name</label>
-          <input type="text" id="userName" name="userName" required placeholder="Your name" autocomplete="name" />
+
+    <div id="encouragementMessage" class="encouragement-message"></div>
+    <div class="question-card fade-in" id="questionCardWrapper">
+      <div id="categoryLabel" class="category-label"></div>
+      <div id="questionCardInner" class="question-card-inner">
+        <div class="question-number">Question <span id="currentQuestion">1</span> of 15</div>
+        <div class="question-text" id="questionText"></div>
+        <div class="options-grid" id="options"></div>
+        <div class="quiz-navigation">
+          <button class="nav-button" id="prevBtn" style="display: none;">Previous</button>
+          <button class="nav-button next" id="nextBtn">Next</button>
         </div>
-        <div class="form-group">
-          <label for="userEmail">Email</label>
-          <input type="email" id="userEmail" name="userEmail" required placeholder="you@email.com" autocomplete="email" />
-        </div>
+      </div>
+    </div>
+    <div class="results-section" id="resultsSection" style="display:none;">
+      <div class="completion-celebration">
+        <div class="completion-emoji">🎉</div>
+        <h2 class="completion-title">Thank you for sharing your preferences!</h2>
+        <p class="completion-subtitle">Your answers have been recorded.<br>We will contact you when we find your perfect roommate!</p>
+        <a href="index.html" class="completion-home-btn"> Return to Home Page</a>
+      </div>
+    </div>
+  </main>
+  <div id="userInfoSection" class="user-info-section" style="display: none;">
+    <h2 class="section-title">Tell us about yourself</h2>
+    <form id="userInfoForm" class="user-info-form">
+      <div class="form-group">
+        <label for="userName">Name</label>
+        <input type="text" id="userName" name="userName" required placeholder="Your name" autocomplete="name" />
+      </div>
+      <div class="form-group">
+        <label for="userEmail">Email</label>
+        <input type="email" id="userEmail" name="userEmail" required placeholder="you@email.com" autocomplete="email" />
+      </div>
         <div class="form-group">
           <label for="userCity">City of Studying</label>
           <select id="userCity" name="userCity" required>
@@ -112,27 +135,6 @@
         <button type="submit" class="cta-button" id="userInfoSubmit">Start Quiz</button>
         <p class="disclaimer-text">By proceeding, you agree that your information will be shared with potential roommates to help find your best match.</p>
       </form>
-    </div>
-    <div id="encouragementMessage" class="encouragement-message"></div>
-    <div class="question-card fade-in" id="questionCardWrapper">
-      <div id="categoryLabel" class="category-label"></div>
-      <div id="questionCardInner" class="question-card-inner">
-        <div class="question-number">Question <span id="currentQuestion">1</span> of 14</div>
-        <div class="question-text" id="questionText"></div>
-        <div class="options-grid" id="options"></div>
-        <div class="quiz-navigation">
-          <button class="nav-button" id="prevBtn" style="display: none;">Previous</button>
-          <button class="nav-button next" id="nextBtn">Next</button>
-        </div>
-      </div>
-    </div>
-    <div class="results-section" id="resultsSection" style="display:none;">
-      <div class="completion-celebration">
-        <div class="completion-emoji">🎉</div>
-        <h2 class="completion-title">Thank you for sharing your preferences!</h2>
-        <p class="completion-subtitle">Your answers have been recorded.<br>We will contact you when we find your perfect roommate!</p>
-        <a href="index.html" class="completion-home-btn"> Return to Home Page</a>
-      </div>
     </div>
   </main>
   <style>
@@ -826,63 +828,24 @@
         }
       }
     });
-    async function showThankYou() {
+    function showThankYou() {
       const questionCardWrapper = document.getElementById('questionCardWrapper');
       questionCardWrapper.style.display = 'none';
-      resultsSection.style.display = 'block';
-
-      // Collect user info
-      const name = document.getElementById('userName').value.trim();
-      const email = document.getElementById('userEmail').value.trim();
-      const city = document.getElementById('userCity').value.trim();
-      const phone = document.getElementById('userPhone').value.trim();
-      const gender = document.getElementById('userGender').value;
-
-      // Prepare payload
-      const payload = {
-        name,
-        email,
-        city,
-        phone,
-        gender,
-        answers: userAnswers.slice() // array of selected option indices
-      };
-
-      // Send to /quiz-with-match endpoint
-      try {
-        const resp = await fetch('/api/quiz-with-match', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        if (!resp.ok) {
-          // Try to parse error
-          let msg = 'Could not submit your answers.';
-          try {
-            const err = await resp.json();
-            msg = err.detail || err.message || msg;
-          } catch {}
-          alert(msg);
-        }
-      } catch (e) {
-        alert('Network error. Please try again.');
-      }
+      // Hide thank you note initially, show user info form
+      resultsSection.style.display = 'none';
+      userInfoSection.style.display = 'block';
     }
-    // Hide quiz until user info is submitted
+    // Initialize quiz elements
     const userInfoSection = document.getElementById('userInfoSection');
     const encouragementDiv = document.getElementById('encouragementMessage');
     const questionCardWrapper = document.getElementById('questionCardWrapper');
-    questionCardWrapper.style.display = 'none';
-    encouragementDiv.style.display = 'none';
+    
+    // Hide user info section by default, show quiz
+    userInfoSection.style.display = 'none';
+    questionCardWrapper.style.display = 'block';
+    encouragementDiv.style.display = 'block';
 
-    function showQuiz() {
-      userInfoSection.style.display = 'none';
-      questionCardWrapper.style.display = 'block';
-      encouragementDiv.style.display = 'block';
-      updateQuestion();
-    }
-
-    // User info form validation and handling
+    // User info form handling (for after quiz completion)
     const userInfoForm = document.getElementById('userInfoForm');
     userInfoForm.addEventListener('submit', function(e) {
       e.preventDefault();
@@ -892,14 +855,49 @@
       const city = document.getElementById('userCity').value.trim();
       const phone = document.getElementById('userPhone').value.trim();
       const gender = document.getElementById('userGender').value;
+      
       if (!name || !email || !city || !phone || !gender) {
         alert('Please fill in all fields.');
         return;
       }
-      // Optionally: store user info for later use
-      showQuiz();
+      
+      // Prepare payload according to backend QuizWMatch model
+      const payload = {
+        email: email,
+        name: name,
+        phone: phone,
+        gender: gender,
+        city: city,
+        answers: userAnswers.slice() // array of selected option indices
+      };
+
+      // Submit the form data to the backend
+      fetch('/api/quiz-with-match', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // On successful submission, hide the form and show thank you note
+        userInfoSection.style.display = 'none';
+        resultsSection.style.display = 'block';
+      })
+      .catch(error => {
+        console.error('Error submitting form:', error);
+        // Show error message but still proceed to thank you note
+        alert('There was an error submitting your information. Please try again later.');
+        userInfoSection.style.display = 'none';
+        resultsSection.style.display = 'block';
+      });
     });
-    // Initialize quiz
+    
+    // Start the quiz
     updateQuestion();
   </script>
   <script src="../scripts/view-switcher.js"></script>
