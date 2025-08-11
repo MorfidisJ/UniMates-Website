@@ -109,7 +109,7 @@ class Person:
             Person.cities.append(self.city)
 
         self.phone = arr[3]
-        self.gender = arr[4]
+        self.gender = arr[4].lower()
 
         self.answers = {}
         for i, ans in enumerate(arr[5:]):
@@ -138,6 +138,10 @@ def buildGraph(graph, people):
         for person2 in people[i+1:]:
             if person1.city != person2.city:
                 continue
+
+            if person1.gender != person2.gender and person1.gender != 'prefer not to say' and person2.gender != 'prefer not to say':
+                continue
+
             score = round(getScore(person1.answers, person2.answers), 4)
             graph.add_edge(person1.id, person2.id, weight=score)
 
