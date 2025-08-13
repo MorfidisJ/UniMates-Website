@@ -538,7 +538,7 @@
   <script src="../scripts/shared.js"></script>
   <script>
     // Questions for the Living Preferences Quiz
-    const questions = [
+    const questionsEn = [
       // 💸 Bills & Sharing
       {
         text: "How should we handle bills and utilities?",
@@ -666,6 +666,136 @@
         ]
       }
     ];
+
+    const questionsGr = [
+      // 💸 Λογαριασμοί & Μοίρασμα
+      {
+        text: "Πώς θέλεις να χειριζόμαστε τους λογαριασμούς και τα κοινόχρηστα;",
+        options: [
+          { icon: "💸", text: "Τα μοιραζόμαστε όλα εξίσου" },
+          { icon: "🧾", text: "Ο καθένας πληρώνει διαφορετικό" },
+          { icon: "🤷", text: "Θα το δούμε στην πορεία" }
+        ]
+      },
+      {
+        text: "Είσαι οκ με το να μοιραζόμαστε πράγματα (π.χ. κουζινικά, έπιπλα);",
+        options: [
+          { icon: "🫶", text: "Ελεύθερο μοίρασμα" },
+          { icon: "🙋", text: "Ρώτα πρώτα" },
+          { icon: "🙅", text: "Προτιμώ να μην μοιράζομαι" }
+        ]
+      },
+      {
+        text: "Πώς θέλεις να χειριζόμαστε το φαγητό και τα κοινά είδη;",
+        options: [
+          { icon: "🔄", text: "Εναλλάξ στις αγορές" },
+          { icon: "🍽️", text: "Μισά-Μισά" },
+          { icon: "🛒", text: "Ο καθένας αγοράζει τα δικά του" }
+        ]
+      },
+      // 🧼 Καθαριότητα & Συνήθειες
+      {
+        text: "Πόσο καθαρός/ή είσαι;",
+        options: [
+          { icon: "🧼", text: "Πολύ τακτικός/ή" },
+          { icon: "🙂", text: "Μέτρια" },
+          { icon: "😅", text: "Ακατάστατος/η" }
+        ]
+      },
+      {
+        text: "Κάθε πότε θα βοηθάς στην καθαριότητα;",
+        options: [
+          { icon: "🗓️", text: "Κάθε εβδομάδα" },
+          { icon: "⏰", text: "Που και που" },
+          { icon: "😬", text: "Μόνο όταν είναι απολύτως απαραίτητο" }
+        ]
+      },
+      {
+        text: "Πότε πλένεις τα πιάτα;",
+        options: [
+          { icon: "🧽", text: "Καθημερινό πλύσιμο" },
+          { icon: "🌙", text: "Την επόμενη μέρα" },
+          { icon: "😬", text: "Όταν δεν έχει μείνει καθαρό" }
+        ]
+      },
+      // 🌱 Τρόπος ζωής
+      {
+        text: "Καπνίζεις (συμβατικό ή vape);",
+        options: [
+          { icon: "🚬", text: "Ναι" },
+          { icon: "🌳", text: "Μόνο έξω" },
+          { icon: "🙅‍♂️", text: "Όχι" }
+        ]
+      },
+      {
+        text: "Έχεις ή θέλεις κατοικίδια;",
+        options: [
+          { icon: "🐶", text: "Ναι" },
+          { icon: "😺", text: "Οκ με κατοικίδια" },
+          { icon: "🙅", text: "Πλιζ όχι κατοικίδια" }
+        ]
+      },
+      {
+        text: "Πότε συνήθως κοιμάσαι;",
+        options: [
+          { icon: "🌙", text: "Πριν τις 11μμ" },
+          { icon: "🕚", text: "11μμ–1πμ" },
+          { icon: "🌃", text: "Μετά τη 1πμ" }
+        ]
+      },
+      {
+        text: "Πόση ησυχία χρειάζεσαι στο σπίτι;",
+        options: [
+          { icon: "🤫", text: "Πάντα ήσυχα" },
+          { icon: "🌙", text: "Ήσυχα το βράδυ" },
+          { icon: "🔊", text: "Δεν με πειράζει ο θόρυβος" }
+        ]
+      },
+      // 🧑‍🤝‍🧑 Επισκέπτες & Κοινωνική Ζωή
+      {
+        text: "Πώς νιώθεις για τους επισκέπτες;",
+        options: [
+          { icon: "🎉", text: "Μπορούν να έρχονται όποτε θέλουν" },
+          { icon: "🙋", text: "Ρώτα πρώτα" },
+          { icon: "🙈", text: "Σπάνιες επισκέψεις μόνο" }
+        ]
+      },
+      {
+        text: "Ποια είναι η φάση σου με τα party;",
+        options: [
+          { icon: "🎊", text: "Τα λατρεύω" },
+          { icon: "🎈", text: "Που και που είναι οκ" },
+          { icon: "🚫", text: "Πλιζ όχι party" }
+        ]
+      },
+      // 🍽️ Φαγητό & Αλκοόλ
+      {
+        text: "Κάθε πότε μαγειρεύεις;",
+        options: [
+          { icon: "👨‍🍳", text: "Καθημερινά" },
+          { icon: "🍝", text: "Λίγες φορές την εβδομάδα" },
+          { icon: "🍔", text: "Σπάνια" }
+        ]
+      },
+      {
+        text: "Αλκοόλ στο σπίτι;",
+        options: [
+          { icon: "🍻", text: "Πίνω συχνά" },
+          { icon: "🍷", text: "Μόνο τα Σαββατοκύριακα" },
+          { icon: "🚫", text: "Δεν πίνω (αλλά δεν με πειράζει αν πίνεις)" },
+          { icon: "🙅", text: "Προτιμώ καθόλου αλκοόλ στο σπίτι" }
+        ]
+      },
+      {
+        text: "Τι θέλεις από έναν/μία συγκάτοικο;",
+        options: [
+          { icon: "💸", text: "Απλά να μοιραζόμαστε τα έξοδα" },
+          { icon: "🤝", text: "Φιλική συγκατοίκηση" },
+          { icon: "🫂", text: "Να κάνουμε παρέα και να γίνουμε φίλοι" }
+        ]
+      }
+    ];
+
     let currentQuestionIndex = 0;
     let userAnswers = [];
     // Get DOM elements
@@ -717,6 +847,9 @@
       { label: 'Food & Alcohol', icon: '🍽️', color: 'linear-gradient(100deg, #f857a6 0%, #ff5858 100%)' },
       { label: 'Food & Alcohol', icon: '🍽️', color: 'linear-gradient(100deg, #f857a6 0%, #ff5858 100%)' }
     ];
+
+    const questions = questionsGr;
+
     function updateQuestion() {
       // Animated border for category
       const cardWrapper = document.getElementById('questionCardWrapper');
