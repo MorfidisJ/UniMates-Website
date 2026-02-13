@@ -1,6 +1,16 @@
 /* Enhanced Mobile-specific styles for UniMates with improved hamburger and better sizing */
 .mobile-view {
 
+  /* Glass Pill — Mobile Override */
+  .navbar {
+    min-width: unset;
+    width: 92%;
+    max-width: none;
+    top: 12px;
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+  }
+
   /* --- Corrected Navigation Layout --- */
   .nav-container {
     display: grid;
