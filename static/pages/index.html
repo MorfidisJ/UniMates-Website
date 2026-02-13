@@ -321,6 +321,35 @@
   <script src="../scripts/email-handler.js"></script>
   <script src="../scripts/view-switcher.js"></script>
   <script src="../scripts/shared.js"></script>
+  <script>
+    // Magnetic cursor effect for Download App button
+    (function () {
+      const btn = document.querySelector('.app-cta-btn');
+      if (!btn) return;
+      const strength = 60; // max px shift toward cursor
+      const radius = 300;  // activation distance in px
+
+      document.addEventListener('mousemove', function (e) {
+        const rect = btn.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = e.clientX - cx;
+        const dy = e.clientY - cy;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < radius) {
+          const pull = (1 - dist / radius);
+          btn.style.transform = 'translate(' + (dx * pull * strength / radius) + 'px, ' + (dy * pull * strength / radius) + 'px)';
+        } else {
+          btn.style.transform = '';
+        }
+      });
+
+      btn.addEventListener('mouseleave', function () {
+        btn.style.transform = '';
+      });
+    })();
+  </script>
 </body>
 
 </html>

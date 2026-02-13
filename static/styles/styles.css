@@ -415,6 +415,8 @@ li,
   gap: 0.6rem;
   text-decoration: none;
   margin-top: 0.5rem;
+  transition: transform 0.08s ease-out, box-shadow 0.3s ease;
+  will-change: transform;
 }
 
 .app-cta-btn i {
