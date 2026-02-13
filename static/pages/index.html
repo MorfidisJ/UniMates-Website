@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>UniMates — Find Your Roommate</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="../styles/styles.css">
   <link rel="stylesheet" href="../styles/mobile.css">
-  
+
 </head>
+
 <body>
-  <canvas id="confetti-canvas" style="position: fixed; left: 0; top: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999;"></canvas>
-  
+  <canvas id="confetti-canvas"
+    style="position: fixed; left: 0; top: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999;"></canvas>
+
   <div class="bg-animation"></div>
-  
+
   <div class="orb orb1"></div>
   <div class="orb orb2"></div>
   <div class="orb orb3"></div>
@@ -42,54 +47,16 @@
     <div class="mobile-overlay" onclick="closeMenu()"></div>
   </nav>
 
-  <!-- The app sectio(Remove this section) -->
-  <section class="hero">
-    <div class="hero-container">
-      <div class="hero-content">
-        <div class="hero-badge">
-          Coming Soon
-        </div>
-        
-        <h1 class="hero-title">
-          Swipe <span class="highlight">Right</span> For The <span class="highlight">Right</span> Roommate 🎓
-        </h1>
-        
-        <p class="hero-description">
-          UniMates is reimagining student housing. Connect with like-minded flatmates through creative profiles, shared interests, and meaningful connections. No more boring searches.
-        </p>
-        
-        <div class="hero-cta">
-          <form class="waitlist-form" id="waitlistForm">
-            <input type="email" class="waitlist-input" id="email" placeholder="Enter your email" required>
-            <div class="waitlist-checkbox-row">
-              <input type="checkbox" class="waitlist-checkbox" id="consent" required>
-              <label for="consent" class="waitlist-checkbox-label">I agree to receive updates, beta invitations, and occasional emails from UniMates. I understand I can unsubscribe at any time.</label>
-            </div>
-            <button type="submit" class="waitlist-btn">Join Waitlist</button>
-          </form>
-          <div id="successMessage" style="display: none;">
-            <div style="font-size: 3rem; margin-bottom: 1rem;">🎉</div>
-            <h3 style="color: #0a1045; font-size: 1.5rem; margin-bottom: 0.5rem;">Welcome to UniMates!</h3>
-            <p style="color: #3a425c;">Thanks for joining! We'll keep you updated on our launch.</p>
-          </div>
-        </div>
-        
-        <div class="hero-stats">
-          <div class="stat">
-            <span class="stat-number">36</span>
-            <span class="stat-label">Students waiting</span>
-          </div>
-          <div class="stat">
-            <span class="stat-number">Every</span>
-            <span class="stat-label">University</span>
-          </div>
-          <div class="stat">
-            <span class="stat-number">95%</span>
-            <span class="stat-label">Match success</span>
-          </div>
-        </div>
+  <!-- App Download CTA Section -->
+  <section class="app-cta">
+    <div class="app-cta-container">
+      <div class="app-cta-content">
+        <h1 class="app-cta-tagline">Swipe Right for the <span class="highlight">Right Roommate</span></h1>
+        <p class="app-cta-description">The #1 roommate app for youth</p>
+        <a href="https://app.unimates.net/" class="cta-button app-cta-btn" target="_blank" rel="noopener noreferrer">
+          <i class="fas fa-download"></i> Download App
+        </a>
       </div>
-      
       <div class="hero-visual">
         <div class="floating-cards">
           <div class="profile-card card-1">
@@ -102,7 +69,6 @@
               <span class="card-tag">Coffee lover</span>
             </div>
           </div>
-          
           <div class="profile-card card-2">
             <div class="card-avatar">🚀</div>
             <div class="card-name">Maya Singh</div>
@@ -113,7 +79,6 @@
               <span class="card-tag">Organized</span>
             </div>
           </div>
-          
           <div class="profile-card card-3">
             <div class="card-avatar">🌱</div>
             <div class="card-name">Jamie Wilson</div>
@@ -128,15 +93,15 @@
       </div>
     </div>
   </section>
-  <!-- Until here change the main section of the website -->
 
 
   <section class="features" id="features">
     <h1 class="section-title">Why UniMates?</h1>
     <p class="section-subtitle">
-      We're building more than just a flatmate finder. We're creating a community where students connect, create, and thrive together.
+      We're building more than just a flatmate finder. We're creating a community where students connect, create, and
+      thrive together.
     </p>
-    
+
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-icon-wrapper">
@@ -145,7 +110,8 @@
         <div class="feature-content">
           <h3 class="feature-title">Smart Matching</h3>
           <p class="feature-description">
-            Our ML-powered matching system connects you with flatmates who share your lifestyle, values, and living preferences for authentic compatibility.
+            Our ML-powered matching system connects you with flatmates who share your lifestyle, values, and living
+            preferences for authentic compatibility.
           </p>
         </div>
       </div>
@@ -156,7 +122,8 @@
         <div class="feature-content">
           <h3 class="feature-title">Creative Profiles</h3>
           <p class="feature-description">
-            Express yourself through multimedia profiles, mood boards, and creative content. Show your personality beyond just text and photos.
+            Express yourself through multimedia profiles, mood boards, and creative content. Show your personality
+            beyond just text and photos.
           </p>
         </div>
       </div>
@@ -167,7 +134,8 @@
         <div class="feature-content">
           <h3 class="feature-title">Verified & Safe</h3>
           <p class="feature-description">
-            All users are university-verified with comprehensive safety features, background checks, and 24/7 support for peace of mind.
+            All users are university-verified with comprehensive safety features, background checks, and 24/7 support
+            for peace of mind.
           </p>
         </div>
       </div>
@@ -178,7 +146,8 @@
         <div class="feature-content">
           <h3 class="feature-title">Community Events</h3>
           <p class="feature-description">
-            Join creative workshops, social mixers, and skill-sharing sessions to meet potential flatmates and build lasting friendships.
+            Join creative workshops, social mixers, and skill-sharing sessions to meet potential flatmates and build
+            lasting friendships.
           </p>
         </div>
       </div>
@@ -189,7 +158,8 @@
         <div class="feature-content">
           <h3 class="feature-title">Housing Integration</h3>
           <p class="feature-description">
-            Seamlessly compatible with verified student accommodations and coordinate with matched flatmates to secure your perfect shared space.
+            Seamlessly compatible with verified student accommodations and coordinate with matched flatmates to secure
+            your perfect shared space.
           </p>
         </div>
       </div>
@@ -200,7 +170,8 @@
         <div class="feature-content">
           <h3 class="feature-title">Mobile-First</h3>
           <p class="feature-description">
-            Designed for your lifestyle with a beautiful, responsive interface and easy access to all features on the go.
+            Designed for your lifestyle with a beautiful, responsive interface and easy access to all features on the
+            go.
           </p>
         </div>
       </div>
@@ -208,7 +179,7 @@
   </section>
 
 
-  
+
   <section class="quiz-promo">
     <div class="quiz-container">
       <div class="quiz-content">
@@ -220,7 +191,8 @@
           Discover Your <span class="highlight">Perfect Match</span>
         </h2>
         <p class="section-subtitle">
-          Our personality quiz goes beyond basic preferences. Unlock deep insights about your living style and find flatmates who truly complement your lifestyle.
+          Our personality quiz goes beyond basic preferences. Unlock deep insights about your living style and find
+          flatmates who truly complement your lifestyle.
         </p>
         <div class="quiz-features">
           <div class="quiz-feature">
@@ -303,7 +275,9 @@
     <div class="about-card">
       <h2 class="about-title">About UniMates</h2>
       <p class="about-description">
-        UniMates is on a mission to transform student living. We believe finding the right flatmate should be creative, safe, and fun. Our platform connects students through personality, interests, and community—helping you build a home, not just a house.
+        UniMates is on a mission to transform student living. We believe finding the right flatmate should be creative,
+        safe, and fun. Our platform connects students through personality, interests, and community—helping you build a
+        home, not just a house.
       </p>
       <a href="about.html" class="about-cta">Learn more</a>
     </div>
@@ -314,26 +288,39 @@
     <div class="footer-content">
       <div class="footer-cube-container">
         <div class="cube" tabindex="0">
-          <div class="cube-face cube-face-front"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
-          <div class="cube-face cube-face-back"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
-          <div class="cube-face cube-face-right"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
-          <div class="cube-face cube-face-left"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
-          <div class="cube-face cube-face-top"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
-          <div class="cube-face cube-face-bottom"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
+          <div class="cube-face cube-face-front"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60">
+          </div>
+          <div class="cube-face cube-face-back"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60">
+          </div>
+          <div class="cube-face cube-face-right"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60">
+          </div>
+          <div class="cube-face cube-face-left"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60">
+          </div>
+          <div class="cube-face cube-face-top"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60">
+          </div>
+          <div class="cube-face cube-face-bottom"><img src="../assets/images/logo.svg" alt="Logo" width="60"
+              height="60"></div>
         </div>
       </div>
       <div class="footer-social">
-        <a href="https://instagram.com/unimates.info" target="_blank" aria-label="Instagram" class="footer-social-link"><i class="fab fa-instagram"></i></a>
-        <a href="https://tiktok.com/@unimatesapp" target="_blank" aria-label="TikTok" class="footer-social-link"><i class="fab fa-tiktok"></i></a>
-        <a href="https://www.youtube.com/channel/UCMKHVISj443ioGYAZYRUrTQ" target="_blank" aria-label="YouTube" class="footer-social-link"><i class="fab fa-youtube"></i></a>
-        <a href="https://www.linkedin.com/company/unimatesapp" target="_blank" aria-label="LinkedIn" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
-        <a href="mailto:info@unimates.net" aria-label="Email" class="footer-social-link"><i class="fas fa-envelope"></i></a>
+        <a href="https://instagram.com/unimates.info" target="_blank" aria-label="Instagram"
+          class="footer-social-link"><i class="fab fa-instagram"></i></a>
+        <a href="https://tiktok.com/@unimatesapp" target="_blank" aria-label="TikTok" class="footer-social-link"><i
+            class="fab fa-tiktok"></i></a>
+        <a href="https://www.youtube.com/channel/UCMKHVISj443ioGYAZYRUrTQ" target="_blank" aria-label="YouTube"
+          class="footer-social-link"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.linkedin.com/company/unimatesapp" target="_blank" aria-label="LinkedIn"
+          class="footer-social-link"><i class="fab fa-linkedin"></i></a>
+        <a href="mailto:info@unimates.net" aria-label="Email" class="footer-social-link"><i
+            class="fas fa-envelope"></i></a>
       </div>
     </div>
-    <div class="footer-copy">&copy; 2025 UniMates. All rights reserved. | <a href="Privacy-policy.html" style="color: var(--accent); text-decoration: none;">Privacy Policy</a></div>
+    <div class="footer-copy">&copy; 2025 UniMates. All rights reserved. | <a href="Privacy-policy.html"
+        style="color: var(--accent); text-decoration: none;">Privacy Policy</a></div>
   </footer>
   <script src="../scripts/email-handler.js"></script>
   <script src="../scripts/view-switcher.js"></script>
   <script src="../scripts/shared.js"></script>
 </body>
+
 </html>
