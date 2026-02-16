@@ -90,6 +90,7 @@ li,
   background-clip: text;
 }
 
+
 /* Background animation */
 .bg-animation {
   position: fixed;
@@ -125,6 +126,7 @@ li,
     transform: scale(1);
   }
 }
+
 
 /* Floating orbs */
 .orb {
@@ -1247,20 +1249,7 @@ li,
   -webkit-backdrop-filter: none !important;
 }
 
-.quiz-feature,
-.quiz-stat {
-  color: #0a1045 !important;
-}
-
-.quiz-feature-title,
-.quiz-feature-text,
-.quiz-stat-number,
-.quiz-stat-label {
-  color: #0a1045 !important;
-}
-
-.hero-title,
-.card-name,
+.hero-title .card-name,
 .quiz-feature-title,
 .personality-card h3 {
   color: #0a1045 !important;
