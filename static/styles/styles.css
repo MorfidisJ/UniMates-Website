@@ -284,7 +284,7 @@ li,
   object-fit: contain;
 }
 
-.quiz-header-ad {
+.app-header-ad {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -305,13 +305,13 @@ li,
   animation: quizAdPulse 2.5s infinite alternate;
 }
 
-.quiz-header-ad:hover {
+.app-header-ad:hover {
   transform: translateX(-50%) scale(1.05);
   box-shadow: 0 8px 32px var(--accent-glow), 0 0 32px var(--purple-light);
   background: linear-gradient(100deg, #ff8c69 0%, #ff6b35 20%, #a78bfa 60%, #67e8f9 100%);
 }
 
-.quiz-header-ad-icon {
+.app-header-ad-icon {
   font-size: 1.3rem;
   filter: drop-shadow(0 0 6px var(--accent-glow));
 }
