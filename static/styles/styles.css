@@ -480,6 +480,30 @@ li,
   }
 }
 
+
+/* Advantages Section */
+.section-title {
+  text-align: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 50%, var(--cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: 1.15rem;
+  color: #3a425c !important;
+  font-weight: 500;
+  margin: 0;
+}
+
+
 /* Hero Section */
 .hero {
   min-height: 100vh;
@@ -800,7 +824,7 @@ li,
 .card-name {
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
-  color: var(--text);
+  color: var(--text-);
   font-size: 1.2rem;
   margin-bottom: 0.3rem;
   letter-spacing: 0.01em;
