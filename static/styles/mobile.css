@@ -610,12 +610,12 @@
     padding: 0.9rem 1.5rem;
   }
 
-  .features-grid {
+  .bento-grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1rem;
   }
 
-  .feature-card {
+  .bento-card {
     padding: 1.5rem;
   }
 
@@ -1071,7 +1071,7 @@
       /* Hide visual on smallest screens to save space */
     }
 
-    .features-grid {
+    .bento-grid {
       gap: 1rem;
     }
 
