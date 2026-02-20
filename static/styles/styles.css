@@ -1113,7 +1113,7 @@ li,
 
 
 /* ============================================
-   App Features Section — Phone Preview
+   App Characteristics Section — Phone Preview
    ============================================ */
 .app-features {
   padding: 6rem 2rem;
@@ -1136,15 +1136,16 @@ li,
 }
 
 .app-features-title {
+  text-align: flex;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 800;
-  line-height: 1.15;
-  color: #0a1045 !important;
-  background: none !important;
-  -webkit-text-fill-color: unset !important;
-  -webkit-background-clip: unset !important;
-  background-clip: unset !important;
+  line-height: 1.1;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 50%, var(--cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
 }
 
 .app-features-emoji {
