@@ -1112,6 +1112,124 @@ li,
 }
 
 
+
+/* ============================================
+   Supported By — Scrolling Marquee
+   ============================================ */
+.supported-by {
+  padding: 3rem 0;
+  max-width: 1400px;
+  margin: 0 auto;
+  text-align: center;
+  overflow: hidden;
+}
+
+.supported-by-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #8e8e93 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 1.8rem;
+}
+
+.marquee-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 3.5rem;
+  width: max-content;
+  animation: marquee-scroll 20s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.supporter-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 2rem;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  border-radius: 18px;
+  box-shadow: 0 4px 16px rgba(228, 214, 167, 0.08);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.supporter-item:hover {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: rgba(223, 79, 0, 0.18);
+  box-shadow: 0 6px 24px rgba(223, 79, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.supporter-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #f5f5f5;
+  flex-shrink: 0;
+}
+
+.supporter-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #0a1045 !important;
+}
+
+/* Supported By — Mobile */
+@media (max-width: 768px) {
+  .supported-by {
+    padding: 2rem 0;
+  }
+
+  .supported-by-label {
+    font-size: 0.85rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .marquee-track {
+    gap: 2rem;
+  }
+
+  .supporter-item {
+    padding: 0.6rem 1.2rem;
+    border-radius: 12px;
+  }
+
+  .supporter-name {
+    font-size: 0.9rem;
+  }
+}
+
+
 /* ============================================
    App Characteristics Section — Phone Preview
    ============================================ */
