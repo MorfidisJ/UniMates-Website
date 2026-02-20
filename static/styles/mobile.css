@@ -619,6 +619,47 @@
     padding: 1.5rem;
   }
 
+  /* App Features Mobile */
+  .app-features {
+    padding: 3rem 1rem;
+  }
+
+  .app-features-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .app-features-content {
+    align-items: center;
+  }
+
+  .app-features-subtitle {
+    text-align: center;
+  }
+
+  .app-features-categories {
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .app-feature-btn {
+    justify-content: flex-start;
+    padding: 0.8rem 1.1rem;
+  }
+
+  .phone-mockup {
+    width: 260px;
+    height: 560px;
+    border-radius: 48px;
+    border-width: 4px;
+  }
+
+  .phone-dynamic-island {
+    width: 76px;
+    height: 22px;
+  }
+
   .footer-content {
     flex-direction: column;
     text-align: center;

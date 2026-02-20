@@ -1112,7 +1112,433 @@ li,
 }
 
 
+/* ============================================
+   App Features Section — Phone Preview
+   ============================================ */
+.app-features {
+  padding: 6rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.app-features-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.app-features-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.app-features-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: #0a1045 !important;
+  background: none !important;
+  -webkit-text-fill-color: unset !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+}
+
+.app-features-emoji {
+  display: inline-block;
+  -webkit-text-fill-color: initial !important;
+  font-size: 0.85em;
+  vertical-align: middle;
+}
+
+.app-features-subtitle {
+  font-size: 1.1rem;
+  color: #3a425c !important;
+  font-weight: 400;
+  line-height: 1.6;
+  max-width: 460px;
+}
+
+/* Category Buttons */
+.app-features-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.8rem;
+}
+
+.app-feature-btn {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.4rem;
+  border: 1.5px solid transparent;
+  border-radius: 16px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+}
+
+.app-feature-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(228, 214, 167, 0.2);
+}
+
+.app-feature-btn.active {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-color: rgba(223, 79, 0, 0.2);
+  box-shadow: 0 4px 20px rgba(228, 214, 167, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.app-feature-btn-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.app-feature-btn.active .app-feature-btn-icon {
+  background: linear-gradient(135deg, rgba(223, 79, 0, 0.15), rgba(139, 92, 246, 0.1));
+  border-color: rgba(223, 79, 0, 0.2);
+  transform: scale(1.05);
+}
+
+.app-feature-btn-label {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #3a425c !important;
+  transition: color 0.3s ease;
+}
+
+.app-feature-btn.active .app-feature-btn-label {
+  color: #0a1045 !important;
+}
+
+/* Phone Mockup */
+.app-features-phone-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.phone-mockup {
+  position: relative;
+  width: 300px;
+  height: 650px;
+  background: #ffffff;
+  border-radius: 55px;
+  border: 4px solid #2c2c2e;
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.2),
+    0 10px 30px rgba(0, 0, 0, 0.12),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* iPhone 15 Status Bar */
+.phone-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px 0;
+  height: 54px;
+  background: #fafafa;
+  position: relative;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.status-time {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #000 !important;
+  letter-spacing: 0.02em;
+}
+
+.status-icons {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.status-icons i {
+  color: #000 !important;
+}
+
+/* iPhone 15 Dynamic Island */
+.phone-dynamic-island {
+  width: 90px;
+  height: 25px;
+  background: #000;
+  border-radius: 50px;
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.phone-screen {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.phone-screen-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.phone-screen-content.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.phone-home-indicator {
+  width: 120px;
+  height: 5px;
+  background: #d1d1d6;
+  border-radius: 3px;
+  margin: 8px auto 10px;
+  flex-shrink: 0;
+}
+
+/* Screen Internal Styles */
+.screen-header {
+  padding: 12px 20px 12px;
+  background: #fafafa;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.screen-page-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: #0a1045 !important;
+  margin-bottom: 10px;
+  background: none !important;
+  -webkit-text-fill-color: unset !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+}
+
+.screen-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: #ebebeb;
+  border-radius: 10px;
+  margin-bottom: 4px;
+}
+
+.screen-search-bar i {
+  color: #8e8e93 !important;
+  font-size: 0.8rem;
+}
+
+.screen-search-bar span {
+  color: #8e8e93 !important;
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+.screen-body {
+  flex: 1;
+  padding: 12px 16px;
+  overflow-y: auto;
+}
+
+/* Semester groups */
+.semester-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.semester-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 4px 6px;
+}
+
+.semester-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #0a1045 !important;
+}
+
+.semester-avg {
+  font-size: 0.75rem;
+  color: #8e8e93 !important;
+  font-weight: 400;
+}
+
+.course-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 12px;
+  background: #ffffff;
+  border-bottom: 1px solid #f2f2f7;
+  transition: background 0.2s ease;
+}
+
+.course-row:last-child {
+  border-bottom: none;
+}
+
+.course-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.course-code {
+  font-size: 0.65rem;
+  color: #8e8e93 !important;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+}
+
+.course-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #df4f00 !important;
+  letter-spacing: 0.02em;
+}
+
+.course-year {
+  font-size: 0.6rem;
+  color: #8e8e93 !important;
+  font-weight: 400;
+}
+
+.course-grade {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #0a1045 !important;
+  min-width: 48px;
+  text-align: right;
+}
+
+.course-grade sup {
+  color: #df4f00 !important;
+  font-size: 0.7em;
+}
+
+.course-grade.grade-warning {
+  color: #0a1045 !important;
+}
+
+.course-grade.grade-warning sup {
+  color: #df4f00 !important;
+}
+
+.course-grade.grade-danger {
+  color: #e53e3e !important;
+}
+
+.course-grade.grade-danger sup {
+  color: #e53e3e !important;
+}
+
+/* Placeholder for screens user will fill */
+.screen-placeholder-text {
+  font-size: 0.85rem;
+  color: #8e8e93 !important;
+  text-align: center;
+  padding: 2rem 1rem;
+  line-height: 1.5;
+}
+
+/* App Features Responsive — Tablet */
+@media (max-width: 1024px) {
+  .app-features-container {
+    gap: 2.5rem;
+  }
+
+  .app-features-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  }
+
+  .phone-mockup {
+    width: 260px;
+    height: 560px;
+    border-radius: 48px;
+  }
+
+  .phone-dynamic-island {
+    width: 76px;
+    height: 22px;
+  }
+}
+
+/* App Features Responsive — Mobile */
+@media (max-width: 768px) {
+  .app-features {
+    padding: 4rem 1.5rem;
+  }
+
+  .app-features-container {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    text-align: center;
+  }
+
+  .app-features-content {
+    align-items: center;
+  }
+
+  .app-features-subtitle {
+    text-align: center;
+  }
+
+  .app-features-categories {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .app-feature-btn {
+    justify-content: flex-start;
+  }
+
+  .phone-mockup {
+    width: 270px;
+    height: 560px;
+  }
+}
+
+
 /* Footer with spinning cube and social links */
+
 .site-footer {
   width: 100%;
   background: linear-gradient(90deg, rgba(26, 26, 46, 0.92) 0%, rgba(26, 26, 46, 0.98) 100%);

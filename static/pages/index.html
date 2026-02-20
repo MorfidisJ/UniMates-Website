@@ -183,7 +183,138 @@
   </section>
 
 
-  <!-- App features -->
+  <!-- App Features Section -->
+  <section class="app-features" id="app-features">
+    <div class="app-features-container">
+      <!-- Left side: Title + Category buttons -->
+      <div class="app-features-content">
+        <h2 class="app-features-title">Beautiful Visibility<br>of Your Progress <span
+            class="app-features-emoji">💯</span></h2>
+        <p class="app-features-subtitle">Keep tabs on your grades and be up-to-date on the go.</p>
+
+        <div class="app-features-categories">
+          <button class="app-feature-btn active" data-screen="screen-courses" onclick="switchScreen(this)">
+            <span class="app-feature-btn-icon">🎓</span>
+            <span class="app-feature-btn-label">Courses &amp; Grades</span>
+          </button>
+          <button class="app-feature-btn" data-screen="screen-progress" onclick="switchScreen(this)">
+            <span class="app-feature-btn-icon">📊</span>
+            <span class="app-feature-btn-label">Progress Analysis</span>
+          </button>
+          <button class="app-feature-btn" data-screen="screen-news" onclick="switchScreen(this)">
+            <span class="app-feature-btn-icon">📢</span>
+            <span class="app-feature-btn-label">News &amp; Announcements</span>
+          </button>
+          <button class="app-feature-btn" data-screen="screen-gifts" onclick="switchScreen(this)">
+            <span class="app-feature-btn-icon">🎁</span>
+            <span class="app-feature-btn-label">Earn Gifts</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Right side: Phone mockup -->
+      <div class="app-features-phone-wrapper">
+        <div class="phone-mockup">
+          <div class="phone-status-bar">
+            <span class="status-time">9:41</span>
+            <div class="phone-dynamic-island"></div>
+            <div class="status-icons">
+              <i class="fas fa-signal" style="font-size:0.55rem"></i>
+              <i class="fas fa-wifi" style="font-size:0.55rem"></i>
+              <i class="fas fa-battery-full" style="font-size:0.55rem"></i>
+            </div>
+          </div>
+          <div class="phone-screen">
+            <!-- Screen: Courses & Grades (default active) -->
+            <div class="phone-screen-content active" id="screen-courses">
+              <div class="screen-header">
+                <h3 class="screen-page-title">Progress</h3>
+                <div class="screen-search-bar">
+                  <i class="fas fa-search"></i>
+                  <span>Search...</span>
+                </div>
+              </div>
+              <div class="screen-body">
+                <div class="semester-group">
+                  <div class="semester-header">
+                    <span class="semester-label">Semester 1</span>
+                    <span class="semester-avg">Avg. Grade 67</span>
+                  </div>
+                  <div class="course-row">
+                    <div class="course-info">
+                      <span class="course-code">COMP0023</span>
+                      <span class="course-name">DATA SCIENCE</span>
+                      <span class="course-year">2023</span>
+                    </div>
+                    <span class="course-grade">74</span>
+                  </div>
+                  <div class="course-row">
+                    <div class="course-info">
+                      <span class="course-code">COMP0028</span>
+                      <span class="course-name">CYBERSECURITY</span>
+                      <span class="course-year">2023</span>
+                    </div>
+                    <span class="course-grade grade-warning">69<sup>•</sup></span>
+                  </div>
+                  <div class="course-row">
+                    <div class="course-info">
+                      <span class="course-code">COMP0013</span>
+                      <span class="course-name">DIGITAL TECHNOLOGIES</span>
+                      <span class="course-year">2023</span>
+                    </div>
+                    <span class="course-grade grade-danger">32<sup>•</sup></span>
+                  </div>
+                  <div class="course-row">
+                    <div class="course-info">
+                      <span class="course-code">COMP0087</span>
+                      <span class="course-name">NETWORKING</span>
+                      <span class="course-year">2023</span>
+                    </div>
+                    <span class="course-grade">89</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Screen: Progress Analysis -->
+            <div class="phone-screen-content" id="screen-progress">
+              <div class="screen-header">
+                <h3 class="screen-page-title">Progress Analysis</h3>
+              </div>
+              <div class="screen-body">
+                <p class="screen-placeholder-text">Your progress analysis content goes here. Add screenshots or custom
+                  HTML to showcase this feature.</p>
+              </div>
+            </div>
+
+            <!-- Screen: News & Announcements -->
+            <div class="phone-screen-content" id="screen-news">
+              <div class="screen-header">
+                <h3 class="screen-page-title">News</h3>
+              </div>
+              <div class="screen-body">
+                <p class="screen-placeholder-text">Your news &amp; announcements content goes here. Add screenshots or
+                  custom HTML to showcase this feature.</p>
+              </div>
+            </div>
+
+            <!-- Screen: Earn Gifts -->
+            <div class="phone-screen-content" id="screen-gifts">
+              <div class="screen-header">
+                <h3 class="screen-page-title">Earn Gifts</h3>
+              </div>
+              <div class="screen-body">
+                <p class="screen-placeholder-text">Your earn gifts content goes here. Add screenshots or custom HTML to
+                  showcase this feature.</p>
+              </div>
+            </div>
+          </div>
+          <div class="phone-home-indicator"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
   <!-- About Us Section -->
   <section class="about-section" id="about">
@@ -265,6 +396,25 @@
         btn.style.transform = '';
       });
     })();
+
+    // App Features — Screen switching
+    function switchScreen(clickedBtn) {
+      // Remove active from all buttons
+      document.querySelectorAll('.app-feature-btn').forEach(function (btn) {
+        btn.classList.remove('active');
+      });
+      // Remove active from all screens
+      document.querySelectorAll('.phone-screen-content').forEach(function (screen) {
+        screen.classList.remove('active');
+      });
+      // Activate clicked button and its screen
+      clickedBtn.classList.add('active');
+      var screenId = clickedBtn.getAttribute('data-screen');
+      var targetScreen = document.getElementById(screenId);
+      if (targetScreen) {
+        targetScreen.classList.add('active');
+      }
+    }
   </script>
 </body>
 
