@@ -660,10 +660,9 @@
     height: 22px;
   }
 
-  .footer-content {
-    flex-direction: column;
-    text-align: center;
-    gap: 1.5rem;
+  .footer-info-box {
+    padding: 1.5rem 1.2rem;
+    border-radius: 20px;
   }
 
   .footer-cube-container {
@@ -752,8 +751,8 @@
     padding: 2rem 1rem;
   }
 
-  .footer-content {
-    gap: 1.5rem;
+  .footer-info-box {
+    padding: 1.5rem 1rem;
   }
 
   .footer-cube-container {

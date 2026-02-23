@@ -1657,26 +1657,16 @@ li,
 
 
 /* Footer with spinning cube and social links */
-
 .site-footer {
   width: 100%;
-  background: linear-gradient(90deg, rgba(26, 26, 46, 0.92) 0%, rgba(26, 26, 46, 0.98) 100%);
-  color: var(--text-muted);
-  padding: 2.5rem 1rem 1.2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2.5rem 1rem 1.5rem;
   margin-top: 4rem;
-  border-top: 1.5px solid var(--border);
-  box-shadow: 0 -2px 24px 0 rgba(0, 0, 0, 0.12);
   position: relative;
   z-index: 10;
-}
-
-.footer-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2.5rem;
-  flex-wrap: wrap;
-  margin-bottom: 1.2rem;
 }
 
 .footer-cube-container {
@@ -1751,6 +1741,30 @@ li,
   transform: rotateX(-90deg) translateZ(48px);
 }
 
+/* Footer info area — no box, blends with page background */
+.footer-info-box {
+  width: 100%;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.footer-social-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
 .footer-social {
   display: flex;
   gap: 1.5rem;
@@ -1759,7 +1773,7 @@ li,
 
 .footer-social-link {
   font-size: 2rem;
-  color: #fff;
+  color: #0a1045;
   opacity: 0.85;
   transition: color 0.2s, transform 0.2s, opacity 0.2s;
 }
@@ -1770,24 +1784,41 @@ li,
   opacity: 1;
 }
 
+.footer-contact {
+  font-size: 0.95rem;
+  color: #3a425c;
+  letter-spacing: 0.01em;
+}
+
+.footer-contact a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.footer-contact a:hover {
+  opacity: 0.8;
+}
+
 .footer-copy {
   text-align: center;
   font-size: 0.95rem;
-  color: var(--text-dim);
-  margin-top: 0.5rem;
+  color: #3a425c;
   letter-spacing: 0.01em;
 }
 
 @media (max-width: 600px) {
-  .footer-content {
+  .footer-row {
     flex-direction: column;
     gap: 1.2rem;
   }
 
   .footer-cube-container {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 }
+
 
 /* About Us Section */
 .about-section {
