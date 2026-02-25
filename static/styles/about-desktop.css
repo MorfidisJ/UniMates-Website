@@ -212,7 +212,6 @@ body {
 }
 
 .about-title,
-.about-team-title,
 .about-gallery-title {
   color: #0a1045 !important;
   background: none !important;
@@ -232,14 +231,169 @@ body {
 .about-mission {
   font-size: 1.1rem;
   font-weight: 600;
-  margin-bottom: 2.5rem;
+  margin-bottom: 0.5rem;
 }
 
+/* ── Press Highlights Carousel ── */
+.press-section {
+  width: 100%;
+  max-width: 900px;
+  margin: 3rem auto 0;
+  padding-top: 5rem;
+}
+
+.press-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 50%, var(--cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.4rem;
+}
+
+.press-subtitle {
+  font-size: 1.1rem;
+  color: #3a425c !important;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+.press-carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.press-track-wrapper {
+  overflow: hidden;
+  border-radius: 20px;
+  flex: 1;
+}
+
+.press-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(.4, .0, .2, 1);
+  will-change: transform;
+}
+
+.press-slide {
+  min-width: 100%;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
+}
+
+.press-slide img {
+  width: 100%;
+  border-radius: 18px;
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 16 / 9;
+  background: rgba(255, 255, 255, 0.28);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px rgba(228, 214, 167, 0.10), 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* Placeholder for slides without images yet */
+.press-img-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1.5px dashed rgba(139, 92, 246, 0.30);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: #8b5cf6;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 8px 32px rgba(228, 214, 167, 0.10);
+}
+
+.press-img-placeholder i {
+  font-size: 2.4rem;
+  opacity: 0.55;
+}
+
+/* Arrow buttons */
+.press-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #0a1045;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+}
+
+.press-arrow:hover {
+  background: rgba(139, 92, 246, 0.18);
+  border-color: rgba(139, 92, 246, 0.35);
+  transform: scale(1.1);
+  box-shadow: 0 6px 24px rgba(139, 92, 246, 0.15);
+}
+
+/* Dot indicators */
+.press-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1.2rem;
+}
+
+.press-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(139, 92, 246, 0.22);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.press-dot.active {
+  background: linear-gradient(135deg, var(--accent), var(--purple));
+  transform: scale(1.25);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+@media (max-width: 768px) {
+  .press-section {
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
+
+  .press-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+}
+
+/* ── Team Section ── */
 .about-team-section {
   margin-top: 2.5rem;
 }
 
 .about-team-title {
+  text-align: center;
   padding-top: 6rem;
   padding-bottom: 1rem;
   font-family: 'Space Grotesk', sans-serif;
