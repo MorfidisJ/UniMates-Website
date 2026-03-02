@@ -387,6 +387,106 @@ body {
   }
 }
 
+/* ── Press article card (centred, no image) ── */
+.press-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 24px;
+  overflow: hidden;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1.5px solid rgba(255, 255, 255, 0.28);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(139, 92, 246, 0.07);
+  transition: transform 0.28s cubic-bezier(.4, 2, .6, 1), box-shadow 0.28s ease;
+  cursor: pointer;
+  padding: 2.8rem 2.5rem 2.5rem;
+  text-align: center;
+}
+
+.press-card:hover {
+  transform: translateY(-6px) scale(1.012);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.13), 0 4px 16px rgba(139, 92, 246, 0.12);
+}
+
+/* Publication name at top */
+.press-card-source-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-bottom: 1.1rem;
+}
+
+/* Card body */
+.press-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+}
+
+/* Article title */
+.press-card-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+  font-weight: 700;
+  color: #0a1045;
+  line-height: 1.3;
+  margin: 0 0 0.65rem;
+}
+
+/* Author */
+.press-card-author {
+  font-size: 0.9rem;
+  color: #3a425c;
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+
+/* Centred CTA: circle + label stacked */
+.press-card-cta-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.press-card-cta-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 16px rgba(255, 107, 53, 0.30);
+  transition: transform 0.25s cubic-bezier(.4, 2, .6, 1), box-shadow 0.25s ease;
+}
+
+.press-card:hover .press-card-cta-circle {
+  transform: scale(1.14) translateY(-2px);
+  box-shadow: 0 8px 28px rgba(255, 107, 53, 0.42);
+}
+
+.press-card-cta-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #0a1045;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 /* ── Team Section ── */
 .about-team-section {
   margin-top: 2.5rem;
@@ -766,5 +866,237 @@ body {
     filter: blur(100px) brightness(1);
     opacity: 0.4;
     transform: scale(1);
+  }
+}
+
+
+/* ══════════════════════════════════════════
+   Our Achievements — Article-style blog
+══════════════════════════════════════════ */
+.achievements-section {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem 3rem;
+}
+
+.achievements-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 50%, var(--cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.4rem;
+}
+
+.achievements-subtitle {
+  font-size: 1.1rem;
+  color: #3a425c;
+  font-weight: 500;
+  margin-bottom: 3rem;
+}
+
+/* ── Article row ── */
+.achiev-article {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+.achiev-article--img-right {
+  flex-direction: row-reverse;
+}
+
+/* ── Image side ── */
+.achiev-img-wrap {
+  position: relative;
+  flex: 0 0 42%;
+  max-width: 42%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12), 0 2px 12px rgba(139, 92, 246, 0.10);
+}
+
+.achiev-img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  border-radius: 20px;
+  /* Fallback gradient when image is missing */
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.18) 0%, rgba(6, 182, 212, 0.18) 100%);
+}
+
+/* Colourful tinted overlay so placeholder looks intentional */
+.achiev-img-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(255, 107, 53, 0.10) 0%, rgba(139, 92, 246, 0.12) 100%);
+  pointer-events: none;
+  border-radius: 20px;
+  z-index: 1;
+}
+
+/* Badge tag on the image */
+.achiev-img-tag {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  background: rgba(255, 255, 255, 0.90);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #0a1045;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.3rem 0.75rem;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.10);
+  z-index: 2;
+  letter-spacing: 0.02em;
+}
+
+.achiev-img-tag i {
+  color: var(--accent);
+  font-size: 0.85rem;
+}
+
+/* ── Text side ── */
+.achiev-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.achiev-date {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.55rem;
+}
+
+.achiev-heading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.25rem, 2.5vw, 1.7rem);
+  font-weight: 700;
+  color: #0a1045;
+  margin-bottom: 0.85rem;
+  line-height: 1.25;
+}
+
+.achiev-text p {
+  font-size: 1.02rem;
+  color: #3a425c;
+  line-height: 1.75;
+}
+
+.achiev-text p strong {
+  color: #0a1045;
+  font-weight: 700;
+}
+
+/* ── Text-only centred block (no image row) ── */
+.achiev-text-only {
+  max-width: 640px;
+  margin: 0 auto 4rem;
+}
+
+.achiev-text-only .achiev-date {
+  display: block;
+  margin-bottom: 0.55rem;
+}
+
+.achiev-text-only .achiev-heading {
+  margin-bottom: 0.85rem;
+}
+
+.achiev-text-only p {
+  font-size: 1.02rem;
+  color: #3a425c;
+  line-height: 1.75;
+}
+
+.achiev-text-only p strong {
+  color: #0a1045;
+  font-weight: 700;
+}
+
+/* ── Teaser paragraph ── */
+.achievements-teaser {
+  font-size: 1.08rem;
+  color: #3a425c;
+  line-height: 1.75;
+  max-width: 680px;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+  font-style: italic;
+  opacity: 0.85;
+}
+
+/* ── "More" button ── */
+.achiev-more-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.achiev-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 100%);
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 50px;
+  padding: 0.75rem 2.2rem;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  box-shadow: 0 4px 18px rgba(255, 107, 53, 0.22), 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+}
+
+.achiev-more-btn:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 8px 28px rgba(255, 107, 53, 0.32);
+}
+
+.achiev-more-icon {
+  font-size: 0.85rem;
+  transition: transform 0.4s cubic-bezier(.4, 2, .6, 1);
+}
+
+/* ── Expandable extra block ── */
+.achiev-extra {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.7s cubic-bezier(.4, 0, .2, 1), opacity 0.5s ease;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+
+  .achiev-article,
+  .achiev-article--img-right {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .achiev-img-wrap {
+    flex: none;
+    max-width: 100%;
+    width: 100%;
   }
 }
