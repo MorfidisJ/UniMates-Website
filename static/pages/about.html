@@ -73,11 +73,26 @@
                 <div class="press-card-body">
                   <p class="press-card-source-label"><i class="fas fa-newspaper"></i> C.Ioannina</p>
                   <h3 class="press-card-title">Unimates: A StartUp born in Ioannina</h3>
-                  <p class="press-card-author">by C.Ioannina Editorial Team</p>
                   <div class="press-card-cta-wrap">
-                    <span class="press-card-cta-circle">
-                      <i class="fas fa-arrow-right"></i>
-                    </span>
+                    <span class="press-card-cta-circle"><i class="fas fa-arrow-right"></i></span>
+                    <span class="press-card-cta-label">Read article</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <!-- Slide 3 — Startupper -->
+            <div class="press-slide">
+              <a class="press-card"
+                href="https://startupper.gr/news/237745/gsea-greece-2026-aftoi-einai-oi-3-nikites-foititikis-epicheirimatikotitas/"
+                target="_blank" rel="noopener noreferrer"
+                aria-label="Read: GSEA Greece 2026: Αυτοί είναι οι 3 νικητές on Startupper">
+                <div class="press-card-body">
+                  <p class="press-card-source-label"><i class="fas fa-rocket"></i> Startupper</p>
+                  <h3 class="press-card-title">GSEA Greece 2026: Αυτοί είναι οι 3 νικητές φοιτητικής επιχειρηματικότητας
+                  </h3>
+                  <div class="press-card-cta-wrap">
+                    <span class="press-card-cta-circle"><i class="fas fa-arrow-right"></i></span>
                     <span class="press-card-cta-label">Read article</span>
                   </div>
                 </div>
@@ -327,6 +342,7 @@
       }
     }
 
+
     // ── Press Highlights Carousel ──
     (function () {
       const track = document.querySelector('.press-track');
@@ -375,6 +391,8 @@
         if (Math.abs(diff) > 50) { diff > 0 ? goTo(current + 1) : goTo(current - 1); }
       });
     })();
+
+
 
     // Our achievements section — expand/collapse
     function toggleAchievements(btn) {
