@@ -4,7 +4,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UniMates — Find Your Roommate</title>
+  <title>UniMates — Find Your Perfect Student Roommate</title>
+
+  <!-- SEO -->
+  <meta name="description"
+    content="UniMates is the student flatmate finder that uses smart AI matching to connect you with compatible roommates based on lifestyle, interests, and living habits. Join thousands of students finding their perfect home.">
+  <meta name="keywords"
+    content="student roommate finder, flatmate app, university housing, student accommodation, roommate matching, UniMates">
+  <meta name="author" content="UniMates">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://unimates.net/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://unimates.net/">
+  <meta property="og:title" content="UniMates — Find Your Perfect Student Roommate">
+  <meta property="og:description"
+    content="Smart AI-powered flatmate matching for students. Find compatible roommates based on lifestyle, interests, and living habits.">
+  <meta property="og:image" content="https://unimates.net/static/assets/images/og-cover.png">
+  <meta property="og:site_name" content="UniMates">
+  <meta property="og:locale" content="en_GB">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@unimatesapp">
+  <meta name="twitter:title" content="UniMates — Find Your Perfect Student Roommate">
+  <meta name="twitter:description"
+    content="Smart AI-powered flatmate matching for students. Find compatible roommates based on lifestyle, interests, and living habits.">
+  <meta name="twitter:image" content="https://unimates.net/static/assets/images/og-cover.png">
+
+  <!-- Theme -->
+  <meta name="theme-color" content="#df4f00">
+
+  <!-- Stylesheets -->
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
@@ -227,94 +259,10 @@
             </div>
           </div>
           <div class="phone-screen">
-            <!-- Screen: Courses & Grades (default active) -->
-            <div class="phone-screen-content active" id="screen-courses">
-              <div class="screen-header">
-                <h3 class="screen-page-title">Progress</h3>
-                <div class="screen-search-bar">
-                  <i class="fas fa-search"></i>
-                  <span>Search...</span>
-                </div>
-              </div>
-              <div class="screen-body">
-                <div class="semester-group">
-                  <div class="semester-header">
-                    <span class="semester-label">Semester 1</span>
-                    <span class="semester-avg">Avg. Grade 67</span>
-                  </div>
-                  <div class="course-row">
-                    <div class="course-info">
-                      <span class="course-code">COMP0023</span>
-                      <span class="course-name">DATA SCIENCE</span>
-                      <span class="course-year">2023</span>
-                    </div>
-                    <span class="course-grade">74</span>
-                  </div>
-                  <div class="course-row">
-                    <div class="course-info">
-                      <span class="course-code">COMP0028</span>
-                      <span class="course-name">CYBERSECURITY</span>
-                      <span class="course-year">2023</span>
-                    </div>
-                    <span class="course-grade grade-warning">69<sup>•</sup></span>
-                  </div>
-                  <div class="course-row">
-                    <div class="course-info">
-                      <span class="course-code">COMP0013</span>
-                      <span class="course-name">DIGITAL TECHNOLOGIES</span>
-                      <span class="course-year">2023</span>
-                    </div>
-                    <span class="course-grade grade-danger">32<sup>•</sup></span>
-                  </div>
-                  <div class="course-row">
-                    <div class="course-info">
-                      <span class="course-code">COMP0087</span>
-                      <span class="course-name">NETWORKING</span>
-                      <span class="course-year">2023</span>
-                    </div>
-                    <span class="course-grade">89</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Screen: Progress Analysis -->
-            <div class="phone-screen-content" id="screen-progress">
-              <div class="screen-header">
-                <h3 class="screen-page-title">Progress Analysis</h3>
-              </div>
-              <div class="screen-body">
-                <p class="screen-placeholder-text">Your progress analysis content goes here. Add screenshots or custom
-                  HTML to showcase this feature.</p>
-              </div>
-            </div>
-
-            <!-- Screen: News & Announcements -->
-            <div class="phone-screen-content" id="screen-news">
-              <div class="screen-header">
-                <h3 class="screen-page-title">News</h3>
-              </div>
-              <div class="screen-body">
-                <p class="screen-placeholder-text">Your news &amp; announcements content goes here. Add screenshots or
-                  custom HTML to showcase this feature.</p>
-              </div>
-            </div>
-
-            <!-- Screen: Earn Gifts -->
-            <div class="phone-screen-content" id="screen-gifts">
-              <div class="screen-header">
-                <h3 class="screen-page-title">Earn Gifts</h3>
-              </div>
-              <div class="screen-body">
-                <p class="screen-placeholder-text">Your earn gifts content goes here. Add screenshots or custom HTML to
-                  showcase this feature.</p>
-              </div>
-            </div>
+            <div class="phone-home-indicator"></div>
           </div>
-          <div class="phone-home-indicator"></div>
         </div>
       </div>
-    </div>
   </section>
 
 
@@ -363,7 +311,8 @@
             <a href="https://www.linkedin.com/company/unimatesapp" target="_blank" aria-label="LinkedIn"
               class="footer-social-link"><i class="fab fa-linkedin"></i></a>
           </div>
-          <div class="footer-contact">Contact us: <a href="mailto:info@unimates.net" target="_blank">contact@unimates.net</a></div>
+          <div class="footer-contact">Contact us: <a href="mailto:info@unimates.net"
+              target="_blank">contact@unimates.net</a></div>
         </div>
       </div>
       <div class="footer-copy">&copy; 2026 UniMates. All rights reserved. | <a href="Privacy-policy.html"
