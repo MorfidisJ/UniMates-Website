@@ -31,19 +31,22 @@
     flex-shrink: 0;
   }
 
-  .quiz-header-ad {
+  .quiz-header-ad,
+  .app-header-ad {
     grid-column: 2;
+    position: static;
+    transform: none;
     display: flex !important;
     align-items: center;
     gap: 0.4rem;
     background: linear-gradient(100deg, #ff6b35 0%, #ff8c69 30%, #8b5cf6 65%, #06b6d4 100%);
     color: #fff;
     font-weight: 500;
-    padding: 0.6rem 0.9rem;
+    padding: 0.5rem 0.85rem;
     border-radius: 999px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1), 0 0 8px rgba(255, 107, 53, 0.3);
     text-decoration: none;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     transition: all 0.3s ease;
     white-space: nowrap;
     border: 1px solid rgba(255, 255, 255, 0.15);
