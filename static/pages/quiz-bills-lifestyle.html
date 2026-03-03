@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Roommate Living Preferences Quiz - UniMates</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="../styles/styles.css">
   <link rel="stylesheet" href="../styles/mobile.css">
   <link rel="stylesheet" href="../styles/quiz-desktop.css">
 </head>
+
 <body class="quiz-page-body">
   <div class="bg-animation"></div>
   <div class="orb orb1"></div>
@@ -66,7 +70,8 @@
       <div class="completion-celebration">
         <div class="completion-emoji">🎉</div>
         <h2 class="completion-title">Thank you for sharing your preferences!</h2>
-        <p class="completion-subtitle">Your answers have been recorded.<br>We will contact you when we find your perfect roommate!</p>
+        <p class="completion-subtitle">Your answers have been recorded.<br>We will contact you when we find your perfect
+          roommate!</p>
         <a href="index.html" class="completion-home-btn"> Return to Home Page</a>
       </div>
     </div>
@@ -82,60 +87,62 @@
         <label for="userEmail">Email</label>
         <input type="email" id="userEmail" name="userEmail" required placeholder="you@email.com" autocomplete="email" />
       </div>
-        <div class="form-group">
-          <label for="userCity">City of Studying</label>
-          <select id="userCity" name="userCity" required>
-            <option value="" disabled selected>Select your city</option>
-            <option value="Athens">Athens</option>
-            <option value="Thessaloniki">Thessaloniki</option>
-            <option value="Patras">Patras</option>
-            <option value="Heraklion">Heraklion</option>
-            <option value="Ioannina">Ioannina</option>
-            <option value="Larissa">Larissa</option>
-            <option value="Volos">Volos</option>
-            <option value="Xanthi">Xanthi</option>
-            <option value="Komotini">Komotini</option>
-            <option value="Rethymno">Rethymno</option>
-            <option value="Chania">Chania</option>
-            <option value="Kozani">Kozani</option>
-            <option value="Trikala">Trikala</option>
-            <option value="Kalamata">Kalamata</option>
-            <option value="Sparta">Sparta</option>
-            <option value="Agrinio">Agrinio</option>
-            <option value="Alexandroupoli">Alexandroupoli</option>
-            <option value="Kavala">Kavala</option>
-            <option value="Serres">Serres</option>
-            <option value="Veria">Veria</option>
-            <option value="Edessa">Edessa</option>
-            <option value="Kilkis">Kilkis</option>
-            <option value="Drama">Drama</option>
-            <option value="Florina">Florina</option>
-            <option value="Kastoria">Kastoria</option>
-            <option value="Katerini">Katerini</option>
-            <option value="Corfu">Corfu</option>
-            <option value="Rhodes">Rhodes</option>
-            <option value="Chios">Chios</option>
-            <option value="Mytilene">Mytilene</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="userPhone">Phone Number</label>
-          <input type="tel" id="userPhone" name="userPhone" required placeholder="e.g. +44 7123 456789" autocomplete="tel" />
-        </div>
-        <div class="form-group">
-          <label for="userGender">Gender</label>
-          <select id="userGender" name="userGender" required>
-            <option value="" disabled selected>Select your gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Non-binary">Non-binary</option>
-            <option value="Prefer not to say">Prefer not to say</option>
-          </select>
-        </div>
-        <button type="submit" class="cta-button" id="userInfoSubmit">Submit</button>
-        <p class="disclaimer-text">By proceeding, you agree that your information will be shared with potential roommates to help find your best match.</p>
-      </form>
-    </div>
+      <div class="form-group">
+        <label for="userCity">City of Studying</label>
+        <select id="userCity" name="userCity" required>
+          <option value="" disabled selected>Select your city</option>
+          <option value="Athens">Athens</option>
+          <option value="Thessaloniki">Thessaloniki</option>
+          <option value="Patras">Patras</option>
+          <option value="Heraklion">Heraklion</option>
+          <option value="Ioannina">Ioannina</option>
+          <option value="Larissa">Larissa</option>
+          <option value="Volos">Volos</option>
+          <option value="Xanthi">Xanthi</option>
+          <option value="Komotini">Komotini</option>
+          <option value="Rethymno">Rethymno</option>
+          <option value="Chania">Chania</option>
+          <option value="Kozani">Kozani</option>
+          <option value="Trikala">Trikala</option>
+          <option value="Kalamata">Kalamata</option>
+          <option value="Sparta">Sparta</option>
+          <option value="Agrinio">Agrinio</option>
+          <option value="Alexandroupoli">Alexandroupoli</option>
+          <option value="Kavala">Kavala</option>
+          <option value="Serres">Serres</option>
+          <option value="Veria">Veria</option>
+          <option value="Edessa">Edessa</option>
+          <option value="Kilkis">Kilkis</option>
+          <option value="Drama">Drama</option>
+          <option value="Florina">Florina</option>
+          <option value="Kastoria">Kastoria</option>
+          <option value="Katerini">Katerini</option>
+          <option value="Corfu">Corfu</option>
+          <option value="Rhodes">Rhodes</option>
+          <option value="Chios">Chios</option>
+          <option value="Mytilene">Mytilene</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="userPhone">Phone Number</label>
+        <input type="tel" id="userPhone" name="userPhone" required placeholder="e.g. +44 7123 456789"
+          autocomplete="tel" />
+      </div>
+      <div class="form-group">
+        <label for="userGender">Gender</label>
+        <select id="userGender" name="userGender" required>
+          <option value="" disabled selected>Select your gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Non-binary">Non-binary</option>
+          <option value="Prefer not to say">Prefer not to say</option>
+        </select>
+      </div>
+      <button type="submit" class="cta-button" id="userInfoSubmit">Submit</button>
+      <p class="disclaimer-text">By proceeding, you agree that your information will be shared with potential roommates
+        to help find your best match.</p>
+    </form>
+  </div>
   </main>
   <style>
     /* Custom style for 3-option questions */
@@ -145,22 +152,26 @@
       justify-content: center;
       gap: 2rem;
     }
+
     .options-grid.three-options .answer-option {
       flex: 1 1 0;
       min-width: 0;
       max-width: 220px;
       text-align: center;
     }
+
     @media (max-width: 600px) {
       .options-grid.three-options {
         flex-direction: column;
         gap: 1.2rem;
         align-items: stretch;
       }
+
       .options-grid.three-options .answer-option {
         max-width: 100%;
       }
     }
+
     .encouragement-message {
       display: inline-block;
       min-width: 220px;
@@ -172,21 +183,32 @@
       color: #fff;
       background: linear-gradient(100deg, #ff6b35 0%, #ff8c69 30%, #8b5cf6 65%, #06b6d4 100%);
       border-radius: 1.5rem;
-      box-shadow: 0 4px 24px 0 rgba(139,92,246,0.10), 0 2px 8px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 24px 0 rgba(139, 92, 246, 0.10), 0 2px 8px rgba(0, 0, 0, 0.08);
       text-align: center;
       letter-spacing: 0.01em;
       position: relative;
       overflow: hidden;
-      animation: encouragementFadeIn 0.7s cubic-bezier(.4,2,.6,1);
+      animation: encouragementFadeIn 0.7s cubic-bezier(.4, 2, .6, 1);
     }
+
     .encouragement-message.pulse {
-      animation: encouragementPulse 0.7s cubic-bezier(.4,2,.6,1);
+      animation: encouragementPulse 0.7s cubic-bezier(.4, 2, .6, 1);
     }
+
     @keyframes encouragementPulse {
-      0% { transform: scale(1); }
-      40% { transform: scale(1.08); }
-      100% { transform: scale(1); }
+      0% {
+        transform: scale(1);
+      }
+
+      40% {
+        transform: scale(1.08);
+      }
+
+      100% {
+        transform: scale(1);
+      }
     }
+
     .encouragement-message .emoji {
       display: inline-block;
       margin-right: 0.5rem;
@@ -194,75 +216,112 @@
       animation: emojiBounce 1.2s infinite alternate;
       vertical-align: middle;
     }
+
     @keyframes encouragementFadeIn {
-      from { opacity: 0; transform: translateY(-18px) scale(0.98); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+      from {
+        opacity: 0;
+        transform: translateY(-18px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
+
     @keyframes emojiBounce {
-      0% { transform: translateY(0) scale(1); }
-      60% { transform: translateY(-6px) scale(1.08); }
-      100% { transform: translateY(0) scale(1); }
+      0% {
+        transform: translateY(0) scale(1);
+      }
+
+      60% {
+        transform: translateY(-6px) scale(1.08);
+      }
+
+      100% {
+        transform: translateY(0) scale(1);
+      }
     }
+
     .question-card.fade-in {
-      animation: fadeInCard 0.6s cubic-bezier(.4,2,.6,1);
+      animation: fadeInCard 0.6s cubic-bezier(.4, 2, .6, 1);
     }
+
     @keyframes fadeInCard {
-      from { opacity: 0; transform: translateY(30px) scale(0.98); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
+
     .answer-option {
-      transition: transform 0.18s cubic-bezier(.4,2,.6,1), box-shadow 0.18s cubic-bezier(.4,2,.6,1);
+      transition: transform 0.18s cubic-bezier(.4, 2, .6, 1), box-shadow 0.18s cubic-bezier(.4, 2, .6, 1);
     }
+
     .answer-option:hover {
       transform: scale(1.06) translateY(-2px);
-      box-shadow: 0 8px 32px 0 rgba(139,92,246,0.18), 0 2px 8px rgba(0,0,0,0.10);
+      box-shadow: 0 8px 32px 0 rgba(139, 92, 246, 0.18), 0 2px 8px rgba(0, 0, 0, 0.10);
       z-index: 2;
       border-color: var(--accent-light);
     }
+
     .user-info-section {
       max-width: 420px;
       margin: 3rem auto 2.5rem auto;
-      background: rgba(255,255,255,0.85);
+      background: rgba(255, 255, 255, 0.85);
       border-radius: 1.7rem;
-      box-shadow: 0 8px 32px rgba(139,92,246,0.10), 0 2px 8px rgba(0,0,0,0.08);
+      box-shadow: 0 8px 32px rgba(139, 92, 246, 0.10), 0 2px 8px rgba(0, 0, 0, 0.08);
       padding: 2.5rem 2rem 2rem 2rem;
       text-align: center;
-      border: 1px solid rgba(228,214,167,0.18);
-      animation: fadeInCard 0.7s cubic-bezier(.4,2,.6,1);
+      border: 1px solid rgba(228, 214, 167, 0.18);
+      animation: fadeInCard 0.7s cubic-bezier(.4, 2, .6, 1);
     }
+
     .user-info-form {
       display: flex;
       flex-direction: column;
       gap: 1.2rem;
       margin-top: 1.2rem;
     }
+
     .form-group {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       gap: 0.4rem;
     }
+
     .form-group label {
       font-weight: 600;
       color: var(--main);
       margin-bottom: 0.2rem;
       font-size: 1.05rem;
     }
-    .form-group input, .form-group select {
+
+    .form-group input,
+    .form-group select {
       width: 100%;
       padding: 0.7rem 1rem;
       border-radius: 0.9rem;
-      border: 1.5px solid rgba(139,92,246,0.18);
-      background: rgba(228,214,167,0.10);
+      border: 1.5px solid rgba(139, 92, 246, 0.18);
+      background: rgba(228, 214, 167, 0.10);
       font-size: 1.05rem;
       color: #222;
       outline: none;
       transition: border 0.2s;
     }
-    .form-group input:focus, .form-group select:focus {
+
+    .form-group input:focus,
+    .form-group select:focus {
       border: 1.5px solid var(--accent);
       background: #fff;
     }
+
     .cta-button {
       margin-top: 1.2rem;
       font-size: 1.1rem;
@@ -272,104 +331,167 @@
       background: linear-gradient(100deg, #ff6b35 0%, #ff8c69 30%, #8b5cf6 65%, #06b6d4 100%);
       color: #fff;
       border: none;
-      box-shadow: 0 4px 24px 0 rgba(139,92,246,0.10), 0 2px 8px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 24px 0 rgba(139, 92, 246, 0.10), 0 2px 8px rgba(0, 0, 0, 0.08);
       cursor: pointer;
       transition: background 0.2s, transform 0.2s;
     }
+
     .cta-button:active {
       transform: scale(0.97);
     }
+
     @media (max-width: 600px) {
       .user-info-section {
         padding: 1.2rem 0.5rem 1.2rem 0.5rem;
       }
     }
+
     #questionCardWrapper {
       border: 5px solid transparent;
       border-radius: 2.2rem;
       padding: 0.25rem;
       margin-bottom: 2.2rem;
-      box-shadow: 0 0 0 0 rgba(0,0,0,0.08);
-      transition: border 0.5s cubic-bezier(.4,2,.6,1), box-shadow 0.5s cubic-bezier(.4,2,.6,1);
-      animation: borderGlowIn 0.7s cubic-bezier(.4,2,.6,1);
+      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.08);
+      transition: border 0.5s cubic-bezier(.4, 2, .6, 1), box-shadow 0.5s cubic-bezier(.4, 2, .6, 1);
+      animation: borderGlowIn 0.7s cubic-bezier(.4, 2, .6, 1);
       background: none;
       position: relative;
       z-index: 2;
     }
+
     .category-border-bills {
       border-image: linear-gradient(100deg, #ffb347 0%, #ffcc33 100%) 1;
-      box-shadow: 0 0 24px 0 #ffcc3355, 0 2px 8px rgba(0,0,0,0.08);
-      animation: borderGlowBills 1.2s cubic-bezier(.4,2,.6,1);
+      box-shadow: 0 0 24px 0 #ffcc3355, 0 2px 8px rgba(0, 0, 0, 0.08);
+      animation: borderGlowBills 1.2s cubic-bezier(.4, 2, .6, 1);
     }
+
     .category-border-cleaning {
       border-image: linear-gradient(100deg, #6dd5ed 0%, #2193b0 100%) 1;
-      box-shadow: 0 0 24px 0 #6dd5ed55, 0 2px 8px rgba(0,0,0,0.08);
-      animation: borderGlowCleaning 1.2s cubic-bezier(.4,2,.6,1);
+      box-shadow: 0 0 24px 0 #6dd5ed55, 0 2px 8px rgba(0, 0, 0, 0.08);
+      animation: borderGlowCleaning 1.2s cubic-bezier(.4, 2, .6, 1);
     }
+
     .category-border-lifestyle {
       border-image: linear-gradient(100deg, #a8ff78 0%, #78ffd6 100%) 1;
-      box-shadow: 0 0 24px 0 #78ffd655, 0 2px 8px rgba(0,0,0,0.08);
-      animation: borderGlowLifestyle 1.2s cubic-bezier(.4,2,.6,1);
+      box-shadow: 0 0 24px 0 #78ffd655, 0 2px 8px rgba(0, 0, 0, 0.08);
+      animation: borderGlowLifestyle 1.2s cubic-bezier(.4, 2, .6, 1);
     }
+
     .category-border-guests {
       border-image: linear-gradient(100deg, #f7971e 0%, #ffd200 100%) 1;
-      box-shadow: 0 0 24px 0 #ffd20055, 0 2px 8px rgba(0,0,0,0.08);
-      animation: borderGlowGuests 1.2s cubic-bezier(.4,2,.6,1);
+      box-shadow: 0 0 24px 0 #ffd20055, 0 2px 8px rgba(0, 0, 0, 0.08);
+      animation: borderGlowGuests 1.2s cubic-bezier(.4, 2, .6, 1);
     }
+
     .category-border-food {
       border-image: linear-gradient(100deg, #f857a6 0%, #ff5858 100%) 1;
-      box-shadow: 0 0 24px 0 #ff585855, 0 2px 8px rgba(0,0,0,0.08);
-      animation: borderGlowFood 1.2s cubic-bezier(.4,2,.6,1);
+      box-shadow: 0 0 24px 0 #ff585855, 0 2px 8px rgba(0, 0, 0, 0.08);
+      animation: borderGlowFood 1.2s cubic-bezier(.4, 2, .6, 1);
     }
+
     @keyframes borderGlowIn {
-      from { box-shadow: 0 0 0 0 rgba(0,0,0,0.00); }
-      to { box-shadow: 0 0 24px 0 rgba(0,0,0,0.08); }
+      from {
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.00);
+      }
+
+      to {
+        box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.08);
+      }
     }
+
     @keyframes borderGlowBills {
-      0% { box-shadow: 0 0 0 0 #ffcc3300; }
-      60% { box-shadow: 0 0 32px 0 #ffcc33aa; }
-      100% { box-shadow: 0 0 24px 0 #ffcc3355; }
+      0% {
+        box-shadow: 0 0 0 0 #ffcc3300;
+      }
+
+      60% {
+        box-shadow: 0 0 32px 0 #ffcc33aa;
+      }
+
+      100% {
+        box-shadow: 0 0 24px 0 #ffcc3355;
+      }
     }
+
     @keyframes borderGlowCleaning {
-      0% { box-shadow: 0 0 0 0 #6dd5ed00; }
-      60% { box-shadow: 0 0 32px 0 #6dd5edaa; }
-      100% { box-shadow: 0 0 24px 0 #6dd5ed55; }
+      0% {
+        box-shadow: 0 0 0 0 #6dd5ed00;
+      }
+
+      60% {
+        box-shadow: 0 0 32px 0 #6dd5edaa;
+      }
+
+      100% {
+        box-shadow: 0 0 24px 0 #6dd5ed55;
+      }
     }
+
     @keyframes borderGlowLifestyle {
-      0% { box-shadow: 0 0 0 0 #78ffd600; }
-      60% { box-shadow: 0 0 32px 0 #78ffd6aa; }
-      100% { box-shadow: 0 0 24px 0 #78ffd655; }
+      0% {
+        box-shadow: 0 0 0 0 #78ffd600;
+      }
+
+      60% {
+        box-shadow: 0 0 32px 0 #78ffd6aa;
+      }
+
+      100% {
+        box-shadow: 0 0 24px 0 #78ffd655;
+      }
     }
+
     @keyframes borderGlowGuests {
-      0% { box-shadow: 0 0 0 0 #ffd20000; }
-      60% { box-shadow: 0 0 32px 0 #ffd200aa; }
-      100% { box-shadow: 0 0 24px 0 #ffd20055; }
+      0% {
+        box-shadow: 0 0 0 0 #ffd20000;
+      }
+
+      60% {
+        box-shadow: 0 0 32px 0 #ffd200aa;
+      }
+
+      100% {
+        box-shadow: 0 0 24px 0 #ffd20055;
+      }
     }
+
     @keyframes borderGlowFood {
-      0% { box-shadow: 0 0 0 0 #ff585800; }
-      60% { box-shadow: 0 0 32px 0 #ff5858aa; }
-      100% { box-shadow: 0 0 24px 0 #ff585855; }
+      0% {
+        box-shadow: 0 0 0 0 #ff585800;
+      }
+
+      60% {
+        box-shadow: 0 0 32px 0 #ff5858aa;
+      }
+
+      100% {
+        box-shadow: 0 0 24px 0 #ff585855;
+      }
     }
+
     .question-card-inner {
-      background: rgba(255,255,255,0.72) !important;
+      background: rgba(255, 255, 255, 0.72) !important;
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       border-radius: 2rem;
-      box-shadow: 0 8px 32px rgba(228,214,167,0.10), 0 2px 8px rgba(0,0,0,0.04);
+      box-shadow: 0 8px 32px rgba(228, 214, 167, 0.10), 0 2px 8px rgba(0, 0, 0, 0.04);
       color: #222 !important;
       text-align: center;
       transition: all 0.3s ease;
       padding: 3rem 2.5rem;
       margin: 0;
     }
+
     @media (max-width: 600px) {
       #questionCardWrapper {
         padding: 0.1rem;
       }
+
       .question-card-inner {
         padding: 1.2rem 0.5rem;
       }
     }
+
     .category-label {
       position: absolute;
       top: -1.2rem;
@@ -383,28 +505,47 @@
       color: #fff;
       padding: 0.45rem 1.1rem 0.45rem 0.95rem;
       border-radius: 1.2rem;
-      box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
+      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.10);
       background: var(--category-label-bg, linear-gradient(100deg, #ffb347 0%, #ffcc33 100%));
-      animation: categoryLabelFadeIn 0.7s cubic-bezier(.4,2,.6,1);
+      animation: categoryLabelFadeIn 0.7s cubic-bezier(.4, 2, .6, 1);
       border: 2.5px solid #fff;
       min-width: 0;
       min-height: 0;
       pointer-events: none;
     }
+
     .category-label .cat-icon {
       font-size: 1.3em;
       margin-right: 0.2rem;
-      animation: catIconPop 0.7s cubic-bezier(.4,2,.6,1);
+      animation: catIconPop 0.7s cubic-bezier(.4, 2, .6, 1);
     }
+
     @keyframes categoryLabelFadeIn {
-      from { opacity: 0; transform: translateY(-10px) scale(0.98); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+      from {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
+
     @keyframes catIconPop {
-      0% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-5px) scale(1.1); }
-      100% { transform: translateY(0) scale(1); }
+      0% {
+        transform: translateY(0) scale(1);
+      }
+
+      50% {
+        transform: translateY(-5px) scale(1.1);
+      }
+
+      100% {
+        transform: translateY(0) scale(1);
+      }
     }
+
     .completion-celebration {
       display: flex;
       flex-direction: column;
@@ -412,39 +553,62 @@
       justify-content: center;
       min-height: 340px;
       padding: 2.5rem 1.5rem 2.5rem 1.5rem;
-      background: rgba(255,255,255,0.95);
+      background: rgba(255, 255, 255, 0.95);
       border-radius: 2.2rem;
-      box-shadow: 0 8px 32px 0 rgba(139,92,246,0.10), 0 2px 8px rgba(0,0,0,0.04);
+      box-shadow: 0 8px 32px 0 rgba(139, 92, 246, 0.10), 0 2px 8px rgba(0, 0, 0, 0.04);
       position: relative;
       margin: 2.5rem auto 0 auto;
       max-width: 480px;
-      animation: fadeInCelebration 1.1s cubic-bezier(.4,2,.6,1);
+      animation: fadeInCelebration 1.1s cubic-bezier(.4, 2, .6, 1);
       overflow: hidden;
     }
+
     .completion-celebration::before {
       content: '';
       position: absolute;
-      top: -40px; left: -40px; right: -40px; bottom: -40px;
+      top: -40px;
+      left: -40px;
+      right: -40px;
+      bottom: -40px;
       background: radial-gradient(circle at 60% 40%, #ffb34733 0%, #8b5cf633 60%, transparent 100%);
       z-index: 0;
       pointer-events: none;
       animation: celebrationGlow 2.5s infinite alternate;
     }
+
     @keyframes celebrationGlow {
-      0% { opacity: 0.7; filter: blur(0px); }
-      100% { opacity: 1; filter: blur(2.5px); }
+      0% {
+        opacity: 0.7;
+        filter: blur(0px);
+      }
+
+      100% {
+        opacity: 1;
+        filter: blur(2.5px);
+      }
     }
+
     .completion-emoji {
       font-size: 3.5rem;
       margin-bottom: 1.2rem;
-      animation: emojiPopCelebration 1.2s cubic-bezier(.4,2,.6,1) infinite alternate;
+      animation: emojiPopCelebration 1.2s cubic-bezier(.4, 2, .6, 1) infinite alternate;
       z-index: 1;
     }
+
     @keyframes emojiPopCelebration {
-      0% { transform: scale(1) rotate(-8deg); }
-      60% { transform: scale(1.18) rotate(8deg); }
-      100% { transform: scale(1) rotate(-8deg); }
+      0% {
+        transform: scale(1) rotate(-8deg);
+      }
+
+      60% {
+        transform: scale(1.18) rotate(8deg);
+      }
+
+      100% {
+        transform: scale(1) rotate(-8deg);
+      }
     }
+
     .completion-title {
       font-size: 2.1rem;
       font-weight: 800;
@@ -457,16 +621,18 @@
       text-align: center;
       z-index: 1;
       letter-spacing: 0.01em;
-      animation: fadeInCelebration 1.1s cubic-bezier(.4,2,.6,1);
+      animation: fadeInCelebration 1.1s cubic-bezier(.4, 2, .6, 1);
     }
+
     .completion-subtitle {
       font-size: 1.18rem;
       color: var(--main);
       margin-bottom: 2.2rem;
       text-align: center;
       z-index: 1;
-      animation: fadeInCelebration 1.1s cubic-bezier(.4,2,.6,1);
+      animation: fadeInCelebration 1.1s cubic-bezier(.4, 2, .6, 1);
     }
+
     .completion-home-btn {
       display: inline-block;
       font-size: 1.1rem;
@@ -476,64 +642,101 @@
       background: linear-gradient(100deg, #ff6b35 0%, #ff8c69 30%, #8b5cf6 65%, #06b6d4 100%);
       color: #fff;
       border: none;
-      box-shadow: 0 4px 24px 0 rgba(139,92,246,0.10), 0 2px 8px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 24px 0 rgba(139, 92, 246, 0.10), 0 2px 8px rgba(0, 0, 0, 0.08);
       cursor: pointer;
       text-decoration: none;
       transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
       z-index: 1;
-      animation: fadeInCelebration 1.1s cubic-bezier(.4,2,.6,1);
+      animation: fadeInCelebration 1.1s cubic-bezier(.4, 2, .6, 1);
       position: relative;
       overflow: hidden;
     }
+
     .completion-home-btn:active {
       transform: scale(0.97);
     }
+
     .completion-home-btn .home-icon {
       font-size: 1.3em;
       margin-right: 0.7em;
       vertical-align: middle;
       display: inline-block;
-      transition: transform 0.25s cubic-bezier(.4,2,.6,1);
+      transition: transform 0.25s cubic-bezier(.4, 2, .6, 1);
     }
+
     .completion-home-btn:hover .home-icon {
       transform: scale(1.18) rotate(-10deg);
     }
+
     .completion-home-btn:hover {
-      box-shadow: 0 0 32px 0 #8b5cf6cc, 0 2px 8px rgba(0,0,0,0.10);
+      box-shadow: 0 0 32px 0 #8b5cf6cc, 0 2px 8px rgba(0, 0, 0, 0.10);
       background: linear-gradient(100deg, #8b5cf6 0%, #06b6d4 100%);
-      animation: bounceBtn 0.5s cubic-bezier(.4,2,.6,1);
+      animation: bounceBtn 0.5s cubic-bezier(.4, 2, .6, 1);
     }
+
     @keyframes bounceBtn {
-      0% { transform: scale(1); }
-      40% { transform: scale(1.08); }
-      100% { transform: scale(1); }
+      0% {
+        transform: scale(1);
+      }
+
+      40% {
+        transform: scale(1.08);
+      }
+
+      100% {
+        transform: scale(1);
+      }
     }
+
     @keyframes fadeInCelebration {
-      from { opacity: 0; transform: translateY(40px) scale(0.98); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+      from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
   </style>
   <footer class="site-footer">
-    <div class="footer-content">
-      <div class="footer-cube-container">
-        <div class="cube" tabindex="0">
-          <div class="cube-face cube-face-front"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
-          <div class="cube-face cube-face-back"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
-          <div class="cube-face cube-face-right"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
-          <div class="cube-face cube-face-left"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
-          <div class="cube-face cube-face-top"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
-          <div class="cube-face cube-face-bottom"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
+    <div class="footer-info-box">
+      <div class="footer-row">
+        <div class="footer-cube-container">
+          <div class="cube" tabindex="0">
+            <div class="cube-face cube-face-front"><img src="../assets/images/logo.svg" alt="Logo" width="60"
+                height="60"></div>
+            <div class="cube-face cube-face-back"><img src="../assets/images/logo.svg" alt="Logo" width="60"
+                height="60"></div>
+            <div class="cube-face cube-face-right"><img src="../assets/images/logo.svg" alt="Logo" width="60"
+                height="60"></div>
+            <div class="cube-face cube-face-left"><img src="../assets/images/logo.svg" alt="Logo" width="60"
+                height="60"></div>
+            <div class="cube-face cube-face-top"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60">
+            </div>
+            <div class="cube-face cube-face-bottom"><img src="../assets/images/logo.svg" alt="Logo" width="60"
+                height="60"></div>
+          </div>
+        </div>
+        <div class="footer-social-group">
+          <div class="footer-social">
+            <a href="https://instagram.com/unimates_app" target="_blank" aria-label="Instagram"
+              class="footer-social-link"><i class="fab fa-instagram"></i></a>
+            <a href="https://tiktok.com/@unimatesapp" target="_blank" aria-label="TikTok" class="footer-social-link"><i
+                class="fab fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/channel/UCMKHVISj443ioGYAZYRUrTQ" target="_blank" aria-label="YouTube"
+              class="footer-social-link"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.linkedin.com/company/unimatesapp" target="_blank" aria-label="LinkedIn"
+              class="footer-social-link"><i class="fab fa-linkedin"></i></a>
+          </div>
+          <div class="footer-contact">Contact us: <a href="mailto:contact@unimates.net"
+              target="_blank">contact@unimates.net</a></div>
         </div>
       </div>
-      <div class="footer-social">
-        <a href="https://instagram.com/unimates.info" target="_blank" aria-label="Instagram" class="footer-social-link"><i class="fab fa-instagram"></i></a>
-        <a href="https://tiktok.com/@unimatesapp" target="_blank" aria-label="TikTok" class="footer-social-link"><i class="fab fa-tiktok"></i></a>
-        <a href="https://www.youtube.com/channel/UCMKHVISj443ioGYAZYRUrTQ" target="_blank" aria-label="YouTube" class="footer-social-link"><i class="fab fa-youtube"></i></a>
-        <a href="https://www.linkedin.com/company/unimatesapp" target="_blank" aria-label="LinkedIn" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@unimates.net&su=Regarding Your Inquiry&body=Dear Unimates Team,"aria-label="Email" class="footer-social-link"><i class="fas fa-envelope"></i></a></div>
-      </div>
+      <div class="footer-copy">&copy; 2026 UniMates. All rights reserved. | <a href="Privacy-policy.html"
+          style="color: var(--accent); text-decoration: none;">Privacy Policy</a></div>
     </div>
-    <div class="footer-copy">&copy; 2025 UniMates. All rights reserved. | <a href="Privacy-policy.html" style="color: var(--accent); text-decoration: none;">Privacy Policy</a></div>
   </footer>
   <script src="../scripts/shared.js"></script>
   <script>
@@ -854,7 +1057,7 @@
       // Animated border for category
       const cardWrapper = document.getElementById('questionCardWrapper');
       const categoryLabel = document.getElementById('categoryLabel');
-      cardWrapper.classList.remove('category-border-bills','category-border-cleaning','category-border-lifestyle','category-border-guests','category-border-food');
+      cardWrapper.classList.remove('category-border-bills', 'category-border-cleaning', 'category-border-lifestyle', 'category-border-guests', 'category-border-food');
       // Pick border class and header info based on category
       const cat = categoryMap[currentQuestionIndex];
       if (cat) {
@@ -972,7 +1175,7 @@
     const userInfoSection = document.getElementById('userInfoSection');
     const encouragementDiv = document.getElementById('encouragementMessage');
     const questionCardWrapper = document.getElementById('questionCardWrapper');
-    
+
     // Hide user info section by default, show quiz
     userInfoSection.style.display = 'none';
     questionCardWrapper.style.display = 'block';
@@ -980,7 +1183,7 @@
 
     // User info form handling (for after quiz completion)
     const userInfoForm = document.getElementById('userInfoForm');
-    userInfoForm.addEventListener('submit', function(e) {
+    userInfoForm.addEventListener('submit', function (e) {
       e.preventDefault();
       // Validate all fields
       const name = document.getElementById('userName').value.trim();
@@ -988,12 +1191,12 @@
       const city = document.getElementById('userCity').value.trim();
       const phone = document.getElementById('userPhone').value.trim();
       const gender = document.getElementById('userGender').value;
-      
+
       if (!name || !email || !city || !phone || !gender) {
         alert('Please fill in all fields.');
         return;
       }
-      
+
       // Prepare payload according to backend QuizWMatch model
       const payload = {
         email: email,
@@ -1010,29 +1213,30 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        // On successful submission, hide the form and show thank you note
-        userInfoSection.style.display = 'none';
-        resultsSection.style.display = 'block';
-      })
-      .catch(error => {
-        console.error('Error submitting form:', error);
-        // Show error message but still proceed to thank you note
-        alert('There was an error submitting your information. Please try again later.');
-        userInfoSection.style.display = 'none';
-        resultsSection.style.display = 'block';
-      });
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          // On successful submission, hide the form and show thank you note
+          userInfoSection.style.display = 'none';
+          resultsSection.style.display = 'block';
+        })
+        .catch(error => {
+          console.error('Error submitting form:', error);
+          // Show error message but still proceed to thank you note
+          alert('There was an error submitting your information. Please try again later.');
+          userInfoSection.style.display = 'none';
+          resultsSection.style.display = 'block';
+        });
     });
-    
+
     // Start the quiz
     updateQuestion();
   </script>
   <script src="../scripts/view-switcher.js"></script>
 </body>
-</html> 
+
+</html>

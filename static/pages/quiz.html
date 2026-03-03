@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Roommate Style Quiz - UniMates</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="../styles/styles.css">
   <link rel="stylesheet" href="../styles/mobile.css">
   <link rel="stylesheet" href="../styles/quiz-desktop.css">
 </head>
+
 <body class="quiz-page-body">
   <div class="bg-animation"></div>
-  
+
   <div class="orb orb1"></div>
   <div class="orb orb2"></div>
   <div class="orb orb3"></div>
@@ -64,7 +68,7 @@
 
     <div class="results-section" id="resultsSection">
       <h2 class="section-title">Your Results Are Ready!</h2>
-      
+
       <div class="results-preview">
         <div class="results-teaser" id="resultsTeaser"></div>
         <div class="results-overlay">
@@ -75,9 +79,12 @@
           </p>
           <form id="waitlistForm" class="waitlist-form">
             <input type="email" id="email" placeholder="Enter your email address" required />
-            <label class="waitlist-checkbox-label" style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.88rem; color: var(--text-dim); margin-top: 0.2rem; font-weight: 400;">
-              <input type="checkbox" id="waitlist-accept" required style="accent-color: var(--accent); width: 1rem; height: 1rem; border-radius: 5px; margin-right: 0.4rem;" />
-              I agree to receive updates, beta invitations, and occasional emails from UniMates. I understand I can unsubscribe at any time.
+            <label class="waitlist-checkbox-label"
+              style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.88rem; color: var(--text-dim); margin-top: 0.2rem; font-weight: 400;">
+              <input type="checkbox" id="waitlist-accept" required
+                style="accent-color: var(--accent); width: 1rem; height: 1rem; border-radius: 5px; margin-right: 0.4rem;" />
+              I agree to receive updates, beta invitations, and occasional emails from UniMates. I understand I can
+              unsubscribe at any time.
             </label>
             <button type="submit" class="cta-button">Join Waitlist</button>
           </form>
@@ -86,31 +93,47 @@
           </div>
         </div>
       </div>
-      
+
       <div class="full-results" id="fullResults"></div>
     </div>
   </main>
   <footer class="site-footer">
-    <div class="footer-content">
-      <div class="footer-cube-container">
-        <div class="cube" tabindex="0">
-          <div class="cube-face cube-face-front"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
-          <div class="cube-face cube-face-back"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
-          <div class="cube-face cube-face-right"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
-          <div class="cube-face cube-face-left"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
-          <div class="cube-face cube-face-top"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
-          <div class="cube-face cube-face-bottom"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60"></div>
+    <div class="footer-info-box">
+      <div class="footer-row">
+        <div class="footer-cube-container">
+          <div class="cube" tabindex="0">
+            <div class="cube-face cube-face-front"><img src="../assets/images/logo.svg" alt="Logo" width="60"
+                height="60"></div>
+            <div class="cube-face cube-face-back"><img src="../assets/images/logo.svg" alt="Logo" width="60"
+                height="60"></div>
+            <div class="cube-face cube-face-right"><img src="../assets/images/logo.svg" alt="Logo" width="60"
+                height="60"></div>
+            <div class="cube-face cube-face-left"><img src="../assets/images/logo.svg" alt="Logo" width="60"
+                height="60"></div>
+            <div class="cube-face cube-face-top"><img src="../assets/images/logo.svg" alt="Logo" width="60" height="60">
+            </div>
+            <div class="cube-face cube-face-bottom"><img src="../assets/images/logo.svg" alt="Logo" width="60"
+                height="60"></div>
+          </div>
+        </div>
+        <div class="footer-social-group">
+          <div class="footer-social">
+            <a href="https://instagram.com/unimates_app" target="_blank" aria-label="Instagram"
+              class="footer-social-link"><i class="fab fa-instagram"></i></a>
+            <a href="https://tiktok.com/@unimatesapp" target="_blank" aria-label="TikTok" class="footer-social-link"><i
+                class="fab fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/channel/UCMKHVISj443ioGYAZYRUrTQ" target="_blank" aria-label="YouTube"
+              class="footer-social-link"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.linkedin.com/company/unimatesapp" target="_blank" aria-label="LinkedIn"
+              class="footer-social-link"><i class="fab fa-linkedin"></i></a>
+          </div>
+          <div class="footer-contact">Contact us: <a href="mailto:contact@unimates.net"
+              target="_blank">contact@unimates.net</a></div>
         </div>
       </div>
-      <div class="footer-social">
-        <a href="https://instagram.com/unimates.info" target="_blank" aria-label="Instagram" class="footer-social-link"><i class="fab fa-instagram"></i></a>
-        <a href="https://tiktok.com/@unimatesapp" target="_blank" aria-label="TikTok" class="footer-social-link"><i class="fab fa-tiktok"></i></a>
-        <a href="https://www.youtube.com/channel/UCMKHVISj443ioGYAZYRUrTQ" target="_blank" aria-label="YouTube" class="footer-social-link"><i class="fab fa-youtube"></i></a>
-        <a href="https://www.linkedin.com/company/unimatesapp" target="_blank" aria-label="LinkedIn" class="footer-social-link"><i class="fab fa-linkedin"></i></a>
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@unimates.net&su=Regarding Your Inquiry&body=Dear Unimates Team,"aria-label="Email" class="footer-social-link"><i class="fas fa-envelope"></i></a></div>
-      </div>
+      <div class="footer-copy">&copy; 2026 UniMates. All rights reserved. | <a href="Privacy-policy.html"
+          style="color: var(--accent); text-decoration: none;">Privacy Policy</a></div>
     </div>
-    <div class="footer-copy">&copy; 2025 UniMates. All rights reserved. | <a href="Privacy-policy.html" style="color: var(--accent); text-decoration: none;">Privacy Policy</a></div>
   </footer>
 
   <canvas id="confetti-canvas"></canvas>
@@ -229,7 +252,7 @@
       const question = questions[currentQuestionIndex];
       currentQuestionSpan.textContent = currentQuestionIndex + 1;
       questionText.textContent = question.text;
-      
+
       optionsGrid.innerHTML = '';
       question.options.forEach((option, index) => {
         const optionDiv = document.createElement('div');
@@ -252,13 +275,13 @@
         });
         optionsGrid.appendChild(optionDiv);
       });
-      
+
       prevBtn.style.display = currentQuestionIndex === 0 ? 'none' : 'block';
       nextBtn.textContent = currentQuestionIndex === questions.length - 1 ? 'See Results' : 'Next';
-      
+
       // Update button state based on current answer
       updateNextButtonState();
-      
+
       const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
       progressBar.style.width = progress + '%';
     }
@@ -428,7 +451,7 @@
       // Map answer values to personality categories
       const answerToPersonality = {
         "social": "social",
-        "studious": "studious", 
+        "studious": "studious",
         "creative": "creative",
         "organized": "organized",
         "entertainment": "social",
@@ -440,7 +463,7 @@
         "relaxed": "creative",
         "outsource": "organized",
         "early": "organized",
-        "morning": "organized", 
+        "morning": "organized",
         "night": "creative",
         "chef": "organized",
         "casual": "social",
@@ -477,7 +500,7 @@
         // Try both combinations (order might matter)
         const combo1 = `${topType} + ${secondType}`;
         const combo2 = `${secondType} + ${topType}`;
-        
+
         if (roommateTypes[combo1]) {
           return roommateTypes[combo1];
         } else if (roommateTypes[combo2]) {
@@ -503,15 +526,15 @@
 
     function validateForm() {
       if (!waitlistForm) return;
-      
+
       const submitButton = waitlistForm.querySelector('.cta-button');
       if (!submitButton) return;
-      
+
       const email = emailInput ? emailInput.value.trim() : '';
       const emailValid = email !== '' && isValidEmail(email);
       const checkboxValid = checkbox && checkbox.checked;
       const isValid = emailValid && checkboxValid;
-      
+
       submitButton.disabled = !isValid;
       if (isValid) {
         submitButton.classList.remove('disabled');
@@ -539,10 +562,10 @@
     if (waitlistForm) {
       waitlistForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
         if (!emailInput) return;
         const email = emailInput.value;
-        
+
         // Basic validation
         if (!email) return;
 
@@ -552,7 +575,7 @@
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: email })
           });
-          
+
           if (response.ok) {
             // Show success message
             if (successMessage) {
@@ -575,26 +598,26 @@
             if (waitlistForm) {
               waitlistForm.style.display = 'none';
             }
-            
+
             // Hide lock elements
             const lockIcon = document.querySelector('.results-lock-icon');
             const lockTitle = document.querySelector('.results-lock-title');
             const lockDescription = document.querySelector('.results-lock-description');
-            
+
             if (lockIcon) lockIcon.style.display = 'none';
             if (lockTitle) lockTitle.style.display = 'none';
             if (lockDescription) lockDescription.style.display = 'none';
-            
+
             // Remove overlay effects
             if (resultsOverlay) {
               resultsOverlay.style.backdropFilter = 'none';
               resultsOverlay.style.background = 'none';
             }
-            
+
             // Generate and show full results
             const result = calculateResult();
             const fullResultsContainer = document.getElementById('fullResults');
-            
+
             if (fullResultsContainer) {
               fullResultsContainer.innerHTML = `
                 <div class="full-results-content">
@@ -656,7 +679,7 @@
                 </div>
               `;
             }
-            
+
             // Show confetti animation
             const canvas = document.getElementById('confetti-canvas');
             if (canvas) {
@@ -691,13 +714,13 @@
                   </div>
                   <div class="share-btn-glow"></div>
                 `;
-                
+
                 // Enhanced share message
                 const shareMessage = `🎓 Just discovered I'm a "${result.title}" on UniMates! \n\n🏠 Finding the perfect roommate is crucial for your university experience, and this quiz helped me understand my living style better.\n\n✨ Want to find your ideal roommate match? Take the UniMates Roommate Style Quiz and discover your perfect living companion!\n\n🔗 Take the quiz: https://unimates.net/quiz.html\n#UniMates #RoommateQuiz #UniversityLife #PerfectMatch`;
 
                 const shareTitle = `I'm a ${result.title} - What's Your Roommate Style?`;
                 const shareUrl = 'https://unimates.net/quiz.html';
-                
+
                 shareBtn.onclick = async () => {
                   // Try Web Share API first (mobile devices)
                   if (navigator.share && navigator.canShare) {
@@ -706,7 +729,7 @@
                       text: shareMessage,
                       url: shareUrl
                     };
-                    
+
                     // Check if the platform can share this data
                     if (navigator.canShare(shareData)) {
                       try {
@@ -717,13 +740,13 @@
                       }
                     }
                   }
-                  
+
                   // Fallback: Copy to clipboard with better user feedback
                   try {
                     // Create a more shareable message for clipboard
                     const clipboardMessage = `${shareMessage}\n\n${shareUrl}`;
                     await navigator.clipboard.writeText(clipboardMessage);
-                    
+
                     // Show success feedback
                     shareBtn.innerHTML = `
                       <div class="share-btn-content">
@@ -732,28 +755,28 @@
                       </div>
                       <div class="share-btn-glow"></div>
                     `;
-                    
+
                     // Show a toast notification
                     showShareToast('Message copied! You can now paste it anywhere.');
-                    
-                    setTimeout(() => { 
+
+                    setTimeout(() => {
                       shareBtn.innerHTML = `
                         <div class="share-btn-content">
                           <i class="fas fa-share-alt"></i>
                           <span>Share Your Result</span>
                         </div>
                         <div class="share-btn-glow"></div>
-                      `; 
+                      `;
                     }, 3000);
-                    
+
                   } catch (err) {
                     console.error('Clipboard copy failed:', err);
-                    
+
                     // Final fallback: Show modal with share options
                     showShareModal(shareMessage, shareUrl, shareTitle);
                   }
                 };
-                
+
                 fullResultsContainer.appendChild(shareBtn);
 
                 // --- Compatibility selection logic ---
@@ -764,7 +787,7 @@
                 let selectedCompatible = null;
                 if (compatibilityTags) {
                   compatibilityTags.innerHTML = '';
-                  let compatibleArr = Array.isArray(result.compatibleWith) ? result.compatibleWith.slice(0,3) : [];
+                  let compatibleArr = Array.isArray(result.compatibleWith) ? result.compatibleWith.slice(0, 3) : [];
                   if (compatibleArr.length > 0) {
                     noCompatibleTypes.style.display = 'none';
                     compatibleArr.forEach((type, idx) => {
@@ -812,7 +835,7 @@
                         successMsg.style.display = 'block';
                         confirmBtn.textContent = 'Confirmed!';
                         confirmBtn.style.opacity = 0.7;
-                        
+
                         // Fade out the success message after 3 seconds
                         setTimeout(() => {
                           successMsg.classList.add('fade-out');
@@ -826,7 +849,7 @@
                         successMsg.style.display = 'block';
                         confirmBtn.disabled = false;
                         confirmBtn.textContent = 'Confirm Choice';
-                        
+
                         // Fade out error message after 4 seconds
                         setTimeout(() => {
                           successMsg.classList.add('fade-out');
@@ -841,7 +864,7 @@
                       successMsg.style.display = 'block';
                       confirmBtn.disabled = false;
                       confirmBtn.textContent = 'Confirm Choice';
-                      
+
                       // Fade out error message after 4 seconds
                       setTimeout(() => {
                         successMsg.classList.add('fade-out');
@@ -932,7 +955,7 @@
       if (existingToast) {
         existingToast.remove();
       }
-      
+
       const toast = document.createElement('div');
       toast.className = 'share-toast';
       toast.innerHTML = `
@@ -941,12 +964,12 @@
           <span>${message}</span>
         </div>
       `;
-      
+
       document.body.appendChild(toast);
-      
+
       // Animate in
       setTimeout(() => toast.classList.add('show'), 100);
-      
+
       // Remove after 4 seconds
       setTimeout(() => {
         toast.classList.remove('show');
@@ -961,37 +984,37 @@
       if (existingModal) {
         existingModal.remove();
       }
-      
+
       const modal = document.createElement('div');
       modal.className = 'share-modal';
-      
+
       // Create modal structure safely
       const overlay = document.createElement('div');
       overlay.className = 'share-modal-overlay';
-      
+
       const content = document.createElement('div');
       content.className = 'share-modal-content';
-      
+
       const header = document.createElement('div');
       header.className = 'share-modal-header';
-      
+
       const headerTitle = document.createElement('h3');
       headerTitle.textContent = 'Share Your Result';
-      
+
       const closeBtn = document.createElement('button');
       closeBtn.className = 'share-modal-close';
       closeBtn.innerHTML = '<i class="fas fa-times"></i>';
       closeBtn.onclick = () => modal.remove();
-      
+
       header.appendChild(headerTitle);
       header.appendChild(closeBtn);
-      
+
       const body = document.createElement('div');
       body.className = 'share-modal-body';
-      
+
       const options = document.createElement('div');
       options.className = 'share-options';
-      
+
       // Create share option buttons safely
       const createShareButton = (icon, text, onClick) => {
         const btn = document.createElement('button');
@@ -1000,39 +1023,39 @@
         btn.onclick = onClick;
         return btn;
       };
-      
+
       options.appendChild(createShareButton('fas fa-copy', 'Copy Message', () => copyToClipboard(message, this)));
       options.appendChild(createShareButton('fas fa-link', 'Copy Link', () => copyToClipboard(url, this)));
       options.appendChild(createShareButton('fab fa-twitter', 'Share on Twitter', () => shareOnTwitter(title, url)));
       options.appendChild(createShareButton('fab fa-whatsapp', 'Share on WhatsApp', () => shareOnWhatsApp(message)));
-      
+
       const preview = document.createElement('div');
       preview.className = 'share-preview';
-      
+
       const previewTitle = document.createElement('h4');
       previewTitle.textContent = 'Preview:';
-      
+
       const previewText = document.createElement('div');
       previewText.className = 'share-preview-text';
       previewText.textContent = message;
-      
+
       preview.appendChild(previewTitle);
       preview.appendChild(previewText);
-      
+
       body.appendChild(options);
       body.appendChild(preview);
-      
+
       content.appendChild(header);
       content.appendChild(body);
-      
+
       modal.appendChild(overlay);
       modal.appendChild(content);
-      
+
       document.body.appendChild(modal);
-      
+
       // Close modal when clicking overlay
       overlay.onclick = () => modal.remove();
-      
+
       // Close on escape key
       document.addEventListener('keydown', function closeOnEscape(e) {
         if (e.key === 'Escape') {
@@ -1042,7 +1065,7 @@
       });
     }
     // Global helper functions for sharing
-    window.copyToClipboard = async function(text, button) {
+    window.copyToClipboard = async function (text, button) {
       try {
         await navigator.clipboard.writeText(text);
         const originalText = button.innerHTML;
@@ -1057,12 +1080,12 @@
       }
     };
 
-    window.shareOnTwitter = function(title, url) {
+    window.shareOnTwitter = function (title, url) {
       const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`;
       window.open(twitterUrl, '_blank');
     };
 
-    window.shareOnWhatsApp = function(message) {
+    window.shareOnWhatsApp = function (message) {
       const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, '_blank');
     };
@@ -1168,4 +1191,5 @@
   </script>
   <script src="../scripts/view-switcher.js"></script>
 </body>
+
 </html>
