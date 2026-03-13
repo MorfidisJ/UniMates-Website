@@ -36,6 +36,10 @@
   <!-- Theme -->
   <meta name="theme-color" content="#df4f00">
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+  <link rel="shortcut icon" href="../assets/images/logo.svg">
+
   <!-- Stylesheets -->
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
@@ -94,7 +98,8 @@
           <div class="profile-card card-1">
             <div class="card-avatar"
               style="background: linear-gradient(135deg,#6a5acd,#9b59b6); display:flex; align-items:center; justify-content:center; border-radius:50%; width:56px; height:56px; font-size:1.8rem;">
-              <i class="fas fa-user" style="color:#fff;"></i></div>
+              <i class="fas fa-user" style="color:#fff;"></i>
+            </div>
             <div class="card-name">Alex Chen</div>
             <div class="card-info">• Fine Arts</div>
             <div class="card-info">• 2nd Year</div>
@@ -107,7 +112,8 @@
           <div class="profile-card card-2">
             <div class="card-avatar"
               style="background: linear-gradient(135deg,#1a73e8,#0a9396); display:flex; align-items:center; justify-content:center; border-radius:50%; width:56px; height:56px; font-size:1.8rem;">
-              <i class="fas fa-user" style="color:#fff;"></i></div>
+              <i class="fas fa-user" style="color:#fff;"></i>
+            </div>
             <div class="card-name">Maya Singh</div>
             <div class="card-info">• Computer Science</div>
             <div class="card-info">• 3rd Year</div>
@@ -120,7 +126,8 @@
           <div class="profile-card card-3">
             <div class="card-avatar"
               style="background: linear-gradient(135deg,#e91e8c,#f06292); display:flex; align-items:center; justify-content:center; border-radius:50%; width:56px; height:56px; font-size:1.8rem;">
-              <i class="fas fa-user" style="color:#fff;"></i></div>
+              <i class="fas fa-user" style="color:#fff;"></i>
+            </div>
             <div class="card-name">Jamie Wilson</div>
             <div class="card-info">• Environmental Science</div>
             <div class="card-info">• 1st Year</div>
@@ -245,7 +252,7 @@
             <span class="app-feature-btn-icon">🏡</span>
             <span class="app-feature-btn-label">House Hunting</span>
           </button>
-          <button class="app-feature-btn" data-screen="screen-gifts" onclick="switchScreen(this)">
+          <button class="app-feature-btn" data-screen="screen-settings" onclick="switchScreen(this)">
             <span class="app-feature-btn-icon">⚙️</span>
             <span class="app-feature-btn-label">Settings</span>
           </button>
@@ -265,10 +272,26 @@
             </div>
           </div>
           <div class="phone-screen">
+            <div class="phone-screen-content active" id="screen-courses">
+              <img src="../assets/images/findroommates.jpg" alt="Find Roommates screen">
+            </div>
+            <div class="phone-screen-content" id="screen-progress">
+              <img src="../assets/images/myprofile.jpg" alt="My Profile screen">
+            </div>
+            <div class="phone-screen-content" id="screen-news">
+              <img src="../assets/images/mymatches.jpg" alt="My Matches screen">
+            </div>
+            <div class="phone-screen-content" id="screen-gifts">
+              <img src="../assets/images/househuntingjpg.jpg" alt="House Hunting screen">
+            </div>
+            <div class="phone-screen-content" id="screen-settings">
+              <img src="../assets/images/settings.jpg" alt="Settings screen">
+            </div>
             <div class="phone-home-indicator"></div>
           </div>
         </div>
       </div>
+    </div>
   </section>
 
 
