@@ -1,58 +1,62 @@
 # UniMates Website
 
-A modern, responsive website for UniMates - a platform that helps university students find compatible roommates through personality-based matching.
+A modern, responsive website for UniMates — a platform that helps university students find compatible roommates through personality-based matching.
 
 ## 📚 Documentation
 
-- **[Technical Documentation](static/scripts/QUIZ_TECHNICAL_DOCS.md)** - Comprehensive guide to the quiz system architecture, scoring algorithm, and technical implementation
-- **[Project Structure](static/PROJECT_STRUCTURE.md)** - Detailed frontend architecture and development guidelines
+- **[Technical Documentation](static/scripts/QUIZ_TECHNICAL_DOCS.md)** — Comprehensive guide to the quiz system architecture, scoring algorithm, and technical implementation
+- **[Project Structure](static/PROJECT_STRUCTURE.md)** — Detailed frontend architecture and development guidelines
 
 ## 🏗️ Project Structure
 
 ```
 UniMates Website/
-├── 📁 static/                      # Static files (Frontend)
-│   ├── 📁 pages/                   # HTML pages
-│   │   ├── index.html              # Homepage
-│   │   ├── quiz.html               # Roommate Style Quiz
-│   │   ├── how-it-works.html       # How it works page
-│   │   ├── about.html              # About us page
-│   │   └── Privacy-policy.html     # Privacy policy
-│   ├── 📁 styles/                  # CSS stylesheets
-│   │   ├── styles.css              # Main stylesheet
-│   │   ├── mobile.css              # Mobile-specific styles
-│   │   ├── quiz-desktop.css        # Quiz page desktop styles
-│   │   ├── how-it-works-desktop.css # How it works desktop styles
-│   │   └── about-desktop.css       # About page desktop styles
-│   ├── 📁 scripts/                # JavaScript files
-│   │   ├── QUIZ_TECHNICAL_DOCS.md  # Technical quiz system documentation
-│   │   ├── shared.js               # Shared functionality
-│   │   ├── email-handler.js        # Email handling logic
-│   │   └── view-switcher.js        # View switching functionality
-│   ├── 📁 assets/                  # Static assets
-│   │   ├── 📁 images/              # Image files
-│   │   │   ├── logo.png            # Main logo (PNG)
-│   │   │   ├── logo.svg            # Vector logo
-│   │   │   ├── 1.jpg               # Homepage image 1
-│   │   │   ├── 2.jpg               # Homepage image 2
-│   │   │   ├── 3.jpg               # Homepage image 3
-│   │   │   ├── 4.jpg               # Homepage image 4
-│   │   │   ├── gkou.jpg            # Team member photo
-│   │   │   ├── than.jpg            # Team member photo
-│   │   │   ├── morf.jpg            # Team member photo
-│   │   │   └── vogg.jpg            # Team member photo
-│   │   └── 📁 email/               # Email templates
-│   │       └── unimates-email-signature.html
-│   └── PROJECT_STRUCTURE.md        # Frontend architecture guide
-├── 📁 api/                         # Backend files
-│   ├── api.py                      # API routes and handlers
-│   ├── main.py                     # FastAPI application entry point
-│   └── requirements.txt            # Python dependencies
-├── vercel.json                     # Vercel deployment configuration
-├── logo-bg.svg                     # Project logo
-├── unimates-email-signature.html   # Email signature template
-├── CNAME                           # Custom domain configuration
-└── README.md                       # This file
+├── 📁 static/                          # Static files (Frontend)
+│   ├── 📁 pages/                       # HTML pages
+│   │   ├── index.html                  # Homepage
+│   │   ├── about.html                  # About us page
+│   │   ├── how-it-works.html           # How it works page
+│   │   ├── quiz.html                   # Roommate Style Quiz
+│   │   ├── quiz-bills-lifestyle.html   # Bills & lifestyle quiz
+│   │   ├── matching-survey.html        # Google Form matching survey
+│   │   ├── customer-feedback.html      # Customer feedback form
+│   │   └── Privacy-policy.html         # Privacy policy
+│   ├── 📁 styles/                      # CSS stylesheets
+│   │   ├── styles.css                  # Main stylesheet (incl. phone mockup)
+│   │   ├── mobile.css                  # Mobile-specific styles
+│   │   ├── about-desktop.css           # About page desktop styles
+│   │   ├── how-it-works-desktop.css    # How it works desktop styles
+│   │   └── quiz-desktop.css            # Quiz page desktop styles
+│   ├── 📁 scripts/                     # JavaScript files
+│   │   ├── shared.js                   # Shared functionality
+│   │   ├── email-handler.js            # Email handling logic
+│   │   ├── view-switcher.js            # View switching functionality
+│   │   └── QUIZ_TECHNICAL_DOCS.md      # Technical quiz system documentation
+│   └── 📁 assets/
+│       └── 📁 images/                  # Image files
+│           ├── logo.png                # Main logo (PNG)
+│           ├── logo.svg                # Vector logo (also used as favicon)
+│           ├── findroommates.jpg       # App screen: Find Roommates
+│           ├── myprofile.jpg           # App screen: My Profile
+│           ├── mymatches.jpg           # App screen: My Matches
+│           ├── househuntingjpg.jpg     # App screen: House Hunting
+│           ├── settings.jpg            # App screen: Settings
+│           ├── giannopoulos.jpg        # Team member photo
+│           ├── Vongelis1.jpg           # Team member photo
+│           ├── gkountas.jpg            # Team member photo
+│           ├── morfidis.png            # Team member photo
+│           ├── piraeus.png             # Supporter logo
+│           ├── c.ioanninaLogo.png      # Supporter logo
+│           ├── moke.png                # Supporter logo
+│           ├── pointofsynergycorrect.png # Supporter logo
+│           └── hustlehours.avif        # Supporter logo
+├── 📁 api/                             # Backend files
+│   ├── main.py                         # FastAPI application entry point
+│   └── requirements.txt               # Python dependencies
+├── sw.js                               # Service Worker (cache-first strategy)
+├── vercel.json                         # Vercel deployment configuration
+├── CNAME                               # Custom domain configuration
+└── README.md                           # This file
 ```
 
 ## 🚀 Quick Start
@@ -82,21 +86,29 @@ UniMates Website/
    ```
 
 4. **Open the website**
-   - Navigate to `static/pages/index.html` in your browser
+   - Navigate to [static/pages/index.html](cci:7://file:///c:/Users/VG/OneDrive/Desktop/UniMates/UniMates-Website/static/pages/index.html:0:0-0:0) in your browser
    - Or serve the static directory with a local server
 
 ## 📱 Pages Overview
 
-### 🏠 Homepage (`index.html`)
+### 🏠 Homepage ([index.html](cci:7://file:///c:/Users/VG/OneDrive/Desktop/UniMates/UniMates-Website/static/pages/index.html:0:0-0:0))
 - **Purpose**: Main landing page introducing UniMates
 - **Features**:
-  - Hero section with call-to-action
-  - Feature highlights
-  - Team member showcase
-  - Social media links
-  - Animated background elements
+  - Hero section with call-to-action and floating profile cards
+  - Bento-grid "Why UniMates?" advantages section
+  - **App Characteristics** phone mockup with 5 real app screenshots (Find Roommates, My Profile, My Matches, House Hunting, Settings) — interactive button switching
+  - Scrolling "Supported By" marquee with partner logos
+  - About Us teaser section
 
-### 🎯 Roommate Style Quiz (`quiz.html`)
+### 👥 About Us ([about.html](cci:7://file:///c:/Users/VG/OneDrive/Desktop/UniMates/UniMates-Website/static/pages/about.html:0:0-0:0))
+- **Purpose**: Team info, supporters, and press coverage
+- **Features**:
+  - Team member profile cards
+  - Supported By scrolling marquee
+  - **Press Highlights** carousel with equal-dimension article cards
+  - Achievements blog section
+
+### 🎯 Roommate Style Quiz ([quiz.html](cci:7://file:///c:/Users/VG/OneDrive/Desktop/UniMates/UniMates-Website/static/pages/quiz.html:0:0-0:0))
 - **Purpose**: Interactive personality quiz for roommate matching
 - **Features**:
   - 10-question personality assessment
@@ -104,31 +116,17 @@ UniMates Website/
   - Animated results with personality types
   - Email collection for waitlist
   - Social sharing functionality
-  - Enhanced animations and styling
-  - **NEW**: Improved layout with footer clearance
-  - **NEW**: Subtle success messages with auto-fade
-  - **NEW**: Enhanced user feedback system
-- **Technical Details**: See [QUIZ_TECHNICAL_DOCS.md](static/scripts/QUIZ_TECHNICAL_DOCS.md) for complete implementation guide
+- **Technical Details**: See [QUIZ_TECHNICAL_DOCS.md](static/scripts/QUIZ_TECHNICAL_DOCS.md)
 
-### ℹ️ How It Works (`how-it-works.html`)
-- **Purpose**: Explains the UniMates platform process
-- **Features**:
-  - Step-by-step process explanation
-  - Visual flow diagrams
-  - Feature highlights
+### ℹ️ How It Works ([how-it-works.html](cci:7://file:///c:/Users/VG/OneDrive/Desktop/UniMates/UniMates-Website/static/pages/how-it-works.html:0:0-0:0))
+- Step-by-step process explanation with visual flow
 
-### 👥 About Us (`about.html`)
-- **Purpose**: Team information and company details
-- **Features**:
-  - Team member profiles
-  - Company mission and values
-  - Contact information
+### 🔒 Privacy Policy ([Privacy-policy.html](cci:7://file:///c:/Users/VG/OneDrive/Desktop/UniMates/UniMates-Website/static/pages/Privacy-policy.html:0:0-0:0))
+- GDPR-compliant privacy terms and data handling policies
 
-### 🔒 Privacy Policy (`Privacy-policy.html`)
-- **Purpose**: Legal privacy information
-- **Features**:
-  - Comprehensive privacy terms
-  - Data handling policies
+### 📋 Matching Survey & Feedback
+- [matching-survey.html](cci:7://file:///c:/Users/VG/OneDrive/Desktop/UniMates/UniMates-Website/static/pages/matching-survey.html:0:0-0:0) — Embedded Google Form for compatibility preferences
+- [customer-feedback.html](cci:7://file:///c:/Users/VG/OneDrive/Desktop/UniMates/UniMates-Website/static/pages/customer-feedback.html:0:0-0:0) — Embedded Google Form for user feedback
 
 ## 🎨 Design System
 
@@ -139,7 +137,6 @@ UniMates Website/
 --accent: #df4f00        /* Orange */
 --accent-light: #ff7a36  /* Light orange */
 --accent-dark: #a33600   /* Dark orange */
---secondary: #7b8fa1     /* Gray */
 --purple: #8b5cf6        /* Purple */
 --cyan: #06b6d4          /* Cyan */
 ```
@@ -152,107 +149,47 @@ UniMates Website/
 ### Responsive Design
 - **Mobile-first** approach
 - **Breakpoints**: 768px, 1024px, 1200px
-- **Flexible grid** system
 - **Touch-friendly** interactions
 
 ## 🔧 Technical Features
 
 ### Frontend Technologies
-- **HTML5**: Semantic markup
-- **CSS3**: Modern styling with custom properties
-- **JavaScript (ES6+)**: Interactive functionality
-- **Font Awesome**: Icon library
-- **Canvas Confetti**: Celebration animations
+- **HTML5** — Semantic markup
+- **CSS3** — Custom properties, glassmorphism, grid/flexbox
+- **JavaScript (ES6+)** — Interactive functionality
+- **Font Awesome 6** — Icon library
+- **Canvas Confetti** — Celebration animations
 
 ### Backend Technologies
-- **FastAPI**: Modern Python web framework
-- **Pydantic**: Data validation
-- **Uvicorn**: ASGI server
-- **Requests**: HTTP client for external APIs
+- **FastAPI** — Python web framework
+- **Uvicorn** — ASGI server
 
-### Key Features
-- **Progressive Web App** ready
-- **SEO optimized** structure
-- **Accessibility** compliant
-- **Cross-browser** compatible
-- **Performance** optimized
-- **Layout stability** with proper footer clearance
-- **Enhanced UX** with subtle feedback messages
+### Performance & Caching
+- **Service Worker ([sw.js](cci:7://file:///c:/Users/VG/OneDrive/Desktop/UniMates/UniMates-Website/sw.js:0:0-0:0))** — Cache-first strategy with stale-while-revalidate for all static assets, pages, styles, scripts, and images. API calls always bypass the cache.
+- **Precaching** — All 8 HTML pages, 5 CSS files, 3 JS scripts, and 15 images cached on first visit
+- **Cache busting** — Bump `CACHE_VERSION` in [sw.js](cci:7://file:///c:/Users/VG/OneDrive/Desktop/UniMates/UniMates-Website/sw.js:0:0-0:0) on each deployment
 
-## 🎯 Quiz System
-
-### Personality Types
-1. **The Social Butterfly** 🦋
-   - High social energy
-   - Excellent communication
-   - Very high adaptability
-
-2. **The Focused Scholar** 📚
-   - High focus
-   - Excellent organization
-   - Very high discipline
-
-3. **The Creative Spirit** 🎨
-   - High creativity
-   - Excellent expression
-   - Very high innovation
-
-4. **The Organized Planner** 📋
-   - High organization
-   - Excellent planning
-   - Very high reliability
-
-### Quiz Flow
-1. **10 Questions** covering living preferences
-2. **Real-time progress** tracking
-3. **Answer validation** and navigation
-4. **Results calculation** based on dominant traits
-5. **Email collection** for waitlist
-6. **Enhanced results** display with animations
-7. **Social sharing** functionality
-8. **NEW**: Subtle success feedback with auto-fade
-9. **NEW**: Improved layout preventing footer overlap
-
-### Technical Implementation
-- **Scoring Algorithm**: Weighted point system for personality type calculation
-- **State Management**: Real-time tracking of user progress and answers
-- **Animation System**: Staggered animations and confetti effects
-- **Data Persistence**: Email collection and API integration
-- **Responsive Design**: Mobile-optimized quiz experience
-- **Layout Management**: Proper spacing and footer clearance
-- **User Feedback**: Subtle success messages with smooth transitions
-
-**📖 For complete technical details, see [QUIZ_TECHNICAL_DOCS.md](static/scripts/QUIZ_TECHNICAL_DOCS.md)**
-
-## 📧 Email System
-
-### Features
-- **Waitlist signup** functionality
-- **Email validation** and processing
-- **Integration** with external email services
-- **Template system** for consistent messaging
-
-### Email Templates
-- **UniMates Email Signature**: Professional email signature template
+### SEO & Accessibility
+- **SVG Favicon** — [logo.svg](cci:7://file:///c:/Users/VG/OneDrive/Desktop/UniMates/UniMates-Website/static/assets/images/logo.svg:0:0-0:0) set as the favicon across all pages
+- **Canonical URLs**, **Open Graph**, and **Twitter Card** meta tags on every page
+- **Semantic HTML5** structure
+- **ARIA labels** on interactive elements
 
 ## 🔌 API Endpoints
 
-### Subscribers
-- `GET /api/subscribers` - Get subscriber count
-- `POST /api/subscribers` - Add new subscriber
-
-### Quiz Results
-- `POST /api/quiz-results` - Save quiz results (planned)
-- `POST /api/compatible-choice` - Save compatibility preferences
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/subscribers` | Get subscriber count |
+| `POST` | `/api/subscribers` | Add new subscriber |
+| `POST` | `/api/compatible-choice` | Save compatibility preferences |
 
 ## 🚀 Deployment
 
-### Vercel Deployment
-- **Serverless functions** support
-- **Automatic builds** from Git
-- **CDN distribution** for fast loading
-- **SSL certificates** included
-- **Custom domain** support
+### Vercel
+- **Serverless** Python backend via `@vercel/python`
+- **Static** frontend via `@vercel/static`
+- **Service Worker** served at [/sw.js](cci:7://file:///c:/Users/VG/OneDrive/Desktop/UniMates/UniMates-Website/sw.js:0:0-0:0) with `Service-Worker-Allowed: /` and `Cache-Control: no-cache` headers
+- **Custom domain** via CNAME
 
 ### Environment Variables
 ```bash
@@ -265,116 +202,30 @@ FORM_ID=your_form_id
 
 ### File Organization
 - **Separation of concerns**: HTML, CSS, JS in separate files
-- **Modular CSS**: Component-based styling
-- **Shared utilities**: Common functions in shared.js
-- **Page-specific styles**: Individual CSS files for complex pages
+- **Modular CSS**: Per-page stylesheets + shared [styles.css](cci:7://file:///c:/Users/VG/OneDrive/Desktop/UniMates/UniMates-Website/static/styles/styles.css:0:0-0:0) + [mobile.css](cci:7://file:///c:/Users/VG/OneDrive/Desktop/UniMates/UniMates-Website/static/styles/mobile.css:0:0-0:0)
+- **Shared utilities**: Common functions in [shared.js](cci:7://file:///c:/Users/VG/OneDrive/Desktop/UniMates/UniMates-Website/static/scripts/shared.js:0:0-0:0)
 
-### Code Quality
-- **Semantic HTML**: Proper document structure
-- **CSS custom properties**: Consistent theming
-- **JavaScript modules**: Organized functionality
-- **Error handling**: Graceful fallbacks
-
-### Performance Optimizations
-- **Image optimization**: Compressed images
-- **CSS minification**: Reduced file sizes
-- **Lazy loading**: Deferred non-critical resources
-- **Caching strategies**: Browser and CDN caching
-
-### Recent Improvements
-- **Layout Stability**: Fixed footer overlap issues in quiz results
-- **User Experience**: Added subtle success messages with auto-fade
-- **Visual Polish**: Enhanced feedback system with smooth transitions
-- **Code Organization**: Improved CSS structure and JavaScript functionality
-
-## 📱 Mobile Experience
-
-### Responsive Features
-- **Touch-friendly** buttons and interactions
-- **Mobile-optimized** navigation
-- **Adaptive layouts** for all screen sizes
-- **Performance** optimized for mobile networks
-
-### Mobile-Specific Styles
-- **Dedicated mobile.css** for mobile optimizations
-- **Touch targets** sized appropriately
-- **Mobile navigation** patterns
-- **Optimized typography** for small screens
-
-## 🔒 Privacy & Security
-
-### Data Protection
-- **GDPR compliant** privacy policy
-- **Secure data handling** practices
-- **User consent** management
-- **Data minimization** principles
-
-### Security Features
-- **HTTPS enforcement** in production
-- **Input validation** and sanitization
-- **CSRF protection** (planned)
-- **Rate limiting** (planned)
-
-## 🎨 Animation System
-
-### CSS Animations
-- **Smooth transitions** for all interactions
-- **Staggered animations** for lists and grids
-- **Hover effects** for interactive elements
-- **Loading states** and feedback
-- **Fade-out effects** for user notifications
-
-### JavaScript Animations
-- **Confetti effects** for celebrations
-- **Progress animations** for quiz completion
-- **Modal animations** for overlays
-- **Scroll-triggered** animations
-- **Auto-fade notifications** for better UX
-
-## 📊 Analytics & Tracking
-
-### Planned Features
-- **User behavior** tracking
-- **Quiz completion** analytics
-- **Conversion tracking** for waitlist signups
-- **Performance monitoring**
-
-## 🤝 Contributing
-
-### Development Workflow
-1. **Fork** the repository
-2. **Create** a feature branch
-3. **Make** your changes
-4. **Test** thoroughly
-5. **Submit** a pull request
-
-### Code Standards
-- **Consistent formatting** with Prettier
-- **ESLint** for JavaScript quality
-- **CSS linting** for style consistency
-- **Accessibility** testing
+### Recent Changes
+| Area | Change |
+|------|--------|
+| Press Highlights | Fixed equal card dimensions using fixed slide height + `height: 100%` on cards |
+| App Characteristics | Wired 5 real app screenshots to each feature button in the phone mockup |
+| Caching | Added [sw.js](cci:7://file:///c:/Users/VG/OneDrive/Desktop/UniMates/UniMates-Website/sw.js:0:0-0:0) Service Worker with cache-first + stale-while-revalidate strategy |
+| Favicon | Added [logo.svg](cci:7://file:///c:/Users/VG/OneDrive/Desktop/UniMates/UniMates-Website/static/assets/images/logo.svg:0:0-0:0) as SVG favicon across all 8 HTML pages |
 
 ## 📞 Support
 
-### Contact Information
-- **Email**: info@unimates.net
-- **Social Media**: 
-  - Instagram: @unimates.info
-  - TikTok: @unimatesapp
-  - YouTube: UniMates Channel
-  - LinkedIn: UniMates Company
-
-### Documentation
-- **[Technical Documentation](static/scripts/QUIZ_TECHNICAL_DOCS.md)** - Complete quiz system implementation guide
-- **[Frontend Architecture](static/PROJECT_STRUCTURE.md)** - Frontend development guidelines
-- **API Documentation**: Available at `/docs` when server is running
-- **Code Comments**: Inline documentation in source files
-- **README**: This comprehensive guide
+- **Email**: contact@unimates.net
+- **Instagram**: [@unimates_app](https://instagram.com/unimates_app)
+- **TikTok**: [@unimatesapp](https://tiktok.com/@unimatesapp)
+- **YouTube**: [UniMates Channel](https://www.youtube.com/channel/UCMKHVISj443ioGYAZYRUrTQ)
+- **LinkedIn**: [UniMates](https://www.linkedin.com/company/unimatesapp)
 
 ## 📄 License
 
-This project is proprietary software owned by UniMates. All rights reserved.
+Proprietary software owned by UniMates. All rights reserved.
 
 ---
 
-**Built with ❤️ for university students worldwide** 
+**Built with ❤️ for university students worldwide**
+```
